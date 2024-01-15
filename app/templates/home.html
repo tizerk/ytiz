@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block content %}
+<h1>Tiz-DL</h1>
+<div class="url-container">
+	<form method="post">
+		<div class="url-input">
+			<label for="url">URL Address</label>
+			<input type="url" id="url" name="url" placeholder="Enter URL Here..." />
+		</div>
+		<button type="submit">Submit</button>
+	</form>
+	{% with messages = get_flashed_messages() %} {% if messages %}{% for message
+	in messages %}
+	<p style="color: red">{{ message }}</p>
+	{% endfor %} {% endif %} {% endwith %}
+</div>
+{% endblock %}
