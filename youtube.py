@@ -3,7 +3,14 @@ import yt_dlp
 ydl_opts = {
     "outtmpl": "%(title)s.%(ext)s",
     "quiet": True,
-    "format": f"bestvideo+bestaudio/best",
+    "format": f"bestaudio/best",
+    "postprocessors": [
+        {
+            "key": "FFmpegExtractAudio",
+            "preferredcodec": "mp3",
+            "preferredquality": "320",
+        }
+    ],
 }
 
 

@@ -23,6 +23,7 @@ def home():
             filename, err = youtube.download_video(url)
             if err != 1:
                 file_path = os.path.join(os.path.dirname(__file__), os.pardir, filename)
+                file_path = file_path.replace(".webm", ".mp3")
                 return send_file(file_path, as_attachment=True)
             else:
                 flash(f"Error: This URL Is Not Supported: {url}")
