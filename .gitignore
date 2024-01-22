@@ -1,3 +1,6 @@
 __pycache__
 .env
 *.webm
+*.mp3
+/temporary
+desktop.ini
