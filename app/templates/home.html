@@ -1,16 +1,21 @@
 {% extends "base.html" %} {% block content %}
-<h1>YTIZ-MP3</h1>
+<h1 class="heading">YTIZ-MP3</h1>
 <div class="url-container">
 	<form method="post">
 		<div class="url-input">
-			<label for="url">URL Address</label>
-			<input type="url" id="url" name="url" placeholder="Enter URL Here..." />
+			<input
+				class="input"
+				type="url"
+				id="url"
+				name="url"
+				placeholder="Enter URL Here..."
+			/>
 		</div>
-		<button type="submit">Submit</button>
+		<button class="submit" type="submit">Submit</button>
 	</form>
 	{% with messages = get_flashed_messages() %} {% if messages %}{% for message
 	in messages %}
-	<p style="color: red">{{ message }}</p>
+	<p class="error" style="color: red">{{ message }}</p>
 	{% endfor %} {% endif %} {% endwith %}
 </div>
 {% endblock %}

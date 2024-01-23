@@ -14,14 +14,16 @@
 		{% endif %}
 	</head>
 	<body>
-		<header>
-			<a href="{{url_for('home')}}">Home</a>
-			<a href="{{url_for('about')}}">About</a>
-		</header>
-		<div class="container">{% block content %}{% endblock %}</div>
-		<script
-			type="text/javascript"
-			src="{{url_for('static', filename='index.js')}}"
-		></script>
+		<main>
+			<header>
+				<a class="header-link" href="{{url_for('home')}}">Home</a>
+				<a class="header-link" href="{{url_for('about')}}">About</a>
+			</header>
+			<div class="container">{% block content %}{% endblock %}</div>
+			<script
+				type="text/javascript"
+				src="{{url_for('static', filename='index.js')}}"
+			></script>
+		</main>
 	</body>
 </html>
