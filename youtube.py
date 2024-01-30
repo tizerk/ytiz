@@ -1,7 +1,7 @@
 import yt_dlp
 
 ydl_opts = {
-    "outtmpl": "temporary/%(title)s.%(ext)s",
+    "outtmpl": "temporary/%(title)s",
     "format": f"bestaudio/best",
     "postprocessors": [
         {
@@ -18,10 +18,9 @@ def download_video(link):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:
             result = ydl.extract_info(link, download=False)
-            filename = ydl.prepare_filename(result)
+            filename = ydl.prepare_filename(result) + ".mp3"
             ydl.download(link)
-            converted_filename = filename.replace(".webm", ".mp3")
-            return converted_filename, 0
+            return filename, 0
         except Exception as e:
             print(e)
             return e, 1
