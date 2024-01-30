@@ -1,7 +1,7 @@
 import yt_dlp
 
 ydl_opts = {
-    "outtmpl": "temporary/%(title)s.%(ext)s",
+    "outtmpl": "temporary/%(title)s",
     "format": f"bestaudio/best",
     "postprocessors": [
         {
