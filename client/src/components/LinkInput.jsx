@@ -9,13 +9,16 @@ function LinkInput() {
 		setDownload(true);
 		setErrorMessage('OK');
 		e.preventDefault();
-		const response = await fetch('/api/download', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ url: link }),
-		});
+		const response = await fetch(
+			'https://client-testing-a521.up.railway.app/api/download',
+			{
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({ url: link }),
+			}
+		);
 		response
 			.json()
 			.then(async (data) => {
@@ -24,15 +27,18 @@ function LinkInput() {
 				} else {
 					const filename = data['filename'];
 					const filepath = data['filepath'];
-					await fetch('/api/file_send', {
-						method: 'POST',
-						headers: {
-							'Content-Type': 'application/json',
-						},
-						body: JSON.stringify({
-							filepath: filepath,
-						}),
-					})
+					await fetch(
+						'https://client-testing-a521.up.railway.app/api/file_send',
+						{
+							method: 'POST',
+							headers: {
+								'Content-Type': 'application/json',
+							},
+							body: JSON.stringify({
+								filepath: filepath,
+							}),
+						}
+					)
 						.then((response) => response.blob())
 						.then((blob) => {
 							const downloadUrl = URL.createObjectURL(blob);
