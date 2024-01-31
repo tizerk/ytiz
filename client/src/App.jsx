@@ -1,31 +1,12 @@
-import { useState } from 'react';
+import LinkInput from './components/LinkInput';
 import './App.css';
 
 function App() {
 	return (
-		<>
-			<h1 className="heading">YTIZ-MP3</h1>
-			<div className="url-container">
-				<form method="post">
-					<div className="url-input">
-						<input
-							className="input"
-							type="url"
-							id="url"
-							name="url"
-							placeholder="Enter URL Here..."
-						/>
-					</div>
-					<button className="submit" type="submit">
-						Submit
-					</button>
-				</form>
-
-				<p className="error" style={{ color: 'red' }}>
-					Error Message
-				</p>
-			</div>
-		</>
+		<main className="h-screen overflow-x-hidden box-border bg-[#FBF9FB] p-0 m-0 text-2xl font-league flex flex-col justify-center items-center">
+			<h1 className="text-8xl text-center mt-[5rem] mb-[3rem]">YTIZ-MP3</h1>
+			<LinkInput />
+		</main>
 	);
 }
 
