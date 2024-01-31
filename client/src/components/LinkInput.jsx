@@ -24,6 +24,7 @@ function LinkInput() {
 			.then(async (data) => {
 				if (!data['filename'] && !data['filepath'] && data['error']) {
 					setErrorMessage(data['error']);
+					setDownload(false);
 				} else {
 					const filename = data['filename'];
 					const filepath = data['filepath'];
@@ -52,7 +53,7 @@ function LinkInput() {
 			});
 		setTimeout(function () {
 			setDownload(false);
-		}, 250);
+		}, 500);
 	};
 	return (
 		<>
