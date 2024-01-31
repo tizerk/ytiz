@@ -1,15 +1,14 @@
 import Spinner from '../components/Spinner';
 import { useState } from 'react';
+import 'dotenv';
 
 function LinkInput() {
 	const [link, setLink] = useState('');
 	const [errorMessage, setErrorMessage] = useState('OK');
 	const [download, setDownload] = useState(false);
-	const baseFetchURL =
-		process.env.NODE_ENV === 'development'
-			? 'http://localhost:5000'
-			: process.env.fetch_url;
-	console.log(baseFetchURL);
+	const baseFetchURL = import.meta.env.PROD
+		? import.meta.env.VITE_fetch_url
+		: import.meta.env.VITE_dev_url;
 	const handleSubmit = async (e) => {
 		setDownload(true);
 		setErrorMessage('OK');
@@ -43,7 +42,7 @@ function LinkInput() {
 							const downloadUrl = URL.createObjectURL(blob);
 							const link = document.createElement('a');
 							link.href = downloadUrl;
-							link.download = filename.replaceAll('temporary_', '');
+							link.download = filename.replace('temporary\\', '');
 							link.click();
 							URL.revokeObjectURL(downloadUrl);
 						});
