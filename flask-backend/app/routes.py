@@ -11,7 +11,7 @@ import youtube
 
 
 @app.route("/api/download", methods=["POST"])
-@cross_origin(origin="https://client-testing-a521.up.railway.app/")
+# @cross_origin(origin="https://client-testing-a521.up.railway.app/")
 def download():
     if os.path.exists("temporary/"):
         if os.path.isdir("temporary/"):
@@ -32,7 +32,7 @@ def download():
 
 
 @app.route("/api/file_send", methods=["POST"])
-@cross_origin(origin="https://client-testing-a521.up.railway.app/")
+# @cross_origin(origin="https://client-testing-a521.up.railway.app/")
 def file_send():
     file_path = request.json["filepath"]
     return send_file(file_path, as_attachment=True)
