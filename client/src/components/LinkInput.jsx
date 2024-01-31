@@ -9,16 +9,13 @@ function LinkInput() {
 		setDownload(true);
 		setErrorMessage('OK');
 		e.preventDefault();
-		const response = await fetch(
-			'https://ytiz-mp3-testing.up.railway.app/api/download',
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ url: link }),
-			}
-		);
+		const response = await fetch('/api/download', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ url: link }),
+		});
 		response
 			.json()
 			.then(async (data) => {
@@ -27,7 +24,7 @@ function LinkInput() {
 				} else {
 					const filename = data['filename'];
 					const filepath = data['filepath'];
-					await fetch('https://ytiz-mp3-testing.up.railway.app/api/file_send', {
+					await fetch('/api/file_send', {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -41,7 +38,7 @@ function LinkInput() {
 							const downloadUrl = URL.createObjectURL(blob);
 							const link = document.createElement('a');
 							link.href = downloadUrl;
-							link.download = filename.replace('temporary\\', '');
+							link.download = filename.replace('temporary\\temporary_', '');
 							link.click();
 							URL.revokeObjectURL(downloadUrl);
 						});
@@ -52,7 +49,7 @@ function LinkInput() {
 			});
 		setTimeout(function () {
 			setDownload(false);
-		}, 500);
+		}, 1000);
 	};
 	return (
 		<>
