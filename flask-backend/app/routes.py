@@ -33,3 +33,8 @@ def download():
 def file_send():
     file_path = request.json["filepath"]
     return send_file(file_path, as_attachment=True)
+
+
+@app.route("/api/test", methods=["GET"])
+def test():
+    return jsonify({"test": "Successful GET Request!"}), 200
