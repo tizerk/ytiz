@@ -50,7 +50,9 @@ function LinkInput() {
 			.catch((error) => {
 				console.log(error);
 			});
-		setDownload(false);
+		setTimeout(function () {
+			setDownload(false);
+		}, 500);
 	};
 	return (
 		<>
