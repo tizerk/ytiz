@@ -5,20 +5,22 @@ function LinkInput() {
 	const [link, setLink] = useState('');
 	const [errorMessage, setErrorMessage] = useState('OK');
 	const [download, setDownload] = useState(false);
+	const baseFetchURL =
+		process.env.NODE_ENV === 'development'
+			? 'http://localhost:5000'
+			: process.env.fetch_url;
+	console.log(baseFetchURL);
 	const handleSubmit = async (e) => {
 		setDownload(true);
 		setErrorMessage('OK');
 		e.preventDefault();
-		const response = await fetch(
-			'https://ytiz-mp3-testing.up.railway.app/api/download',
-			{
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ url: link }),
-			}
-		);
+		const response = await fetch(`${baseFetchURL}/api/download`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ url: link }),
+		});
 		response
 			.json()
 			.then(async (data) => {
@@ -27,7 +29,7 @@ function LinkInput() {
 				} else {
 					const filename = data['filename'];
 					const filepath = data['filepath'];
-					await fetch('https://ytiz-mp3-testing.up.railway.app/api/file_send', {
+					await fetch(`${baseFetchURL}/api/file_send`, {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
@@ -41,7 +43,7 @@ function LinkInput() {
 							const downloadUrl = URL.createObjectURL(blob);
 							const link = document.createElement('a');
 							link.href = downloadUrl;
-							link.download = filename.replace('temporary\\temporary_', '');
+							link.download = filename.replaceAll('temporary_', '');
 							link.click();
 							URL.revokeObjectURL(downloadUrl);
 						});
