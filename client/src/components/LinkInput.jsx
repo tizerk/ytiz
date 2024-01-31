@@ -41,7 +41,7 @@ function LinkInput() {
 							const downloadUrl = URL.createObjectURL(blob);
 							const link = document.createElement('a');
 							link.href = downloadUrl;
-							link.download = filename.replace('temporary\\', '');
+							link.download = filename.replace('temporary/', '');
 							link.click();
 							URL.revokeObjectURL(downloadUrl);
 						});
@@ -52,7 +52,7 @@ function LinkInput() {
 			});
 		setTimeout(function () {
 			setDownload(false);
-		}, 1000);
+		}, 250);
 	};
 	return (
 		<>
