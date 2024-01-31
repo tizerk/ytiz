@@ -1,6 +1,5 @@
 import Spinner from '../components/Spinner';
 import { useState } from 'react';
-import 'dotenv';
 
 function LinkInput() {
 	const [link, setLink] = useState('');
