@@ -61,7 +61,7 @@ function LinkInput() {
         <form onSubmit={handleSubmit}>
           <div className="flex max-w-[100%] flex-row justify-center">
             <input
-              className="mr-3 w-1/2 rounded-l-full rounded-r-[3rem] border-2 border-[var(--very-dark-magenta)] px-12 py-8 text-2xl font-bold outline-none focus:bg-[#f1e4f0] focus:text-black focus:placeholder:font-bold focus:placeholder:text-black"
+              className="mr-3 w-1/2 rounded-l-full rounded-r-[3rem] border-2 border-[var(--very-dark-magenta)] px-12 py-8 text-2xl font-bold outline-none focus:bg-[var(--focus)] focus:text-[var(--background)] focus:placeholder:font-bold focus:placeholder:text-[var(--background)]"
               type="url"
               id="url"
               name="url"
@@ -71,7 +71,7 @@ function LinkInput() {
             />
             <button
               disabled={!link}
-              className="min-w-[15rem] rounded-r-full border-none bg-[#df5392] bg-[var(--soft-pink)] p-8 text-[1.8rem] font-bold text-white outline-none hover:cursor-pointer hover:shadow-lg hover:shadow-[#50313156] disabled:bg-[#672d47] disabled:text-[#787878] disabled:hover:cursor-not-allowed disabled:hover:shadow-none"
+              className="min-w-[15rem] rounded-r-full border-none bg-[var(--primary)] p-8 text-[1.8rem] font-bold text-[var(--text)] outline-none hover:cursor-pointer hover:shadow-lg hover:shadow-[var(--shadow)] disabled:bg-[var(--secondary)] disabled:text-[#929292] disabled:hover:cursor-not-allowed disabled:hover:shadow-none"
               type="submit"
             >
               Submit

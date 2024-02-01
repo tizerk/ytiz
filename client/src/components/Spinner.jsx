@@ -6,7 +6,7 @@ function Spinner() {
       role="status"
     >
       <svg
-        className="inline h-[6rem] w-[6rem] animate-spin fill-[var(--soft-pink)]"
+        className="inline h-[6rem] w-[6rem] animate-spin fill-[var(--accent)]"
         viewBox="3 3 18 18"
       >
         <path
