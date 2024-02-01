@@ -1,3 +1,10 @@
+__pycache__
+.env
+*.webm
+*.mp3
+/temporary
+desktop.ini
+
 # Logs
 logs
 *.log
@@ -22,4 +29,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-.env
