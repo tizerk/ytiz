@@ -1,7 +1,7 @@
 import yt_dlp
 
 
-def download_video(link):
+def download_video(link, hqMode):
     ydl_opts = {
         "outtmpl": "temporary/%(title)s",
         "format": f"bestaudio/best",
@@ -9,7 +9,7 @@ def download_video(link):
             {
                 "key": "FFmpegExtractAudio",
                 "preferredcodec": "mp3",
-                "preferredquality": "320",
+                "preferredquality": "320" if hqMode else "128",
             }
         ],
         "source_address": "0.0.0.0",

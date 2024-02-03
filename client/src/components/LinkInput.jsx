@@ -1,14 +1,18 @@
 import Spinner from "../components/Spinner";
 import { useState } from "react";
+import Switch from "./Switch";
 
 function LinkInput() {
   const [link, setLink] = useState("");
   const [errorMessage, setErrorMessage] = useState("OK");
+  const [hqMode, SetHqMode] = useState(true);
   const [download, setDownload] = useState(false);
   const baseFetchURL = import.meta.env.PROD
     ? import.meta.env.VITE_fetch_url
     : import.meta.env.VITE_dev_url;
-
+  const handleHqSwitch = () => {
+    SetHqMode(!hqMode);
+  };
   const handleSubmit = async (e) => {
     setDownload(true);
     setErrorMessage("OK");
@@ -20,7 +24,7 @@ function LinkInput() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ url: link }),
+        body: JSON.stringify({ url: link, quality: hqMode }),
       });
 
       const data = await response.json();
@@ -78,6 +82,14 @@ function LinkInput() {
             >
               Submit
             </button>
+          </div>
+          <div className="mt-4">
+            <Switch
+              label="High Quality Mode"
+              id="hq-toggle"
+              checked={hqMode}
+              onCheckedChange={handleHqSwitch}
+            />
           </div>
           {
             <p
