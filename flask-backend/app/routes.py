@@ -6,6 +6,7 @@ from flask import (
 from app import app
 import os, shutil
 import youtube
+import zipfile
 
 
 @app.route("/api/download", methods=["POST"])
@@ -25,7 +26,16 @@ def download():
 @app.route("/api/file_send", methods=["POST"])
 def file_send():
     file_path = request.json["filepath"]
-    return send_file(file_path, as_attachment=True)
+    if file_path.endswith(".zip"):
+        with zipfile.ZipFile(file_path, "w", zipfile.ZIP_DEFLATED) as zip:
+            for root, _, files in os.walk("temporary/"):
+                for file in files:
+                    path = os.path.join(root, file)
+                    if not path.endswith(".zip"):
+                        zip.write(path, path.replace(root, ""))
+        return send_file(file_path, as_attachment=True)
+    else:
+        return send_file(file_path, as_attachment=True)
 
 
 @app.route("/api/clear", methods=["POST"])

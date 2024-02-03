@@ -17,7 +17,10 @@ def download_video(link):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:
             result = ydl.extract_info(link, download=True)
-            filename = ydl.prepare_filename(result).join(".mp3")
+            if "entries" in result:
+                filename = ydl.prepare_filename(result) + ".zip"
+            else:
+                filename = ydl.prepare_filename(result) + ".mp3"
             return filename, 0
         except Exception as e:
             print(e)
