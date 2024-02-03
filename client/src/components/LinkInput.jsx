@@ -8,52 +8,54 @@ function LinkInput() {
   const baseFetchURL = import.meta.env.PROD
     ? import.meta.env.VITE_fetch_url
     : import.meta.env.VITE_dev_url;
+
   const handleSubmit = async (e) => {
     setDownload(true);
     setErrorMessage("OK");
     e.preventDefault();
-    const response = await fetch(`${baseFetchURL}/api/download`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ url: link }),
-    });
-    response
-      .json()
-      .then(async (data) => {
-        if (!data["filename"] && !data["filepath"] && data["error"]) {
-          setErrorMessage(data["error"]);
-          setDownload(false);
-        } else {
-          const filename = data["filename"];
-          const filepath = data["filepath"];
-          await fetch(`${baseFetchURL}/api/file_send`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              filepath: filepath,
-            }),
-          })
-            .then((response) => response.blob())
-            .then((blob) => {
-              const downloadUrl = URL.createObjectURL(blob);
-              const link = document.createElement("a");
-              link.href = downloadUrl;
-              link.download = filename.replace("temporary/", "");
-              link.click();
-              URL.revokeObjectURL(downloadUrl);
-            });
-        }
-      })
-      .catch((error) => {
-        console.log(error);
+
+    try {
+      const response = await fetch(`${baseFetchURL}/api/download`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ url: link }),
       });
-    setTimeout(function () {
+
+      const data = await response.json();
+
+      if (!data["filename"] && !data["filepath"] && data["error"]) {
+        setErrorMessage(data["error"]);
+        setDownload(false);
+      } else {
+        const filename = data["filename"];
+        const filepath = data["filepath"];
+
+        const fileResponse = await fetch(`${baseFetchURL}/api/file_send`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            filepath: filepath,
+          }),
+        });
+
+        const blob = await fileResponse.blob();
+        const downloadUrl = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = downloadUrl;
+        link.download = filename.replace("temporary/", "");
+        link.click();
+        URL.revokeObjectURL(downloadUrl);
+
+        await fetch(`${baseFetchURL}/api/clear`, { method: "POST" });
+      }
       setDownload(false);
-    }, 500);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
