@@ -26,15 +26,15 @@ def download():
 @app.route("/api/file_send", methods=["POST"])
 def file_send():
     file_path = request.json["filepath"]
-    if file_path.endswith(".zip"):
+    if len(os.listdir("temporary/")) < 2:
+        return send_file(file_path, as_attachment=True)
+    else:
         with zipfile.ZipFile(file_path, "w", zipfile.ZIP_DEFLATED) as zip:
             for root, _, files in os.walk("temporary/"):
                 for file in files:
                     path = os.path.join(root, file)
                     if not path.endswith(".zip"):
                         zip.write(path, path.replace(root, ""))
-        return send_file(file_path, as_attachment=True)
-    else:
         return send_file(file_path, as_attachment=True)
 
 
