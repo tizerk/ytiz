@@ -1,13 +1,21 @@
-import LinkInput from "./components/LinkInput";
+import { Routes, Route } from "react-router-dom";
+import NavMenu from "./components/NavMenu";
+import Home from "./pages/Home";
+import FAQ from "./pages/FAQ";
+import Socials from "./pages/Socials";
+import Changelog from "./pages/Changelog";
 import "./App.css";
 
 function App() {
   return (
     <main className="font-league m-0 box-border flex h-screen flex-col items-center justify-center overflow-x-hidden bg-[var(--background)] p-0 text-2xl">
-      <h1 className="mb-[3rem] mt-[5rem] text-center text-8xl text-[var(--text)]">
-        YTIZ-MP3
-      </h1>
-      <LinkInput />
+      <NavMenu />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/faq" element={<FAQ />} />
+        <Route path="/socials" element={<Socials />} />
+        <Route path="/changelog" element={<Changelog />} />
+      </Routes>
     </main>
   );
 }
