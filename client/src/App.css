@@ -4,13 +4,20 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 240 33% 5%;
     --foreground: 222.2 84% 4.9%;
 
+    --text: 0 0% 97%;
+    --text-fade: 0 0% 97% / 0.6;
+    --splash: 252 41% 35%;
+    --switch-checked: 223 75% 42%;
+    --nav-top: 253 6% 57% / 0.4;
+    --nav-bot: 255 6% 13% / 0.4;
+    --input-top: 251 36% 75% / 0.2;
+    --input-bot: 252 20% 25% / 0.2;
+    --input-border: 0 0% 74%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
     --primary: 222.2 47.4% 11.2%;
@@ -30,7 +37,7 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --ring: 0, 0%, 92%;
 
     --radius: 0.5rem;
   }

@@ -9,6 +9,7 @@ module.exports = {
   ],
   prefix: "",
   theme: {
+    fontFamily: { opensans: ["Open Sans", "ui-sans-serif", "system-ui"] },
     container: {
       center: true,
       padding: "2rem",
@@ -17,10 +18,32 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      },
+      dropShadow: {
+        glow: [
+          "0 0px 20px rgba(255,255, 255, 0.5)",
+          "0 0px 0px rgba(255, 255,255, 0.3)",
+        ],
+        heavy_glow: [
+          "0 0px 30px rgba(255,255, 255, .5)",
+          "0 0px 20px rgba(255, 255,255, .4)",
+        ],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        text: "hsl(var(--text))",
+        text_fade: "hsla(var(--text-fade))",
+        splash: "hsl(var(--splash))",
+        checked_switch: "hsl(var(--switch-checked))",
+        nav_top: "hsla(var(--nav-top))",
+        nav_bot: "hsla(var(--nav-bot))",
+        input_top: "hsla(var(--input-top))",
+        input_bot: "hsla(var(--input-bot))",
+        input_border: "hsl(var(--input-border))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -51,6 +74,9 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+      },
+      boxShadow: {
+        custom: "var(--navbar-outline)",
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { ChevronRight } from "lucide-react";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import ToggleSwitch from "./ToggleSwitch";
 
 function LinkInput() {
@@ -14,6 +21,28 @@ function LinkInput() {
   const baseFetchURL = import.meta.env.PROD
     ? import.meta.env.VITE_fetch_url
     : import.meta.env.VITE_dev_url;
+  const inputContainer = useRef();
+  const applyOverlayMask = (e) => {
+    const documentTarget = e.currentTarget;
+    if (!inputContainer.current) {
+      return;
+    }
+
+    const x = e.pageX - inputContainer.current.offsetLeft;
+    const y = e.pageY - inputContainer.current.offsetTop;
+
+    documentTarget.setAttribute(
+      "style",
+      `--x: ${x}px; --y: ${y}px; --opacity: 1`,
+    );
+  };
+
+  useEffect(() => {
+    document.body.addEventListener("pointermove", (e) => {
+      applyOverlayMask(e);
+    });
+  }, []);
+
   const handleHqSwitch = () => {
     SetHqMode(!hqMode);
   };
@@ -67,42 +96,92 @@ function LinkInput() {
   };
   return (
     <>
-      <div className="w-[80%]">
-        <form onSubmit={handleSubmit}>
-          <div className="flex max-w-[100%] flex-row justify-center">
-            <Input
-              className="mr-3 w-1/2 rounded-l-full rounded-r-[3rem] border-2 px-12 py-8 text-2xl font-bold outline-none focus:text-[var(--background)] focus:placeholder:font-bold focus:placeholder:text-[var(--background)]"
-              type="url"
-              id="url"
-              name="url"
-              placeholder="Enter URL Here..."
-              value={link}
-              disabled={download}
-              onChange={(e) => setLink(e.target.value)}
-            />
-            <Button
-              variant="outline"
-              size="icon"
-              disabled={!link || download}
-              type="submit"
-            >
-              {download ? (
-                <Loader2 className="h-8 w-8 animate-spin" />
-              ) : (
-                <ChevronRight className="h-8 w-8" />
-              )}
-            </Button>
-          </div>
-          <div className="mt-4">
-            <ToggleSwitch
-              label="High Quality Mode"
-              id="hq-toggle"
-              checked={hqMode}
-              onCheckedChange={handleHqSwitch}
-            />
-          </div>
+      <div className="w-[85%] sm:w-[70%] md:w-[55%] lg:w-[40%]">
+        <form
+          className="relative flex w-full flex-row items-center justify-center"
+          onSubmit={handleSubmit}
+          autoComplete="off"
+          ref={inputContainer}
+        >
+          <Input
+            className="rounded-full border-2 border-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-semibold text-text outline-none backdrop-blur-sm focus:bg-[#0d121f] focus:outline-none"
+            type="url"
+            id="url"
+            name="url"
+            placeholder="Enter URL Here..."
+            value={link}
+            disabled={download}
+            onChange={(e) => setLink(e.target.value)}
+          />
+          <Input
+            style={{
+              opacity: "var(--opacity, 0)",
+              mask: `
+              radial-gradient(
+                25rem 25rem at var(--x) var(--y),
+                #000 1%,
+                transparent 50%
+              )`,
+              WebkitMask: `
+              radial-gradient(
+                25rem 25rem at var(--x) var(--y),
+                #000 1%,
+                transparent 50%
+              )`,
+            }}
+            className="pointer-events-none absolute select-none rounded-full border-2 border-[#b399ff] bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-semibold text-text outline-none backdrop-blur-sm"
+            type="url"
+            name="url"
+            value={link}
+            placeholder="Enter URL Here..."
+            disabled={download}
+            onChange={(e) => setLink(e.target.value)}
+          />
+          <Button
+            className="hover:drop-shadow-heavy_glow absolute right-4 aspect-auto h-[50px] w-[50px] rounded-full border-[3px] border-text bg-transparent transition-all delay-0 duration-200 ease-out"
+            variant="default"
+            size="icon"
+            disabled={!link || download}
+            type="submit"
+          >
+            {download ? (
+              <Loader2 className="h-8 w-8 animate-spin" />
+            ) : (
+              <ChevronRight className="h-8 w-8" />
+            )}
+          </Button>
         </form>
-        <Toaster offset={"45px"} richColors position="bottom-center" />
+        <div className="mt-16 flex justify-center">
+          <TooltipProvider>
+            <Tooltip delayDuration="500">
+              <ToggleSwitch
+                label=""
+                id="hq-toggle"
+                checked={hqMode}
+                onCheckedChange={handleHqSwitch}
+              />
+              <TooltipTrigger className="text-text">
+                <Label
+                  className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-lg font-semibold text-transparent"
+                  htmlFor="hq-toggle"
+                >
+                  High Quality Mode
+                </Label>
+              </TooltipTrigger>
+              <TooltipContent side="bottom">
+                <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                  Enabled - 320kbps downloads
+                  <br />
+                  Disabled - 128kbps downloads
+                  <p className="text-xs italic">
+                    SoundCloud only supports 128kbps
+                  </p>
+                </p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+        <Toaster offset={"45px"} position="bottom-center" />
       </div>
     </>
   );
