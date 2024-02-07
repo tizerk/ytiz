@@ -135,7 +135,7 @@ function LinkInput() {
             disabled={download}
           />
           <Button
-            className="hover:drop-shadow-heavy_glow absolute right-4 aspect-auto h-[50px] w-[50px] rounded-full border-[3px] border-text bg-transparent transition-all delay-0 duration-200 ease-out"
+            className="absolute right-4 aspect-auto h-[50px] w-[50px] rounded-full border-[3px] border-text bg-transparent transition-all delay-0 duration-200 ease-out hover:drop-shadow-heavy_glow"
             variant="default"
             size="icon"
             disabled={!link || download}
