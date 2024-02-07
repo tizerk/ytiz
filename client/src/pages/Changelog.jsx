@@ -21,7 +21,7 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8">
           <Change
-            header="Release 1.0.0 - February 15th, 2024"
+            header="Release 1.0.0 - February 8th, 2024"
             features={["YTiz is Out!"]}
             issues={["None"]}
           />
