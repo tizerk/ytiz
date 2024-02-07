@@ -35,9 +35,9 @@ def download_video(link, hqMode):
         try:
             result = ydl.extract_info(link, download=False)
             if "entries" in result:
-                filename = ydl.prepare_filename(result)[:75] + ".zip"
+                filename = ydl.prepare_filename(result) + ".zip"
             else:
-                filename = ydl.prepare_filename(result)[:75] + ".mp3"
+                filename = ydl.prepare_filename(result) + ".mp3"
             if ".webm" in filename:
                 filename = remove_last_substring(filename, ".webm")
             elif ".m4a" in filename:
