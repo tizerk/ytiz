@@ -87,7 +87,9 @@ function LinkInput() {
         URL.revokeObjectURL(downloadUrl);
 
         await fetch(`${baseFetchURL}/api/clear`, { method: "POST" });
-        toast.success(`${filename} has been successfully downloaded!`);
+        toast.success(
+          `${filename.replace("temporary/", "")} has been successfully downloaded!`,
+        );
       }
       setDownload(false);
     } catch (error) {
@@ -104,7 +106,7 @@ function LinkInput() {
           ref={inputContainer}
         >
           <Input
-            className="rounded-full border-2 border-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-semibold text-text outline-none backdrop-blur-sm focus:bg-[#0d121f] focus:outline-none"
+            className="rounded-full border-2 border-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-semibold text-text outline-none backdrop-blur-sm focus:bg-[#101025] focus:outline-none"
             type="url"
             id="url"
             name="url"
@@ -129,13 +131,8 @@ function LinkInput() {
                 transparent 50%
               )`,
             }}
-            className="pointer-events-none absolute select-none rounded-full border-2 border-[#b399ff] bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-semibold text-text outline-none backdrop-blur-sm"
-            type="url"
-            name="url"
-            value={link}
-            placeholder="Enter URL Here..."
+            className="pointer-events-none absolute select-none rounded-full border-2 border-[#b399ff] bg-transparent from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-semibold text-transparent outline-none"
             disabled={download}
-            onChange={(e) => setLink(e.target.value)}
           />
           <Button
             className="hover:drop-shadow-heavy_glow absolute right-4 aspect-auto h-[50px] w-[50px] rounded-full border-[3px] border-text bg-transparent transition-all delay-0 duration-200 ease-out"
