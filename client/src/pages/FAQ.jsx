@@ -17,7 +17,7 @@ function FAQ() {
       transition={{ duration: 0.15, ease: "easeInOut" }}
       className="flex h-full w-full flex-col items-center justify-center"
     >
-      <h1 className="absolute top-48 text-center text-4xl font-semibold text-text sm:top-56 md:top-64">
+      <h1 className="absolute top-[18%] text-center text-4xl font-semibold text-text">
         FAQ
       </h1>
       <Accordion
@@ -75,7 +75,7 @@ function FAQ() {
           <AccordionTrigger className="text-lg md:text-xl">
             What's your DMCA Policy?
           </AccordionTrigger>
-          <AccordionContent className="pb-0 text-xs font-normal leading-relaxed md:text-sm">
+          <AccordionContent className="pb-0 text-sm font-normal leading-relaxed">
             If you believe your copyrighted work has been improperly used on
             this platform, please send a direct message to the Twitter contact
             below. Please include a description of the copyrighted work, your
