@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("secret_key")
 cors = CORS(
     app,
-    resources={r"/api/*": {"origin": "https://client-testing-a521.up.railway.app/"}},
+    resources={r"/api/*": {"origin": f"{os.getenv('origin')}"}},
 )
 
 from app import routes
