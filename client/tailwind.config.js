@@ -9,7 +9,6 @@ module.exports = {
   ],
   prefix: "",
   theme: {
-    fontFamily: { opensans: ["Open Sans", "ui-sans-serif", "system-ui"] },
     container: {
       center: true,
       padding: "2rem",
@@ -18,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        nunito: ["Nunito", "ui-sans-serif"],
+        opensans: ["Open Sans", "ui-sans-serif", "system-ui"],
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
       },

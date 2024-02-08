@@ -14,7 +14,7 @@ function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.75, ease: "easeInOut" }}
-      className=" m-0 box-border flex h-screen flex-col items-center justify-center overflow-hidden overflow-x-hidden bg-background p-0 font-opensans text-2xl"
+      className="font-nunito m-0 box-border flex h-screen flex-col items-center justify-center overflow-hidden overflow-x-hidden bg-background p-0 text-2xl"
     >
       <motion.div
         initial={{ scale: 0 }}

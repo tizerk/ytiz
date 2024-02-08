@@ -106,7 +106,7 @@ function LinkInput() {
           ref={inputContainer}
         >
           <Input
-            className="rounded-full border-2 border-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-semibold text-text outline-none backdrop-blur-sm focus:bg-[#101025] focus:outline-none"
+            className="rounded-full border-2 border-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-[#101025] focus:outline-none"
             type="url"
             id="url"
             name="url"
@@ -131,7 +131,7 @@ function LinkInput() {
                 transparent 50%
               )`,
             }}
-            className="pointer-events-none absolute select-none rounded-full border-2 border-[#b399ff] bg-transparent from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-semibold text-transparent outline-none"
+            className="pointer-events-none absolute select-none rounded-full border-2 border-[#b399ff] bg-transparent from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none"
             disabled={download}
           />
           <Button
@@ -159,7 +159,7 @@ function LinkInput() {
               />
               <TooltipTrigger className="text-text">
                 <Label
-                  className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-lg font-semibold text-transparent"
+                  className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-lg font-bold text-transparent"
                   htmlFor="hq-toggle"
                 >
                   High Quality Mode
