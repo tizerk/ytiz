@@ -29,11 +29,17 @@ def download_video(link, hqMode):
                 "key": "EmbedThumbnail",
             },
         ],
+        "noplaylist": True,
         "source_address": "0.0.0.0",
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:
             result = ydl.extract_info(link, download=False)
+            if result["duration"] > 3600:
+                return (
+                    Exception("Audio longer than 1 hour is not currently supported!"),
+                    2,
+                )
             if "entries" in result:
                 filename = ydl.prepare_filename(result) + ".zip"
             else:

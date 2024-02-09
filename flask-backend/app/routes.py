@@ -17,11 +17,22 @@ def download():
         return jsonify({"error": "Error: URL Not Found!"}), 404
     else:
         filename, err = youtube.download_video(url, quality)
-        if err != 1:
+        if err == 0:
             file_path = os.path.join(os.path.dirname(__file__), os.pardir, filename)
             return jsonify({"filename": filename, "filepath": file_path}), 200
         else:
-            return jsonify({"error": f"Error: This URL Is Not Supported: {url}"}), 406
+            if err == 1:
+                return (
+                    jsonify({"error": f"Error: This URL Is Not Supported: {url}"}),
+                    406,
+                )
+            elif err == 2:
+                return (
+                    jsonify(
+                        {"error": f"Error: Audio Over 1 Hour Is Not Supported: {url}"}
+                    ),
+                    406,
+                )
 
 
 @app.route("/api/file_send", methods=["POST"])

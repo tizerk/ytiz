@@ -92,6 +92,7 @@ function LinkInput() {
         );
       }
       setDownload(false);
+      setLink("");
     } catch (error) {
       console.log(error);
     }
