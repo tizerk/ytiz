@@ -13,10 +13,11 @@ import zipfile
 def download():
     url = request.json["url"]
     quality = request.json["quality"]
+    metadata = request.json["metadata"]
     if len(url) < 1:
         return jsonify({"error": "Error: URL Not Found!"}), 404
     else:
-        filename, err = youtube.download_video(url, quality)
+        filename, err = youtube.download_video(url, quality, metadata)
         if err == 0:
             file_path = os.path.join(os.path.dirname(__file__), os.pardir, filename)
             return jsonify({"filename": filename, "filepath": file_path}), 200

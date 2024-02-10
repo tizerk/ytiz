@@ -17,6 +17,7 @@ import ToggleSwitch from "./ToggleSwitch";
 function LinkInput() {
   const [link, setLink] = useState("");
   const [hqMode, SetHqMode] = useState(true);
+  const [metadata, setMetadata] = useState(true);
   const [download, setDownload] = useState(false);
   const baseFetchURL = import.meta.env.PROD
     ? import.meta.env.VITE_fetch_url
@@ -46,6 +47,9 @@ function LinkInput() {
   const handleHqSwitch = () => {
     SetHqMode(!hqMode);
   };
+  const handleMetadataSwitch = () => {
+    setMetadata(!metadata);
+  };
   const handleSubmit = async (e) => {
     setDownload(true);
     e.preventDefault();
@@ -56,7 +60,11 @@ function LinkInput() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ url: link, quality: hqMode }),
+        body: JSON.stringify({
+          url: link,
+          quality: hqMode,
+          metadata: metadata,
+        }),
       });
 
       const data = await response.json();
@@ -149,35 +157,65 @@ function LinkInput() {
             )}
           </Button>
         </form>
-        <div className="mt-16 flex justify-center">
-          <TooltipProvider>
-            <Tooltip delayDuration="500">
-              <ToggleSwitch
-                label=""
-                id="hq-toggle"
-                checked={hqMode}
-                onCheckedChange={handleHqSwitch}
-              />
-              <TooltipTrigger className="text-text">
-                <Label
-                  className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-lg font-bold text-transparent"
-                  htmlFor="hq-toggle"
-                >
-                  High Quality Mode
-                </Label>
-              </TooltipTrigger>
-              <TooltipContent side="bottom">
-                <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
-                  Enabled - 320kbps downloads
-                  <br />
-                  Disabled - 128kbps downloads
-                  <p className="text-xs italic">
-                    SoundCloud only supports 128kbps
+        <div className="mt-16 flex flex-col justify-center gap-24">
+          <div className="flex flex-row justify-center">
+            <TooltipProvider>
+              <Tooltip delayDuration="500">
+                <ToggleSwitch
+                  label=""
+                  id="hq-toggle"
+                  checked={hqMode}
+                  onCheckedChange={handleHqSwitch}
+                />
+                <TooltipTrigger className="text-text">
+                  <Label
+                    className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-lg font-bold text-transparent"
+                    htmlFor="hq-toggle"
+                  >
+                    High Quality Mode
+                  </Label>
+                </TooltipTrigger>
+                <TooltipContent side="bottom">
+                  <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                    Enabled - 320kbps downloads
+                    <br />
+                    Disabled - 128kbps downloads
+                    <p className="text-xs italic">
+                      SoundCloud only supports 128kbps
+                    </p>
                   </p>
-                </p>
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+          <div className="flex flex-row justify-center">
+            <TooltipProvider>
+              <Tooltip delayDuration="500">
+                <ToggleSwitch
+                  label=""
+                  id="metadata-toggle"
+                  checked={metadata}
+                  onCheckedChange={handleMetadataSwitch}
+                />
+                <TooltipTrigger className="text-text">
+                  <Label
+                    className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-lg font-bold text-transparent"
+                    htmlFor="metadata-toggle"
+                  >
+                    Embedded Metadata
+                  </Label>
+                </TooltipTrigger>
+                <TooltipContent side="bottom">
+                  <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                    Enabled - Embeds title, artist, year, and thumbnail to the
+                    file
+                    <br />
+                    Disabled - No metadata embedded
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
         <Toaster offset={"45px"} position="bottom-center" />
       </div>

@@ -9,16 +9,16 @@ def remove_last_substring(string, substring):
         return string
 
 
-def download_video(link, hqMode):
+def download_video(link, hqMode, metadata):
     ydl_opts = {
         "outtmpl": "temporary/%(title)s.%(ext)s",
         "format": f"mp3/bestaudio/best",
-        "writethumbnail": True,
-        "embedthumbnail": True,
+        "writethumbnail": True if metadata else False,
+        "embedthumbnail": True if metadata else False,
         "postprocessors": [
             {
                 "key": "FFmpegMetadata",
-                "add_metadata": True,
+                "add_metadata": True if metadata else False,
             },
             {
                 "key": "FFmpegExtractAudio",

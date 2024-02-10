@@ -21,6 +21,11 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8">
           <Change
+            header="Release 1.0.2 - February 9th, 2024"
+            features={["Added a toggle to embed/strip metadata from downloads"]}
+            issues={["None"]}
+          />
+          <Change
             header="Release 1.0.1 - February 9th, 2024"
             features={[
               "Disabled playlist downloading due to a few people trying to download 800+ track playlists and crashing YTiz",
