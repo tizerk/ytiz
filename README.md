@@ -11,7 +11,7 @@ If you've ever tried to download songs from YouTube or SoundCloud, you've no dou
 - Fast downloads from YouTube, SoundCloud, and Reddit
 - Toggle between 320kbps and 128kbps downloads
 - Embedded metadata including titles, authors, and cover art
-- Playlist downloading from YouTube (Up to 2 hours in duration)
+- Playlist downloading from YouTube (Only for selfhosters)
 
 ## Selfhosting
 
@@ -40,6 +40,7 @@ If you want to run YTiz on your own computer, follow these steps:
    ```
    npm run build
    ```
+> To download playlists, go to the `ytiz/flask-backend/youtube.py` file and set `"noplaylist"` to `False`
 
 ## Contribution
 
