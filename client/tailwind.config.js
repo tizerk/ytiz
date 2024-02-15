@@ -33,6 +33,10 @@ module.exports = {
           "0 0px 30px rgba(255,255, 255, .5)",
           "0 0px 20px rgba(255, 255,255, .4)",
         ],
+        small_glow: [
+          "0 0px 20px rgba(255,255, 255, .2)",
+          "0 0px 10px rgba(255, 255,255, .1)",
+        ],
       },
       colors: {
         border: "hsl(var(--border))",

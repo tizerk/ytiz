@@ -21,7 +21,7 @@ function FAQ() {
         FAQ
       </h1>
       <Accordion
-        className="mt-20 w-[85%] leading-loose text-text sm:w-[55%] md:w-[45%] lg:w-[30%]"
+        className="mt-20 w-[85%] leading-loose text-text sm:w-[55%] md:w-[45%] lg:w-[25%]"
         type="single"
         collapsible
       >

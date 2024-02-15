@@ -1,6 +1,6 @@
 # YTiz
 
-![YTiz Demo Video](https://i.imgur.com/Fs60IFi.gif)
+![YTiz Demo Video](https://i.imgur.com/lSWhTTe.gif)
 
 ## Introduction
 
@@ -40,7 +40,7 @@ If you want to run YTiz on your own computer, follow these steps:
    ```
    npm run build
    ```
-> To download playlists, go to the `ytiz/flask-backend/youtube.py` file and set `"noplaylist"` to `False`
+   > To download playlists, go to the `ytiz/flask-backend/youtube.py` file and set `"noplaylist"` to `False`
 
 ## Contribution
 

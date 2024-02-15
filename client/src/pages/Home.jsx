@@ -10,7 +10,7 @@ function Home() {
       transition={{ duration: 0.15, ease: "easeInOut" }}
       className="flex h-full w-full flex-col items-center justify-center"
     >
-      <h1 className="font-nunito mb-16 bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-5xl font-extrabold text-transparent">
+      <h1 className="mb-8 bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-5xl font-extrabold text-transparent">
         YTIZ
       </h1>
       <LinkInput />

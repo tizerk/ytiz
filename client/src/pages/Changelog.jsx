@@ -1,6 +1,7 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Change from "../components/Change";
 import { motion } from "framer-motion";
+import { useRef, useEffect } from "react";
 
 function Changelog() {
   return (
@@ -17,11 +18,21 @@ function Changelog() {
       <motion.div
         whileHover={{ scale: 1.05 }}
         transition={{ type: "tween", duration: ".15", ease: "easeInOut" }}
-        className="mt-24 flex w-[85%] max-w-[500px] justify-center text-text hover:cursor-pointer min-[425px]:w-[75%] md:w-[50%]"
+        className="relative mt-24 flex w-[85%] max-w-[500px] justify-center text-text hover:cursor-pointer min-[425px]:w-[75%] md:w-[50%]"
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8">
           <Change
-            header="Release 1.0.4 - February 14th, 2024"
+            header="Release 1.0.4 - February 15th, 2024"
+            features={[
+              "Added a download settings modal/drawer to remove clutter on the main page",
+              "Removed the HQ toggle and added a selector dropdown for more specific quality selection",
+              "Quality/Metadata settings are now saved in browser LocalStorage (this means your settings will be preserved when you reopen the website)",
+              "Added the glowing outline to more stuff because it's cool",
+            ]}
+            issues={["None"]}
+          />
+          <Change
+            header="Release 1.0.3 - February 14th, 2024"
             features={[
               "Fixed a bug where if two people were to request a download at the same time YTiz would break",
               "Fixed a bug where some videos would incorrectly be considered playlists and YTiz would break",

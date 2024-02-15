@@ -10,7 +10,7 @@ def remove_last_substring(string, substring):
         return string
 
 
-def download_video(link, hqMode, metadata):
+def download_video(link, selectedQuality, metadata):
     randID = random.randint(0, 100)
     ydl_opts = {
         "outtmpl": f"temporary_{randID}/%(title)s.%(ext)s",
@@ -25,7 +25,7 @@ def download_video(link, hqMode, metadata):
             {
                 "key": "FFmpegExtractAudio",
                 "preferredcodec": "mp3",
-                "preferredquality": "320" if hqMode else "128",
+                "preferredquality": selectedQuality,
             },
             {
                 "key": "EmbedThumbnail",
