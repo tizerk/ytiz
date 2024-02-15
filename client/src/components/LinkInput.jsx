@@ -75,6 +75,7 @@ function LinkInput() {
       } else {
         const filename = data["filename"];
         const filepath = data["filepath"];
+        const randID = data["randID"];
 
         const fileResponse = await fetch(`${baseFetchURL}/api/file_send`, {
           method: "POST",
@@ -83,6 +84,7 @@ function LinkInput() {
           },
           body: JSON.stringify({
             filepath: filepath,
+            randID: randID,
           }),
         });
 
@@ -90,11 +92,19 @@ function LinkInput() {
         const downloadUrl = URL.createObjectURL(blob);
         const link = document.createElement("a");
         link.href = downloadUrl;
-        link.download = filename.replace("temporary/", "");
+        link.download = filename.replace(`temporary_${randID}/`, "");
         link.click();
         URL.revokeObjectURL(downloadUrl);
 
-        await fetch(`${baseFetchURL}/api/clear`, { method: "POST" });
+        await fetch(`${baseFetchURL}/api/clear`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            randID: randID,
+          }),
+        });
         toast.success(
           `${filename.replace("temporary/", "")} has been successfully downloaded!`,
         );

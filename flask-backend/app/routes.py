@@ -17,7 +17,7 @@ def download():
     if len(url) < 1:
         return jsonify({"error": "Error: URL Not Found!"}), 404
     else:
-        filename, err = youtube.download_video(url, quality, metadata)
+        filename, randID, err = youtube.download_video(url, quality, metadata)
         if err == 0:
             file_path = os.path.join(os.path.dirname(__file__), os.pardir, filename)
             return jsonify({"filename": filename, "filepath": file_path}), 200
@@ -39,7 +39,8 @@ def download():
 @app.route("/api/file_send", methods=["POST"])
 def file_send():
     file_path = request.json["filepath"]
-    if len(os.listdir("temporary/")) < 2:
+    randID = request.json["randID"]
+    if len(os.listdir(f"temporary_{randID}/")) < 2:
         return send_file(file_path, as_attachment=True)
     else:
         with zipfile.ZipFile(file_path, "w", zipfile.ZIP_DEFLATED) as zip:
@@ -53,10 +54,11 @@ def file_send():
 
 @app.route("/api/clear", methods=["POST"])
 def clear():
-    if os.path.exists("temporary/"):
-        if os.path.isdir("temporary/"):
+    randID = request.json["randID"]
+    if os.path.exists(f"temporary_{randID}/"):
+        if os.path.isdir(f"temporary_{randID}/"):
             try:
-                shutil.rmtree("temporary/")
+                shutil.rmtree(f"temporary_{randID}/")
                 return jsonify({"error": ""}), 200
             except OSError as error:
                 print(f"Error deleting directory: {error}")

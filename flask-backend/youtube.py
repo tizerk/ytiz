@@ -1,4 +1,5 @@
 import yt_dlp
+import random
 
 
 def remove_last_substring(string, substring):
@@ -10,8 +11,9 @@ def remove_last_substring(string, substring):
 
 
 def download_video(link, hqMode, metadata):
+    randID = random.randint(0, 100)
     ydl_opts = {
-        "outtmpl": "temporary/%(title)s.%(ext)s",
+        "outtmpl": f"temporary_{randID}/%(title)s.%(ext)s",
         "format": f"mp3/bestaudio/best",
         "writethumbnail": True if metadata else False,
         "embedthumbnail": True if metadata else False,
@@ -53,7 +55,7 @@ def download_video(link, hqMode, metadata):
             elif ".mp3" in filename:
                 filename = remove_last_substring(filename, ".mp3")
             ydl.download(link)
-            return filename, 0
+            return filename, randID, 0
         except Exception as e:
             print(e)
             return e, 1
