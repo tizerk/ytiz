@@ -58,4 +58,4 @@ def download_video(link, hqMode, metadata):
             return filename, randID, 0
         except Exception as e:
             print(e)
-            return e, 1
+            return e, 0, 1
