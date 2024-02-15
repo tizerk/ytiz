@@ -20,7 +20,12 @@ def download():
         filename, randID, err = youtube.download_video(url, quality, metadata)
         if err == 0:
             file_path = os.path.join(os.path.dirname(__file__), os.pardir, filename)
-            return jsonify({"filename": filename, "filepath": file_path}), 200
+            return (
+                jsonify(
+                    {"filename": filename, "filepath": file_path, "randID": randID}
+                ),
+                200,
+            )
         else:
             if err == 1:
                 return (

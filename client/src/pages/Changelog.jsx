@@ -11,15 +11,24 @@ function Changelog() {
       transition={{ duration: 0.15, ease: "easeInOut" }}
       className="flex h-full w-full flex-col items-center justify-center"
     >
-      <h1 className=" absolute top-[19%] mb-20 text-center text-4xl font-semibold text-text ">
+      <h1 className=" absolute top-[18%] text-center text-4xl font-semibold text-text ">
         Changelog
       </h1>
       <motion.div
-        whileHover={{ scale: 1.1 }}
+        whileHover={{ scale: 1.05 }}
         transition={{ type: "tween", duration: ".15", ease: "easeInOut" }}
-        className="flex w-[85%] justify-center text-text min-[425px]:w-[75%]"
+        className="mt-24 flex w-[85%] max-w-[500px] justify-center text-text hover:cursor-pointer min-[425px]:w-[75%] md:w-[50%]"
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8">
+          <Change
+            header="Release 1.0.4 - February 14th, 2024"
+            features={[
+              "Fixed a bug where if two people were to request a download at the same time YTiz would break",
+              "Fixed a bug where some videos would incorrectly be considered playlists and YTiz would break",
+              "Fixed a bug where attempted downloads from unsupported websites would result in a memory leak",
+            ]}
+            issues={["None"]}
+          />
           <Change
             header="Release 1.0.2 - February 9th, 2024"
             features={["Added a toggle to embed/strip metadata from downloads"]}

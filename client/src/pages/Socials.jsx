@@ -11,7 +11,7 @@ function Socials() {
       className="flex	h-full w-full flex-col items-center justify-center"
     >
       <div className="flex flex-col  items-center">
-        <h1 className="absolute top-[19%] text-center text-4xl font-semibold text-text">
+        <h1 className="absolute top-[18%] text-center text-4xl font-semibold text-text">
           Socials
         </h1>
         <p className="mb-10 text-lg text-text">
