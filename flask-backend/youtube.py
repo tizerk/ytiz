@@ -40,6 +40,7 @@ def download_video(link, selectedQuality, metadata):
             if result["duration"] > 3600:
                 return (
                     Exception("Audio longer than 1 hour is not currently supported!"),
+                    0,
                     2,
                 )
             if "entries" in result:

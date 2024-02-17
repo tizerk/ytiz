@@ -199,7 +199,7 @@ function LinkInput() {
           }),
         });
         toast.success(
-          `${filename.replace("temporary/", "")} has been successfully downloaded!`,
+          `${filename.replace(`temporary_${randID}/`, "")} has been successfully downloaded!`,
         );
       }
       setDownload(false);
