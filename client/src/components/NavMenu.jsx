@@ -24,7 +24,7 @@ function NavMenu(props) {
     <NavigationMenu
       id={"navmenu"}
       ref={NavBar}
-      className="absolute top-16 scale-[80%] rounded-3xl border-none bg-gradient-to-b from-nav_top to-nav_bot px-2 py-1 font-medium backdrop-blur-sm min-[425px]:scale-[90%] min-[540px]:scale-100"
+      className="absolute top-16 scale-[80%] rounded-3xl border-none bg-gradient-to-b from-input_top to-input_bot px-2 py-1 font-medium backdrop-blur-sm min-[425px]:scale-[90%] min-[540px]:scale-100"
     >
       <div
         style={{

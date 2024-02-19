@@ -6,6 +6,7 @@ import FAQ from "./pages/FAQ";
 import Socials from "./pages/Socials";
 import Changelog from "./pages/Changelog";
 import "./App.css";
+import Snowfall from "react-snowfall";
 
 function App() {
   const location = useLocation();
@@ -14,8 +15,15 @@ function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.75, ease: "easeInOut" }}
-      className="font-nunito m-0 box-border flex h-screen flex-col items-center justify-center overflow-hidden overflow-x-hidden bg-background p-0 text-2xl"
+      className="m-0 box-border flex h-[100svh] flex-col items-center justify-center overflow-hidden overflow-x-hidden bg-slate-950 p-0 font-nunito text-2xl"
     >
+      <Snowfall
+        color={"#c0abff"}
+        snowflakeCount={6}
+        radius={[1, 3]}
+        speed={[0.1, 1]}
+        wind={[-0.1, 0.1]}
+      />
       <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}

@@ -219,7 +219,7 @@ function LinkInput() {
           ref={inputContainer}
         >
           <Input
-            className="rounded-full border-2 border-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-[#101025] focus:outline-none"
+            className="rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-[#151934] focus:outline-none"
             type="url"
             id="url"
             name="url"
@@ -245,7 +245,7 @@ function LinkInput() {
               )`,
             }}
             id="fakeInput"
-            className="pointer-events-none absolute select-none rounded-full border-2 border-[#b399ff] bg-transparent from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none"
+            className="pointer-events-none absolute select-none rounded-full border-2 border-[#b399ff] bg-transparent py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none"
             disabled={download}
           />
           <Button
@@ -272,7 +272,7 @@ function LinkInput() {
                     className="relative mt-8"
                     ref={settingsButton}
                   >
-                    <Button className="w-full rounded-full border-none bg-gradient-to-b from-input_top to-input_bot font-bold outline-none">
+                    <Button className="w-full rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot font-bold outline-none">
                       Settings
                     </Button>
                     <Button
@@ -299,7 +299,7 @@ function LinkInput() {
                 </DialogTrigger>
                 <DialogContent
                   ref={settingsDialog}
-                  className="absolute max-w-80 border-none bg-input_bot backdrop-blur-[6px]"
+                  className="absolute max-w-80 border-none bg-input_bot backdrop-blur-[4px]"
                 >
                   <div
                     style={{
@@ -317,7 +317,7 @@ function LinkInput() {
                         transparent 50%
                         )`,
                     }}
-                    className="pointer-events-none absolute inset-0 z-0 select-none rounded-2xl border-2 border-[#b399ff] bg-[#1b1b34] bg-opacity-90 outline-none"
+                    className="pointer-events-none absolute inset-0 z-0 select-none rounded-2xl border-2 border-[#a799ff] bg-[#1c1b34] bg-opacity-90 outline-none"
                   />
                   <div className="relative z-10 font-nunito ">
                     <DialogHeader className="mb-6">
@@ -356,7 +356,7 @@ function LinkInput() {
                               <CommandGroup>
                                 {qualities.map((quality) => (
                                   <CommandItem
-                                    className="text-text "
+                                    className="cursor-pointer text-text hover:bg-gray-700 "
                                     key={quality.value}
                                     value={quality.value}
                                     onSelect={() => {

@@ -9,7 +9,7 @@ function ToggleSwitch(props) {
           id={props.id}
           checked={props.checked}
           onCheckedChange={props.onCheckedChange}
-          className="data-[state=checked]:drop-shadow-small_glow rounded-[14px] border-2 border-stone-50 border-text transition-all delay-0 duration-200  ease-out data-[state=checked]:bg-[#25215a]"
+          className="rounded-[14px] border-2 border-stone-50 border-text transition-all delay-0 duration-200 ease-out  data-[state=checked]:bg-[#5c4392] "
         />
         <Label
           className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-lg font-semibold text-transparent"

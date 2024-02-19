@@ -39,6 +39,29 @@ def download():
                     ),
                     406,
                 )
+            elif err == 3:
+                return (
+                    jsonify(
+                        {
+                            "error": f"Error: This URL has been blocked in the United States and cannot be downloaded with YTiz: {url}"
+                        }
+                    ),
+                    406,
+                )
+            elif err == 4:
+                return (
+                    jsonify({"error": f"Error: This URL is private: {url}"}),
+                    406,
+                )
+            elif err == 5:
+                return (
+                    jsonify(
+                        {
+                            "error": f"Error: This URL has been removed due to a copyright claim: {url}"
+                        }
+                    ),
+                    406,
+                )
 
 
 @app.route("/api/file_send", methods=["POST"])

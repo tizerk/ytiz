@@ -32,6 +32,7 @@ def download_video(link, selectedQuality, metadata):
             },
         ],
         "noplaylist": True,
+        "playlist_items": "0",
         "source_address": "0.0.0.0",
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -58,5 +59,11 @@ def download_video(link, selectedQuality, metadata):
             ydl.download(link)
             return filename, randID, 0
         except Exception as e:
+            if "in your country" in str(e):
+                return e, 0, 3
+            elif "Private video" in str(e):
+                return e, 0, 4
+            elif "due to a copyright claim" in str(e):
+                return e, 0, 5
             print(e)
             return e, 0, 1
