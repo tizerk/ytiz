@@ -40,7 +40,7 @@ If you want to run YTiz on your own computer, follow these steps:
    ```
    npm run build
    ```
-   > To download playlists, go to the `ytiz/flask-backend/youtube.py` file and set `"noplaylist"` to `False`
+   > To download playlists, go to the `ytiz/flask-backend/youtube.py` file, set `"noplaylist"` to `False`, and delete the `"playlist_items": "0"` line
 
 ## Contribution
 
