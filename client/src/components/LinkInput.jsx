@@ -251,7 +251,7 @@ function LinkInput(props) {
               style={{ overflow: "hidden" }}
               key="animation-on-state"
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: isDesktop ? 220 : 175 }}
+              animate={{ opacity: 1, height: isDesktop ? 295 : 245 }}
               transition={{ ease: "easeInOut", duration: 1.2 }}
               exit={{ opacity: 0, height: 0 }}
             >
