@@ -1,7 +1,33 @@
+import { useState } from "react";
 import LinkInput from "../components/LinkInput";
 import { motion } from "framer-motion";
 
-function Home() {
+function Home(props) {
+  const [animate, setAnimate] = useState(false);
+  const handleCallback = (download) => {
+    if (download) setAnimate(true);
+    else setAnimate(false);
+  };
+  const variants = {
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: 1,
+        ease: "easeInOut",
+        duration: 1,
+      },
+    },
+    hide: {
+      y: 30,
+      opacity: 0,
+      transition: {
+        delay: 0.1,
+        ease: "easeInOut",
+        duration: 0.8,
+      },
+    },
+  };
   return (
     <motion.div
       initial={{ y: "100%" }}
@@ -10,10 +36,15 @@ function Home() {
       transition={{ duration: 0.15, ease: "easeInOut" }}
       className="flex h-full w-full flex-col items-center justify-center"
     >
-      <h1 className="mb-8 bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-5xl font-extrabold text-transparent">
+      <motion.h1
+        key="animation-on-state"
+        variants={variants}
+        animate={animate ? "hide" : "show"}
+        className="z-0 mb-8 bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-5xl font-extrabold text-transparent"
+      >
         YTIZ
-      </h1>
-      <LinkInput />
+      </motion.h1>
+      <LinkInput className="z-10" downloadCallback={handleCallback} />
     </motion.div>
   );
 }

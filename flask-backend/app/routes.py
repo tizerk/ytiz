@@ -1,12 +1,62 @@
-from flask import (
-    request,
-    send_file,
-    jsonify,
-)
+from flask import request, send_file, jsonify
 from app import app
-import os, shutil
+import os, shutil, zipfile
 import youtube
-import zipfile
+
+
+@app.route("/api/info", methods=["POST"])
+def info():
+    url = request.json["url"]
+    if len(url) < 1:
+        return jsonify({"error": "Error: URL Not Found!"}, 404)
+    else:
+        thumbnail, title, author, filename, randID, err = youtube.get_info(url)
+        if err == 0:
+            return (
+                jsonify(
+                    {
+                        "thumbnail": thumbnail,
+                        "title": title,
+                        "author": author,
+                        "filename": filename,
+                        "randID": randID,
+                    }
+                ),
+                200,
+            )
+        else:
+            if err == 1:
+                return (
+                    jsonify({"error": f"Error: This URL Is Not Supported: {url}"}),
+                    406,
+                )
+            elif err == 2:
+                return (
+                    jsonify(
+                        {"error": f"Error: Audio Over 1 Hour Is Not Supported: {url}"}
+                    ),
+                    406,
+                )
+            elif err == 3:
+                return (
+                    jsonify(
+                        {
+                            "error": f"Error: This URL has been blocked in the United States and cannot be downloaded with YTiz: {url}"
+                        }
+                    ),
+                    406,
+                )
+            elif err == 4:
+                return (jsonify({"error": f"Error: This URL is private: {url}"}), 406)
+            elif err == 5:
+                return (
+                    jsonify(
+                        {
+                            "error": f"Error: This URL has been removed due to a copyright claim: {url}"
+                        }
+                    ),
+                    406,
+                )
 
 
 @app.route("/api/download", methods=["POST"])
@@ -14,10 +64,12 @@ def download():
     url = request.json["url"]
     quality = request.json["quality"]
     metadata = request.json["metadata"]
+    filename = request.json["filename"]
+    randID = request.json["randID"]
     if len(url) < 1:
-        return jsonify({"error": "Error: URL Not Found!"}), 404
+        return (jsonify({"error": "Error: URL Not Found!"}), 404)
     else:
-        filename, randID, err = youtube.download_video(url, quality, metadata)
+        err = youtube.download_video(url, quality, metadata, randID)
         if err == 0:
             file_path = os.path.join(os.path.dirname(__file__), os.pardir, filename)
             return (
@@ -49,10 +101,7 @@ def download():
                     406,
                 )
             elif err == 4:
-                return (
-                    jsonify({"error": f"Error: This URL is private: {url}"}),
-                    406,
-                )
+                return (jsonify({"error": f"Error: This URL is private: {url}"}), 406)
             elif err == 5:
                 return (
                     jsonify(

@@ -22,6 +22,14 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8 backdrop-blur-sm">
           <Change
+            header="Release 1.0.6 - February 21st, 2024"
+            features={[
+              "Added a thumbnail/title/author preview of the requested download",
+              "Tweaked the background to alleviate performance issues on low-end hardware",
+              'Added a FAQ Section titled "What is YTiz?"',
+            ]}
+          />
+          <Change
             header="Release 1.0.5 - February 19th, 2024"
             features={[
               "Added detailed error messages for geoblocked/private/copyright-striken videos",

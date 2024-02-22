@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
-import { motion } from "framer-motion";
+import DownloadPreview from "./DownloadPreview";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ChevronDown } from "lucide-react";
 import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -73,14 +74,18 @@ const qualities = [
   },
 ];
 
-function LinkInput() {
+function LinkInput(props) {
   const [link, setLink] = useState("");
   const [metadata, setMetadata] = useState(() => {
     const saved = localStorage.getItem("metadata");
     if (saved == "false") return false;
     else return true;
   });
+  const [thumbnailURL, setThumbnailURL] = useState("#");
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
   const [download, setDownload] = useState(false);
+  const [infoProcessed, setInfoProcessed] = useState(false);
   const [open, setOpen] = useState(false);
   const [openQuality, setOpenQuality] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 640px)");
@@ -88,7 +93,6 @@ function LinkInput() {
     const saved = localStorage.getItem("selectedQuality");
     return saved || "320";
   });
-
   const baseFetchURL = import.meta.env.PROD
     ? import.meta.env.VITE_fetch_url
     : import.meta.env.VITE_dev_url;
@@ -144,65 +148,95 @@ function LinkInput() {
     setMetadata(!metadata);
   };
   const handleSubmit = async (e) => {
-    setDownload(true);
     e.preventDefault();
-
+    setDownload(true);
+    props.downloadCallback(true);
+    let filename = "";
+    let randID = 0;
     try {
-      const response = await fetch(`${baseFetchURL}/api/download`, {
+      const infoResponse = await fetch(`${baseFetchURL}/api/info`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
           url: link,
-          quality: selectedQuality,
-          metadata: metadata,
         }),
       });
-
-      const data = await response.json();
-
-      if (!data["filename"] && !data["filepath"] && data["error"]) {
-        toast.error(data["error"]);
+      const previewInfo = await infoResponse.json();
+      console.log(previewInfo);
+      if (previewInfo["error"]) {
+        toast.error(previewInfo["error"]);
+        props.downloadCallback(false);
         setDownload(false);
+        return;
       } else {
-        const filename = data["filename"];
-        const filepath = data["filepath"];
-        const randID = data["randID"];
+        setThumbnailURL(previewInfo["thumbnail"]);
+        setTitle(previewInfo["title"]);
+        setAuthor(previewInfo["author"]);
+        setInfoProcessed(true);
+        filename = previewInfo["filename"];
+        randID = previewInfo["randID"];
 
-        const fileResponse = await fetch(`${baseFetchURL}/api/file_send`, {
+        const response = await fetch(`${baseFetchURL}/api/download`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            filepath: filepath,
+            url: link,
+            quality: selectedQuality,
+            metadata: metadata,
+            filename: filename,
             randID: randID,
           }),
         });
+        const data = await response.json();
 
-        const blob = await fileResponse.blob();
-        const downloadUrl = URL.createObjectURL(blob);
-        const link = document.createElement("a");
-        link.href = downloadUrl;
-        link.download = filename.replace(`temporary_${randID}/`, "");
-        link.click();
-        URL.revokeObjectURL(downloadUrl);
+        if (!data["filename"] && !data["filepath"] && data["error"]) {
+          toast.error(data["error"]);
+          props.downloadCallback(false);
+          setDownload(false);
+        } else {
+          const filename = data["filename"];
+          const filepath = data["filepath"];
+          const randID = data["randID"];
+          const fileResponse = await fetch(`${baseFetchURL}/api/file_send`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              filepath: filepath,
+              randID: randID,
+            }),
+          });
 
-        await fetch(`${baseFetchURL}/api/clear`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            randID: randID,
-          }),
-        });
-        toast.success(
-          `${filename.replace(`temporary_${randID}/`, "")} has been successfully downloaded!`,
-        );
+          const blob = await fileResponse.blob();
+          const downloadUrl = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = downloadUrl;
+          link.download = filename.replace(`temporary_${randID}/`, "");
+          link.click();
+          URL.revokeObjectURL(downloadUrl);
+
+          await fetch(`${baseFetchURL}/api/clear`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              randID: randID,
+            }),
+          });
+          toast.success(
+            `${filename.replace(`temporary_${randID}/`, "")} has been successfully downloaded!`,
+          );
+        }
       }
       setDownload(false);
+      setInfoProcessed(false);
+      props.downloadCallback(false);
       setLink("");
     } catch (error) {
       console.log(error);
@@ -211,6 +245,25 @@ function LinkInput() {
   return (
     <>
       <div className="w-[85%] sm:w-[70%] md:w-[55%] lg:w-[40%]">
+        <AnimatePresence>
+          {infoProcessed && (
+            <motion.div
+              style={{ overflow: "hidden" }}
+              key="animation-on-state"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: isDesktop ? 220 : 175 }}
+              transition={{ ease: "easeInOut", duration: 1.2 }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <DownloadPreview
+                thumbnail={thumbnailURL}
+                title={title}
+                author={author}
+                className={`flex justify-center`}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
         <form
           name="inputForm"
           className="relative flex w-full flex-row items-center justify-center"
@@ -272,7 +325,7 @@ function LinkInput() {
                     className="relative mt-8"
                     ref={settingsButton}
                   >
-                    <Button className="w-full rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot font-bold outline-none">
+                    <Button className="w-full rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot font-bold outline-none backdrop-blur-sm">
                       Settings
                     </Button>
                     <Button
@@ -332,7 +385,7 @@ function LinkInput() {
                       <Popover open={openQuality} onOpenChange={setOpenQuality}>
                         <Label
                           htmlFor="qualityPopover"
-                          className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-semibold text-transparent"
+                          className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
                         >
                           Quality
                         </Label>
@@ -378,7 +431,7 @@ function LinkInput() {
                         <Tooltip delayDuration="500">
                           <TooltipTrigger className="text-text">
                             <Label
-                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-semibold text-transparent"
+                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
                               htmlFor="metadata-toggle"
                             >
                               Embed Metadata
@@ -424,7 +477,7 @@ function LinkInput() {
                     className="relative mt-8"
                     ref={settingsButton}
                   >
-                    <Button className="w-full rounded-full border-none bg-gradient-to-b from-input_top to-input_bot font-bold outline-none">
+                    <Button className="w-full rounded-full border-none bg-gradient-to-b from-input_top to-input_bot font-bold outline-none backdrop-blur-sm">
                       Settings
                     </Button>
                     <Button
@@ -466,7 +519,7 @@ function LinkInput() {
                       <Popover open={openQuality} onOpenChange={setOpenQuality}>
                         <Label
                           htmlFor="qualityPopover"
-                          className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-semibold text-transparent"
+                          className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
                         >
                           Quality
                         </Label>
@@ -512,7 +565,7 @@ function LinkInput() {
                         <Tooltip delayDuration="500">
                           <TooltipTrigger className="text-text">
                             <Label
-                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-semibold text-transparent"
+                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
                               htmlFor="metadata-toggle"
                             >
                               Embed Metadata

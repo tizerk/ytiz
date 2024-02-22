@@ -10,8 +10,56 @@ def remove_last_substring(string, substring):
         return string
 
 
-def download_video(link, selectedQuality, metadata):
+def get_info(link):
     randID = random.randint(0, 100)
+    ydl_opts = {
+        "outtmpl": f"temporary_{randID}/%(title)s.%(ext)s",
+        "format": f"mp3/bestaudio/best",
+        "noplaylist": True,
+        "playlist_items": "0",
+        "source_address": "0.0.0.0",
+    }
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+        try:
+            result = ydl.extract_info(link, download=False)
+            if result["duration"] > 3600:
+                return (
+                    "",
+                    "",
+                    "",
+                    "",
+                    0,
+                    2,
+                )
+            thumbnail = result.get("thumbnail", "")
+            title = result.get("title", "")
+            author = result.get("uploader", "")
+            filename = ""
+            if "entries" in result:
+                filename = ydl.prepare_filename(result) + ".zip"
+            else:
+                filename = ydl.prepare_filename(result) + ".mp3"
+            if ".webm" in filename:
+                filename = remove_last_substring(filename, ".webm")
+            elif ".m4a" in filename:
+                filename = remove_last_substring(filename, ".m4a")
+            elif ".NA" in filename:
+                filename = remove_last_substring(filename, ".NA")
+            elif ".mp3" in filename:
+                filename = remove_last_substring(filename, ".mp3")
+            return thumbnail, title, author, filename, randID, 0
+        except Exception as e:
+            print(e)
+            if "in your country" in str(e):
+                return "", "", "", 0, 3
+            elif "Private video" in str(e):
+                return "", "", "", 0, 4
+            elif "due to a copyright claim" in str(e):
+                return "", "", "", 0, 5
+            return "", "", "", 0, 1
+
+
+def download_video(link, selectedQuality, metadata, randID):
     ydl_opts = {
         "outtmpl": f"temporary_{randID}/%(title)s.%(ext)s",
         "format": f"mp3/bestaudio/best",
@@ -37,33 +85,14 @@ def download_video(link, selectedQuality, metadata):
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:
-            result = ydl.extract_info(link, download=False)
-            if result["duration"] > 3600:
-                return (
-                    Exception("Audio longer than 1 hour is not currently supported!"),
-                    0,
-                    2,
-                )
-            if "entries" in result:
-                filename = ydl.prepare_filename(result) + ".zip"
-            else:
-                filename = ydl.prepare_filename(result) + ".mp3"
-            if ".webm" in filename:
-                filename = remove_last_substring(filename, ".webm")
-            elif ".m4a" in filename:
-                filename = remove_last_substring(filename, ".m4a")
-            elif ".NA" in filename:
-                filename = remove_last_substring(filename, ".NA")
-            elif ".mp3" in filename:
-                filename = remove_last_substring(filename, ".mp3")
             ydl.download(link)
-            return filename, randID, 0
+            return 0
         except Exception as e:
-            if "in your country" in str(e):
-                return e, 0, 3
-            elif "Private video" in str(e):
-                return e, 0, 4
-            elif "due to a copyright claim" in str(e):
-                return e, 0, 5
             print(e)
-            return e, 0, 1
+            if "in your country" in str(e):
+                return 3
+            elif "Private video" in str(e):
+                return 4
+            elif "due to a copyright claim" in str(e):
+                return 5
+            return 1

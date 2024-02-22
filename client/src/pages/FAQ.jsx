@@ -27,6 +27,30 @@ function FAQ() {
       >
         <AccordionItem value="1">
           <AccordionTrigger className="text-lg md:text-xl">
+            <p>
+              What <em>is</em> YTiz?
+            </p>
+          </AccordionTrigger>
+          <AccordionContent className="font-medium leading-relaxed">
+            YTiz is a MP3 Downloader web application that works to eliminate
+            common frustrations associated with similar websites, like popup ads
+            or low quality audio. YTiz offers numerous advantages over other
+            sites, including:
+            <br />
+            <br />
+            <ul className="list-none font-extrabold tracking-wide">
+              <li className="mb-1">- No Ads/Trackers/Cookies</li>
+              <li className="mb-1">
+                - High Speed (~35% faster than "ytmp3" sites)
+              </li>
+              <li className="mb-1">- Embedded Artist/Thumbnail Metadata</li>
+              <li className="mb-1">- Quality Selector (32kbps - 320kbps)</li>
+              <li className="mb-1">- Settings Options Saved in LocalStorage</li>
+            </ul>
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="2">
+          <AccordionTrigger className="text-lg md:text-xl">
             Which websites are supported?
           </AccordionTrigger>
           <AccordionContent className="font-medium leading-relaxed">
@@ -48,7 +72,7 @@ function FAQ() {
             </p>
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="2">
+        <AccordionItem value="3">
           <AccordionTrigger className="text-lg md:text-xl">
             Are you selling my data?
           </AccordionTrigger>
@@ -71,7 +95,7 @@ function FAQ() {
             </span>
           </AccordionContent>
         </AccordionItem>
-        <AccordionItem value="3">
+        <AccordionItem value="4">
           <AccordionTrigger className="text-lg md:text-xl">
             What's your DMCA Policy?
           </AccordionTrigger>
