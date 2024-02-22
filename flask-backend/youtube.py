@@ -51,12 +51,12 @@ def get_info(link):
         except Exception as e:
             print(e)
             if "in your country" in str(e):
-                return "", "", "", 0, 3
+                return "", "", "", "", 0, 3
             elif "Private video" in str(e):
-                return "", "", "", 0, 4
+                return "", "", "", "", 0, 4
             elif "due to a copyright claim" in str(e):
-                return "", "", "", 0, 5
-            return "", "", "", 0, 1
+                return "", "", "", "", 0, 5
+            return "", "", "", "", 0, 1
 
 
 def download_video(link, selectedQuality, metadata, randID):
