@@ -18,6 +18,7 @@ def get_info(link):
         "noplaylist": True,
         "playlist_items": "0",
         "source_address": "0.0.0.0",
+        "allowed_extractors": ["youtube", "soundcloud", "reddit"],
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:

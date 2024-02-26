@@ -1,7 +1,6 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Change from "../components/Change";
 import { motion } from "framer-motion";
-import { useRef, useEffect } from "react";
 
 function Changelog() {
   return (
@@ -21,6 +20,13 @@ function Changelog() {
         className="relative mt-24 flex w-[85%] max-w-[500px] justify-center text-text hover:cursor-pointer min-[425px]:w-[75%] md:w-[50%]"
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8 backdrop-blur-sm">
+          <Change
+            header="Release 1.0.7 - February 26st, 2024"
+            features={[
+              "Fixed an recurring issue where unsupported site downloads would stall YTiz",
+              "Fixed an issue where the toast alert would be difficult to read for light-mode users",
+            ]}
+          />
           <Change
             header="Release 1.0.6 - February 21st, 2024"
             features={[
