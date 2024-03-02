@@ -21,7 +21,14 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8 backdrop-blur-sm">
           <Change
-            header="Release 1.0.7 - February 26st, 2024"
+            header="Release 1.0.8 - March 1st, 2024"
+            features={[
+              `Added 3 progress state messages: "Searching," "Converting," and "Downloading"`,
+              "Searching and Converting happen server-side, while Downloading speed depends on the user's internet speed",
+            ]}
+          />
+          <Change
+            header="Release 1.0.7 - February 26th, 2024"
             features={[
               "Fixed an recurring issue where unsupported site downloads would stall YTiz",
               "Fixed an issue where the toast alert would be difficult to read for light-mode users",

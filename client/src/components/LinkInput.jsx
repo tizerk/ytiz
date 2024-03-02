@@ -86,6 +86,8 @@ function LinkInput(props) {
   const [author, setAuthor] = useState("");
   const [download, setDownload] = useState(false);
   const [infoProcessed, setInfoProcessed] = useState(false);
+  const [dlProgress, setDLProgress] = useState(0);
+  const [dlState, setDLState] = useState("");
   const [open, setOpen] = useState(false);
   const [openQuality, setOpenQuality] = useState(false);
   const isDesktop = useMediaQuery("(min-width: 640px)");
@@ -150,6 +152,7 @@ function LinkInput(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setDownload(true);
+    setDLState("Searching for Audio...");
     props.downloadCallback(true);
     let filename = "";
     let randID = 0;
@@ -164,13 +167,13 @@ function LinkInput(props) {
         }),
       });
       const previewInfo = await infoResponse.json();
-      console.log(previewInfo);
       if (previewInfo["error"]) {
         toast.error(previewInfo["error"]);
         props.downloadCallback(false);
         setDownload(false);
         return;
       } else {
+        setDLState("Converting Data... (Please Wait)");
         setThumbnailURL(previewInfo["thumbnail"]);
         setTitle(previewInfo["title"]);
         setAuthor(previewInfo["author"]);
@@ -201,6 +204,7 @@ function LinkInput(props) {
           const filename = data["filename"];
           const filepath = data["filepath"];
           const randID = data["randID"];
+          setDLState("Downloading File:  ");
           const fileResponse = await fetch(`${baseFetchURL}/api/file_send`, {
             method: "POST",
             headers: {
@@ -212,13 +216,39 @@ function LinkInput(props) {
             }),
           });
 
-          const blob = await fileResponse.blob();
+          const contentLength = fileResponse.headers.get("Content-Length");
+          const totalLength =
+            typeof contentLength === "string" && parseInt(contentLength);
+          const reader = fileResponse.body.getReader();
+          const chunks = [];
+
+          let receivedLength = 0;
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) {
+              console.log("Finished");
+              break;
+            }
+            receivedLength = receivedLength + value.length;
+            chunks.push(value);
+            if (typeof totalLength === "number") {
+              const step = (receivedLength / totalLength) * 100;
+              setDLProgress(step);
+            }
+          }
+          const blob = new Blob(chunks);
           const downloadUrl = URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.href = downloadUrl;
-          link.download = filename.replace(`temporary_${randID}/`, "");
-          link.click();
-          URL.revokeObjectURL(downloadUrl);
+          const a = document.createElement("a");
+          a.href = downloadUrl;
+          a.download = filename.replace(`temporary_${randID}/`, "");
+          a.click();
+          const handleOnDownload = () => {
+            setTimeout(() => {
+              URL.revokeObjectURL(downloadUrl);
+              a.removeEventListener("click", handleOnDownload);
+            }, 150);
+          };
+          a.addEventListener("click", handleOnDownload);
 
           await fetch(`${baseFetchURL}/api/clear`, {
             method: "POST",
@@ -235,6 +265,8 @@ function LinkInput(props) {
         }
       }
       setDownload(false);
+      setDLState("");
+      setDLProgress(0);
       setInfoProcessed(false);
       props.downloadCallback(false);
       setLink("");
@@ -272,7 +304,7 @@ function LinkInput(props) {
           ref={inputContainer}
         >
           <Input
-            className="rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-[#151934] focus:outline-none"
+            className="mb-2 rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-[#151934] focus:outline-none"
             type="url"
             id="url"
             name="url"
@@ -298,11 +330,11 @@ function LinkInput(props) {
               )`,
             }}
             id="fakeInput"
-            className="pointer-events-none absolute select-none rounded-full border-2 border-[#b399ff] bg-transparent py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none"
+            className="pointer-events-none absolute mb-2 select-none rounded-full border-2 border-[#b399ff] bg-transparent py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none"
             disabled={download}
           />
           <Button
-            className="absolute right-4 aspect-auto h-[50px] w-[50px] rounded-full border-[3px] border-text bg-transparent transition-all delay-0 duration-200 ease-out hover:drop-shadow-heavy_glow"
+            className="absolute right-4 mb-2 aspect-auto h-[50px] w-[50px] rounded-full border-[3px] border-text bg-transparent transition-all delay-0 duration-200 ease-out hover:drop-shadow-heavy_glow"
             variant="default"
             size="icon"
             disabled={!link || download}
@@ -315,7 +347,31 @@ function LinkInput(props) {
             )}
           </Button>
         </form>
-        <div className="flex justify-center">
+        <AnimatePresence>
+          {dlState != "" && (
+            <motion.div
+              style={{ overflow: "hidden" }}
+              key="animation-on-state"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 25 }}
+              transition={{ ease: "easeInOut", duration: 0.4 }}
+              exit={{ opacity: 0, height: 0 }}
+              className="flex justify-center"
+            >
+              {dlState && (
+                <p className="text-center text-base font-semibold text-text">
+                  {dlState}
+                </p>
+              )}
+              {dlProgress != 0 && (
+                <span className="ml-2 text-center text-base font-semibold text-text">
+                  {`${parseInt(dlProgress)}%`}
+                </span>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div className="flex items-center justify-center">
           <div>
             {isDesktop ? (
               <Dialog open={open} onOpenChange={setOpen}>
