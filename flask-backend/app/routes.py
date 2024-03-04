@@ -7,10 +7,14 @@ import youtube
 @app.route("/api/info", methods=["POST"])
 def info():
     url = request.json["url"]
+    startTime = request.json["startTime"]
+    endTime = request.json["endTime"]
     if len(url) < 1:
         return jsonify({"error": "Error: URL Not Found!"}, 404)
     else:
-        thumbnail, title, author, filename, randID, err = youtube.get_info(url)
+        thumbnail, title, author, filename, randID, err, endTime = youtube.get_info(
+            url, startTime, endTime
+        )
         if err == 0:
             return (
                 jsonify(
@@ -20,6 +24,7 @@ def info():
                         "author": author,
                         "filename": filename,
                         "randID": randID,
+                        "endTime": endTime,
                     }
                 ),
                 200,
@@ -57,6 +62,20 @@ def info():
                     ),
                     406,
                 )
+            elif err == 6:
+                return (
+                    jsonify({"error": f"Error: Your specified timecodes are invalid!"}),
+                    406,
+                )
+            elif err == 7:
+                return (
+                    jsonify(
+                        {
+                            "error": f"Error: Trimmed clips have a maximum duration of 5 minutes."
+                        }
+                    ),
+                    406,
+                )
 
 
 @app.route("/api/download", methods=["POST"])
@@ -66,10 +85,15 @@ def download():
     metadata = request.json["metadata"]
     filename = request.json["filename"]
     randID = request.json["randID"]
+    trim = request.json["trim"]
+    startTime = request.json["startTime"]
+    endTime = request.json["endTime"]
     if len(url) < 1:
         return (jsonify({"error": "Error: URL Not Found!"}), 404)
     else:
-        err = youtube.download_video(url, quality, metadata, randID)
+        err = youtube.download_video(
+            url, quality, metadata, randID, trim, startTime, endTime
+        )
         if err == 0:
             file_path = os.path.join(os.path.dirname(__file__), os.pardir, filename)
             return (

@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from "react";
+import useSound from "use-sound";
 import DownloadPreview from "./DownloadPreview";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronRight, ChevronDown } from "lucide-react";
@@ -46,6 +47,8 @@ import {
 } from "@/components/ui/command";
 import useMediaQuery from "./hooks/useMediaQuery";
 import ToggleSwitch from "./ToggleSwitch";
+import successSFX from "../../public/assets/success.mp3";
+import errorSFX from "../../public/assets/err.mp3";
 
 const qualities = [
   {
@@ -85,6 +88,15 @@ function LinkInput(props) {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [download, setDownload] = useState(false);
+  const [trim, setTrim] = useState(false);
+  const [startMin, setStartMin] = useState("");
+  const [startSecs, setStartSecs] = useState("");
+  const [endMin, setEndMin] = useState("");
+  const [endSecs, setEndSecs] = useState("");
+  const [successSound] = useSound(successSFX);
+  const [errorSound] = useSound(errorSFX);
+  const [sound, setSound] = useState(false);
+  const [notif, setNotif] = useState(false);
   const [infoProcessed, setInfoProcessed] = useState(false);
   const [dlProgress, setDLProgress] = useState(0);
   const [dlState, setDLState] = useState("");
@@ -149,6 +161,81 @@ function LinkInput(props) {
   const handleMetadataSwitch = () => {
     setMetadata(!metadata);
   };
+
+  const handleSoundSwitch = () => {
+    setSound(!sound);
+  };
+
+  const handleTrimSwitch = () => {
+    if (trim) {
+      setStartMin("");
+      setStartSecs("");
+      setEndMin("");
+      setEndSecs("");
+    }
+    setTrim(!trim);
+  };
+
+  const handleNotifSwitch = () => {
+    if (!notif) {
+      if (!("Notification" in window)) {
+        alert("Browser does not support notifications");
+      } else if (Notification.permission === "granted") {
+        setNotif(true);
+      } else if (Notification.permission === "denied") {
+        alert(
+          "Allow notifications for YTiz in your browser permissions to enable browser-wide notifications",
+        );
+      } else {
+        Notification.requestPermission().then((permission) => {
+          if (permission === "granted") {
+            setNotif(true);
+          } else setNotif(false);
+        });
+      }
+    } else setNotif(false);
+  };
+
+  const handleStartMinChange = (e) => {
+    const newValue = e.target.value.replace(/\D/g, "");
+    const parsedValue = parseInt(newValue, 10);
+    const clampedValue = Math.max(0, Math.min(59, parsedValue));
+    if (clampedValue) {
+      setStartMin(clampedValue.toString());
+    } else {
+      setStartMin("");
+    }
+  };
+  const handleStartSecsChange = (e) => {
+    const newValue = e.target.value.replace(/\D/g, "");
+    const parsedValue = parseInt(newValue, 10);
+    const clampedValue = Math.max(0, Math.min(59, parsedValue));
+    if (clampedValue) {
+      setStartSecs(clampedValue.toString());
+    } else {
+      setStartSecs("");
+    }
+  };
+  const handleEndMinChange = (e) => {
+    const newValue = e.target.value.replace(/\D/g, "");
+    const parsedValue = parseInt(newValue, 10);
+    const clampedValue = Math.max(0, Math.min(59, parsedValue));
+    if (clampedValue) {
+      setEndMin(clampedValue.toString());
+    } else {
+      setEndMin("");
+    }
+  };
+  const handleEndSecsChange = (e) => {
+    const newValue = e.target.value.replace(/\D/g, "");
+    const parsedValue = parseInt(newValue, 10);
+    const clampedValue = Math.max(0, Math.min(59, parsedValue));
+    if (clampedValue) {
+      setEndSecs(clampedValue.toString());
+    } else {
+      setEndSecs("");
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     setDownload(true);
@@ -156,7 +243,16 @@ function LinkInput(props) {
     props.downloadCallback(true);
     let filename = "";
     let randID = 0;
+    let startTime = 0;
+    let endTime = 0;
+    startTime += startMin ? parseInt(startMin) * 60 : 0;
+    startTime += startSecs ? parseInt(startSecs) : 0;
+    endTime += endMin ? parseInt(endMin) * 60 : 0;
+    endTime += endSecs ? parseInt(endSecs) : 0;
+    console.log(startTime);
+    console.log(endTime);
     try {
+      let notification;
       const infoResponse = await fetch(`${baseFetchURL}/api/info`, {
         method: "POST",
         headers: {
@@ -164,13 +260,18 @@ function LinkInput(props) {
         },
         body: JSON.stringify({
           url: link,
+          startTime: startTime,
+          endTime: endTime,
         }),
       });
       const previewInfo = await infoResponse.json();
       if (previewInfo["error"]) {
         toast.error(previewInfo["error"]);
+        if (notif) notification = new Notification(previewInfo["error"]);
+        if (sound) errorSound();
         props.downloadCallback(false);
         setDownload(false);
+        setDLState("");
         return;
       } else {
         setDLState("Converting Data... (Please Wait)");
@@ -180,7 +281,7 @@ function LinkInput(props) {
         setInfoProcessed(true);
         filename = previewInfo["filename"];
         randID = previewInfo["randID"];
-
+        endTime = previewInfo["endTime"];
         const response = await fetch(`${baseFetchURL}/api/download`, {
           method: "POST",
           headers: {
@@ -192,14 +293,20 @@ function LinkInput(props) {
             metadata: metadata,
             filename: filename,
             randID: randID,
+            trim: trim,
+            startTime: startTime,
+            endTime: endTime,
           }),
         });
         const data = await response.json();
 
         if (!data["filename"] && !data["filepath"] && data["error"]) {
           toast.error(data["error"]);
+          if (notif) notification = new Notification(data["error"]);
+          if (sound) errorSound();
           props.downloadCallback(false);
           setDownload(false);
+          setDLState("");
         } else {
           const filename = data["filename"];
           const filepath = data["filepath"];
@@ -259,9 +366,14 @@ function LinkInput(props) {
               randID: randID,
             }),
           });
+          if (sound) successSound();
           toast.success(
             `${filename.replace(`temporary_${randID}/`, "")} has been successfully downloaded!`,
           );
+          if (notif)
+            notification = new Notification(
+              `${filename.replace(`temporary_${randID}/`, "")} has been successfully downloaded!`,
+            );
         }
       }
       setDownload(false);
@@ -482,36 +594,189 @@ function LinkInput(props) {
                         </PopoverContent>
                       </Popover>
                     </div>
-                    <div className="flex flex-row items-center justify-between">
-                      <TooltipProvider>
-                        <Tooltip delayDuration="500">
-                          <TooltipTrigger className="text-text">
-                            <Label
-                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
-                              htmlFor="metadata-toggle"
+                    <div className="flex w-full flex-col items-center gap-5">
+                      <div className="flex w-full flex-row justify-between">
+                        <TooltipProvider>
+                          <Tooltip delayDuration="500">
+                            <TooltipTrigger className="text-text">
+                              <Label
+                                className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                                htmlFor="metadata-toggle"
+                              >
+                                Embed Metadata
+                              </Label>
+                            </TooltipTrigger>
+                            <ToggleSwitch
+                              label=""
+                              id="metadata-toggle"
+                              checked={metadata}
+                              onCheckedChange={handleMetadataSwitch}
+                            />
+                            <TooltipContent
+                              className="m-auto w-2/3"
+                              side="bottom"
                             >
-                              Embed Metadata
-                            </Label>
-                          </TooltipTrigger>
-                          <ToggleSwitch
-                            label=""
-                            id="metadata-toggle"
-                            checked={metadata}
-                            onCheckedChange={handleMetadataSwitch}
+                              <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                                <strong>Enabled</strong> - Embeds title, artist,
+                                year, and thumbnail to the file
+                                <br />
+                                <br />
+                                <strong>Disabled</strong> - No metadata embedded
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                      <div className="flex w-full flex-row justify-between">
+                        <TooltipProvider>
+                          <Tooltip delayDuration="500">
+                            <TooltipTrigger className="text-text">
+                              <Label
+                                className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                                htmlFor="trim-toggle"
+                              >
+                                Trim Download (Slow)
+                              </Label>
+                            </TooltipTrigger>
+                            <ToggleSwitch
+                              label=""
+                              id="trim-toggle"
+                              checked={trim}
+                              onCheckedChange={handleTrimSwitch}
+                            />
+                            <TooltipContent
+                              className="m-auto w-3/5"
+                              side="bottom"
+                            >
+                              <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                                <strong>Enabled</strong> - Trims audio to
+                                specified timecodes, up to 5 minutes in duration
+                                <br />
+                                <br />
+                                <strong>Disabled</strong> - Downloads full audio
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                      <div className="flex w-full flex-row justify-around">
+                        <div className="flex flex-row">
+                          <input
+                            className="h-6 w-7 rounded-sm border-2 bg-transparent text-right text-xl text-text disabled:border-gray-600"
+                            type="text"
+                            disabled={!trim}
+                            value={startMin}
+                            placeholder="00"
+                            maxLength="2"
+                            onChange={(e) => handleStartMinChange(e)}
                           />
-                          <TooltipContent
-                            className="m-auto w-2/3"
-                            side="bottom"
-                          >
-                            <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
-                              <strong>Enabled</strong> - Embeds title, artist,
-                              year, and thumbnail to the file
-                              <br />
-                              <strong>Disabled</strong> - No metadata embedded
-                            </p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
+                          <span className="text-2xl font-bold leading-none text-text">
+                            :
+                          </span>
+                          <input
+                            className="h-6 w-7 rounded-sm border-2 bg-transparent text-right text-xl text-text disabled:border-gray-600"
+                            type="text"
+                            disabled={!trim}
+                            value={startSecs}
+                            placeholder="00"
+                            maxLength="2"
+                            onChange={(e) => handleStartSecsChange(e)}
+                          />
+                        </div>
+                        <div className="text-text">
+                          <p>---</p>
+                        </div>
+                        <div className="flex flex-row">
+                          <input
+                            className="h-6 w-7 rounded-sm border-2 bg-transparent text-right text-xl text-text disabled:border-gray-600"
+                            type="text"
+                            disabled={!trim}
+                            value={endMin}
+                            placeholder="00"
+                            maxLength="2"
+                            onChange={(e) => handleEndMinChange(e)}
+                          />
+                          <span className="text-2xl font-bold leading-none text-text">
+                            :
+                          </span>
+                          <input
+                            className="h-6 w-7 rounded-sm border-2 bg-transparent text-right text-xl text-text disabled:border-gray-600"
+                            type="text"
+                            disabled={!trim}
+                            value={endSecs}
+                            placeholder="00"
+                            maxLength="2"
+                            onChange={(e) => handleEndSecsChange(e)}
+                          />
+                        </div>
+                      </div>
+                      <div className="mb-6 h-[.1px] w-full bg-text opacity-30"></div>
+                      <div className="flex w-full flex-row justify-between">
+                        <TooltipProvider>
+                          <Tooltip delayDuration="500">
+                            <TooltipTrigger className="text-text">
+                              <Label
+                                className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                                htmlFor="sound-toggle"
+                              >
+                                Sound
+                              </Label>
+                            </TooltipTrigger>
+                            <ToggleSwitch
+                              label=""
+                              id="notif-toggle"
+                              checked={sound}
+                              onCheckedChange={handleSoundSwitch}
+                            />
+                            <TooltipContent
+                              className="m-auto w-full"
+                              side="bottom"
+                            >
+                              <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                                <strong>Enabled</strong> - Plays audible alerts
+                                on download/error
+                                <br />
+                                <br />
+                                <strong>Disabled</strong> - YTiz plays no sound
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
+                      <div className="flex w-full flex-row justify-between">
+                        <TooltipProvider>
+                          <Tooltip delayDuration="500">
+                            <TooltipTrigger className="text-text">
+                              <Label
+                                className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                                htmlFor="notif-toggle"
+                              >
+                                Browser Notifications
+                              </Label>
+                            </TooltipTrigger>
+                            <ToggleSwitch
+                              label=""
+                              id="notif-toggle"
+                              checked={notif}
+                              onCheckedChange={handleNotifSwitch}
+                            />
+                            <TooltipContent
+                              className="m-auto w-1/2"
+                              side="bottom"
+                            >
+                              <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                                <strong>Enabled</strong> - Sends browser-wide
+                                notifications when downloads finish or encounter
+                                errors
+                                <br />
+                                <br />
+                                <strong>Disabled</strong> - Only alerts on the
+                                page itself
+                              </p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </div>
                     </div>
                     <DialogFooter className="mt-6">
                       <Button
@@ -642,6 +907,156 @@ function LinkInput(props) {
                               year, and thumbnail to the file
                               <br />
                               <strong>Disabled</strong> - No metadata embedded
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                    <div className="mt-6 flex w-full flex-row justify-between">
+                      <TooltipProvider>
+                        <Tooltip delayDuration="500">
+                          <TooltipTrigger className="text-text">
+                            <Label
+                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                              htmlFor="trim-toggle"
+                            >
+                              Trim Download (Slow)
+                            </Label>
+                          </TooltipTrigger>
+                          <ToggleSwitch
+                            label=""
+                            id="trim-toggle"
+                            checked={trim}
+                            onCheckedChange={handleTrimSwitch}
+                          />
+                          <TooltipContent
+                            className="m-auto w-3/5"
+                            side="bottom"
+                          >
+                            <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                              <strong>Enabled</strong> - Trims audio to
+                              specified timecodes, up to 5 minutes in duration
+                              <br />
+                              <br />
+                              <strong>Disabled</strong> - Downloads full audio
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                    <div className="mt-4 flex w-full flex-row justify-around">
+                      <div className="flex flex-row">
+                        <input
+                          className="h-6 w-7 rounded-sm border-2 bg-transparent text-right text-xl text-text disabled:border-gray-600"
+                          type="text"
+                          disabled={!trim}
+                          value={startMin}
+                          placeholder="00"
+                          maxLength="2"
+                          onChange={(e) => handleStartMinChange(e)}
+                        />
+                        <span className="text-2xl font-bold leading-none text-text">
+                          :
+                        </span>
+                        <input
+                          className="h-6 w-7 rounded-sm border-2 bg-transparent text-right text-xl text-text disabled:border-gray-600"
+                          type="text"
+                          disabled={!trim}
+                          value={startSecs}
+                          placeholder="00"
+                          maxLength="2"
+                          onChange={(e) => handleStartSecsChange(e)}
+                        />
+                      </div>
+                      <div className="text-text">
+                        <p>---</p>
+                      </div>
+                      <div className="flex flex-row">
+                        <input
+                          className="h-6 w-7 rounded-sm border-2 bg-transparent text-right text-xl text-text disabled:border-gray-600"
+                          type="text"
+                          disabled={!trim}
+                          value={endMin}
+                          placeholder="00"
+                          maxLength="2"
+                          onChange={(e) => handleEndMinChange(e)}
+                        />
+                        <span className="text-2xl font-bold leading-none text-text">
+                          :
+                        </span>
+                        <input
+                          className="h-6 w-7 rounded-sm border-2 bg-transparent text-right text-xl text-text disabled:border-gray-600"
+                          type="text"
+                          disabled={!trim}
+                          value={endSecs}
+                          placeholder="00"
+                          maxLength="2"
+                          onChange={(e) => handleEndSecsChange(e)}
+                        />
+                      </div>
+                    </div>
+                    <div className="mb-10 mt-8 h-[.1px] w-full bg-text opacity-30"></div>
+                    <div className="mb-8 flex w-full flex-row justify-between">
+                      <TooltipProvider>
+                        <Tooltip delayDuration="500">
+                          <TooltipTrigger className="text-text">
+                            <Label
+                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                              htmlFor="sound-toggle"
+                            >
+                              Sound
+                            </Label>
+                          </TooltipTrigger>
+                          <ToggleSwitch
+                            label=""
+                            id="notif-toggle"
+                            checked={sound}
+                            onCheckedChange={handleSoundSwitch}
+                          />
+                          <TooltipContent
+                            className="m-auto w-full"
+                            side="bottom"
+                          >
+                            <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                              <strong>Enabled</strong> - Plays audible alerts on
+                              download/error
+                              <br />
+                              <br />
+                              <strong>Disabled</strong> - YTiz plays no sound
+                            </p>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </div>
+                    <div className="mb-4 flex w-full flex-row justify-between">
+                      <TooltipProvider>
+                        <Tooltip delayDuration="500">
+                          <TooltipTrigger className="text-text">
+                            <Label
+                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                              htmlFor="notif-toggle"
+                            >
+                              Browser Notifications
+                            </Label>
+                          </TooltipTrigger>
+                          <ToggleSwitch
+                            label=""
+                            id="notif-toggle"
+                            checked={notif}
+                            onCheckedChange={handleNotifSwitch}
+                          />
+                          <TooltipContent
+                            className="m-auto w-1/2"
+                            side="bottom"
+                          >
+                            <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
+                              <strong>Enabled</strong> - Sends browser-wide
+                              notifications when downloads finish or encounter
+                              errors
+                              <br />
+                              <br />
+                              <strong>Disabled</strong> - Only alerts on the
+                              page itself
                             </p>
                           </TooltipContent>
                         </Tooltip>

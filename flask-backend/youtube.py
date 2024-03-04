@@ -1,4 +1,5 @@
 import yt_dlp
+from yt_dlp.utils import download_range_func
 import random
 
 
@@ -10,8 +11,10 @@ def remove_last_substring(string, substring):
         return string
 
 
-def get_info(link):
+def get_info(link, startTime, endTime):
     randID = random.randint(0, 100)
+    if (endTime - startTime) > 300:
+        return ("", "", "", "", 0, 7, 0)
     ydl_opts = {
         "outtmpl": f"temporary_{randID}/%(title)s.%(ext)s",
         "format": f"mp3/bestaudio/best",
@@ -23,15 +26,16 @@ def get_info(link):
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:
             result = ydl.extract_info(link, download=False)
+            if result["duration"] < startTime:
+                return ("", "", "", "", 0, 6, 0)
+            if result["duration"] < endTime:
+                endTime = result["duration"]
+            if startTime != 0 and endTime == 0:
+                endTime = result["duration"]
+            if startTime > endTime:
+                return ("", "", "", "", 0, 6, 0)
             if result["duration"] > 3600:
-                return (
-                    "",
-                    "",
-                    "",
-                    "",
-                    0,
-                    2,
-                )
+                return ("", "", "", "", 0, 2, 0)
             thumbnail = result.get("thumbnail", "")
             title = result.get("title", "")
             author = result.get("uploader", "")
@@ -48,22 +52,26 @@ def get_info(link):
                 filename = remove_last_substring(filename, ".NA")
             elif ".mp3" in filename:
                 filename = remove_last_substring(filename, ".mp3")
-            return thumbnail, title, author, filename, randID, 0
+            return thumbnail, title, author, filename, randID, 0, endTime
         except Exception as e:
             print(e)
             if "in your country" in str(e):
-                return "", "", "", "", 0, 3
+                return "", "", "", "", 0, 3, 0
             elif "Private video" in str(e):
-                return "", "", "", "", 0, 4
+                return "", "", "", "", 0, 4, 0
             elif "due to a copyright claim" in str(e):
-                return "", "", "", "", 0, 5
-            return "", "", "", "", 0, 1
+                return "", "", "", "", 0, 5, 0
+            return "", "", "", "", 0, 1, 0
 
 
-def download_video(link, selectedQuality, metadata, randID):
+def download_video(link, selectedQuality, metadata, randID, trim, startTime, endTime):
     ydl_opts = {
         "outtmpl": f"temporary_{randID}/%(title)s.%(ext)s",
         "format": f"mp3/bestaudio/best",
+        "download_ranges": download_range_func(
+            None, [(startTime if trim else 0, endTime if trim else 0)]
+        ),
+        "force_keyframes_at_cuts": True,
         "writethumbnail": True if metadata else False,
         "embedthumbnail": True if metadata else False,
         "postprocessors": [

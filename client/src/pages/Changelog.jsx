@@ -21,6 +21,14 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8 backdrop-blur-sm">
           <Change
+            header="Release 2.0.0 - March 4th, 2024"
+            features={[
+              "Added the option to trim audio into clips (up to 5 minutes in duration)",
+              "Added the option for sound effects on download complete/error",
+              "Added the option for browser notifications on download complete/error",
+            ]}
+          />
+          <Change
             header="Release 1.0.8 - March 1st, 2024"
             features={[
               `Added 3 progress state messages: "Searching," "Converting," and "Downloading"`,
