@@ -196,6 +196,7 @@ function LinkInput(props) {
     if (!notif) {
       if (!("Notification" in window)) {
         alert("Browser does not support notifications");
+        setNotif(false);
       } else if (Notification.permission === "granted") {
         setNotif(true);
       } else if (Notification.permission === "denied") {
