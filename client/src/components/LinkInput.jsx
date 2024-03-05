@@ -97,13 +97,13 @@ function LinkInput(props) {
   const [errorSound] = useSound(errorSFX);
   const [sound, setSound] = useState(() => {
     const saved = localStorage.getItem("sound");
-    if (saved == "false") return false;
-    else return true;
+    if (saved == "true") return true;
+    else return false;
   });
   const [notif, setNotif] = useState(() => {
     const saved = localStorage.getItem("notif");
-    if (saved == "false") return false;
-    else return true;
+    if (saved == "true") return true;
+    else return false;
   });
   const [infoProcessed, setInfoProcessed] = useState(false);
   const [dlProgress, setDLProgress] = useState(0);
