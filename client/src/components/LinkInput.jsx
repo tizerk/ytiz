@@ -95,8 +95,16 @@ function LinkInput(props) {
   const [endSecs, setEndSecs] = useState("");
   const [successSound] = useSound(successSFX);
   const [errorSound] = useSound(errorSFX);
-  const [sound, setSound] = useState(false);
-  const [notif, setNotif] = useState(false);
+  const [sound, setSound] = useState(() => {
+    const saved = localStorage.getItem("sound");
+    if (saved == "false") return false;
+    else return true;
+  });
+  const [notif, setNotif] = useState(() => {
+    const saved = localStorage.getItem("notif");
+    if (saved == "false") return false;
+    else return true;
+  });
   const [infoProcessed, setInfoProcessed] = useState(false);
   const [dlProgress, setDLProgress] = useState(0);
   const [dlState, setDLState] = useState("");
@@ -153,6 +161,14 @@ function LinkInput(props) {
   useEffect(() => {
     localStorage.setItem("metadata", `${metadata}`);
   }, [metadata]);
+
+  useEffect(() => {
+    localStorage.setItem("sound", `${sound}`);
+  }, [sound]);
+
+  useEffect(() => {
+    localStorage.setItem("notif", `${notif}`);
+  }, [notif]);
 
   const handleSetOpen = () => {
     setOpen(!open);
