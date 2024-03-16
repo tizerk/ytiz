@@ -510,7 +510,7 @@ function LinkInput(props) {
                     className="relative mt-8"
                     ref={settingsButton}
                   >
-                    <Button className="w-full rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot font-bold outline-none backdrop-blur-sm">
+                    <Button className="w-full select-none rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot font-bold outline-none backdrop-blur-sm">
                       Settings
                     </Button>
                     <Button

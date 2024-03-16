@@ -40,10 +40,10 @@ function Home(props) {
         key="animation-on-state"
         variants={variants}
         animate={animate ? "hide" : "show"}
-        className="z-0 mb-4 bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-5xl font-extrabold text-transparent"
+        className="z-0 mb-4 select-none bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-5xl font-extrabold text-transparent"
       >
         YTIZ
-        <p className="z-0 mt-1 bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-lg font-semibold text-transparent opacity-60">
+        <p className="z-0 mt-1 select-none bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-lg font-semibold text-transparent opacity-60">
           YouTube and SoundCloud to MP3 Converter
         </p>
       </motion.h1>

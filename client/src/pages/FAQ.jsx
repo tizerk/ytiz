@@ -17,7 +17,7 @@ function FAQ() {
       transition={{ duration: 0.15, ease: "easeInOut" }}
       className="flex h-full w-full flex-col items-center justify-center"
     >
-      <h1 className="absolute top-[18%] text-center text-4xl font-semibold text-text">
+      <h1 className="absolute top-[18%] select-none text-center text-4xl font-semibold text-text">
         FAQ
       </h1>
       <Accordion

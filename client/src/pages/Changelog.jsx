@@ -11,7 +11,7 @@ function Changelog() {
       transition={{ duration: 0.15, ease: "easeInOut" }}
       className="flex h-full w-full flex-col items-center justify-center"
     >
-      <h1 className=" absolute top-[18%] text-center text-4xl font-semibold text-text ">
+      <h1 className="absolute top-[18%] select-none text-center text-4xl font-semibold text-text ">
         Changelog
       </h1>
       <motion.div
@@ -20,6 +20,13 @@ function Changelog() {
         className="relative mt-24 flex w-[85%] max-w-[500px] justify-center text-text hover:cursor-pointer min-[425px]:w-[75%] md:w-[50%]"
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8 backdrop-blur-sm">
+          <Change
+            header="Release 2.0.2 - March 15th, 2024"
+            features={[
+              "Fixed an issue that caused selection issues on throughout the site",
+              "Fixed an issue where only the icons on the Socials buttons were clickable, not the whole button",
+            ]}
+          />
           <Change
             header="Release 2.0.1 - March 13th, 2024"
             features={["Updated yt-dlp backend for more stability"]}
