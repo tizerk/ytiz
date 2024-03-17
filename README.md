@@ -1,19 +1,19 @@
 # YTiz
 
-![YTiz Demo Video](https://i.imgur.com/lSWhTTe.gif)
+![YTiz Demo Video](https://i.imgur.com/UzYXblU.gif)
 
 ## Introduction
 
 If you've ever tried to download songs from YouTube or SoundCloud, you've no doubt encountered the terrible "YTMP3" websites on Google that serve dozens of popup and redirect ads. With YTiz, you can say goodbye to the ads, trackers, slow downloads, and low-quality audio.
 
-## Features
+## 💻 Features
 
 - Fast downloads from YouTube, SoundCloud, and Reddit
 - Toggle between 320kbps and 128kbps downloads
 - Embedded metadata including titles, authors, and cover art
 - Playlist downloading from YouTube (Only for selfhosters)
 
-## Selfhosting
+## 🛠 Selfhosting
 
 If you want to run YTiz on your own computer, follow these steps:
 
@@ -41,6 +41,12 @@ If you want to run YTiz on your own computer, follow these steps:
    npm run build
    ```
    > To download playlists, go to the `ytiz/flask-backend/youtube.py` file, set `"noplaylist"` to `False`, and delete the `"playlist_items": "0"` line
+
+## 🎁 Donate
+
+<a href="https://ko-fi.com/tizerk">
+  <img src="https://assets-global.website-files.com/5c14e387dab576fe667689cf/64f1a9ddd0246590df69ea1a_kofi_short_button_dark%25402x-p-500.png" />
+<a/>
 
 ## Contribution
 
