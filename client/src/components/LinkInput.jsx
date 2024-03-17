@@ -652,7 +652,7 @@ function LinkInput(props) {
                                 className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
                                 htmlFor="trim-toggle"
                               >
-                                Trim Download (Slow)
+                                Trim Download (YT ONLY)
                               </Label>
                             </TooltipTrigger>
                             <ToggleSwitch
@@ -937,7 +937,7 @@ function LinkInput(props) {
                               className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
                               htmlFor="trim-toggle"
                             >
-                              Trim Download (Slow)
+                              Trim Download (YT ONLY)
                             </Label>
                           </TooltipTrigger>
                           <ToggleSwitch
