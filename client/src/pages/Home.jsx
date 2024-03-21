@@ -46,6 +46,11 @@ function Home(props) {
         <p className="z-0 mt-1 select-none bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-lg font-semibold text-transparent opacity-60">
           YouTube and SoundCloud to MP3 Converter
         </p>
+        <div className="flex flex-col items-center justify-center bg-red-500">
+          <p className="text-white">
+            Site Currently Having Issues; Please check back tomorrow!
+          </p>
+        </div>
       </motion.h1>
       <LinkInput className="z-10" downloadCallback={handleCallback} />
     </motion.div>

@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("secret_key")
 cors = CORS(
     app,
-    resources={r"/api/*": {"origin": f"{os.getenv('origin')}"}},
+    resources={r"/api/*": {"origin": f"*"}},
 )
 with app.app_context():
     for x in os.listdir("./"):
