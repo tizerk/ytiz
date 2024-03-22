@@ -1,4 +1,4 @@
-from flask import request, jsonify, Response
+from flask import request, jsonify
 from app import app
 import os, shutil
 import youtube

@@ -21,6 +21,12 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8 backdrop-blur-sm">
           <Change
+            header="Release 2.0.4 - March 21st, 2024"
+            features={[
+              "Fixed an issue where the glow on the Settings modal wasn't aligned with the cursor",
+            ]}
+          />
+          <Change
             header="Release 2.0.3 - March 21st, 2024"
             features={[
               "Fixed an issue with playlist-video links being immediately rejected",

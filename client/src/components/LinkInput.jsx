@@ -139,7 +139,7 @@ function LinkInput(props) {
     let settingsY = 0;
     if (settingsDialog.current) {
       settingsX = e.pageX - settingsDialog.current.offsetLeft + 180;
-      settingsY = e.pageY - settingsDialog.current.offsetTop + 130;
+      settingsY = e.pageY - settingsDialog.current.offsetTop + 250;
     }
 
     documentTarget.setAttribute(
