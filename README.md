@@ -9,9 +9,10 @@ If you've ever tried to download songs from YouTube or SoundCloud, you've no dou
 ## 💻 Features
 
 - Fast downloads from YouTube, SoundCloud, and Reddit
-- Toggle between 320kbps and 128kbps downloads
+- Audio quality selection (From 32 - 320 kbps)
 - Embedded metadata including titles, authors, and cover art
-- Playlist downloading from YouTube (Only for selfhosters)
+- Download Trimming (Up to 5 minute clips from YouTube)
+- Browser Notifications and Sound Effect Options
 
 ## 🛠 Selfhosting
 
@@ -32,7 +33,7 @@ If you want to run YTiz on your own computer, follow these steps:
    secret_key="Your Flask App Secret Key"
    origin="Your Production Frontend URL"
    ```
-5. Run the following command:
+5. Run the following command from the `client` directory:
    ```
    npm run dev
    ```
@@ -40,7 +41,10 @@ If you want to run YTiz on your own computer, follow these steps:
    ```
    npm run build
    ```
-   > To download playlists, go to the `ytiz/flask-backend/youtube.py` file, set `"noplaylist"` to `False`, and delete the `"playlist_items": "0"` line
+6. Run the following command from the `flask-backend` directory:
+   ```
+   flask run
+   ```
 
 ## 🎁 Donate
 

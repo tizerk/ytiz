@@ -328,7 +328,7 @@ function LinkInput(props) {
           const filename = data["filename"];
           const filepath = data["filepath"];
           const randID = data["randID"];
-          setDLState("Downloading File:  ");
+          setDLState("Downloading File...");
           const fileResponse = await fetch(`${baseFetchURL}/api/file_send`, {
             method: "POST",
             headers: {

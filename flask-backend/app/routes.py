@@ -1,6 +1,6 @@
-from flask import request, send_file, jsonify
+from flask import request, jsonify, Response
 from app import app
-import os, shutil, zipfile
+import os, shutil
 import youtube
 
 
@@ -140,17 +140,17 @@ def download():
 @app.route("/api/file_send", methods=["POST"])
 def file_send():
     file_path = request.json["filepath"]
-    randID = request.json["randID"]
-    if len(os.listdir(f"temporary_{randID}/")) < 2:
-        return send_file(file_path, as_attachment=True)
-    else:
-        with zipfile.ZipFile(file_path, "w", zipfile.ZIP_DEFLATED) as zip:
-            for root, _, files in os.walk("temporary/"):
-                for file in files:
-                    path = os.path.join(root, file)
-                    if not path.endswith(".zip"):
-                        zip.write(path, path.replace(root, ""))
-        return send_file(file_path, as_attachment=True)
+
+    def download_audio():
+        with open(file_path, "rb") as f:
+            chunk_size = 1024
+            while True:
+                data = f.read(chunk_size)
+                if not data:
+                    break
+                yield data
+
+    return download_audio(), {"mimetype": "audio/mpeg"}
 
 
 @app.route("/api/clear", methods=["POST"])
