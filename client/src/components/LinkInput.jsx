@@ -266,8 +266,8 @@ function LinkInput(props) {
     startTime += startSecs ? parseInt(startSecs) : 0;
     endTime += endMin ? parseInt(endMin) * 60 : 0;
     endTime += endSecs ? parseInt(endSecs) : 0;
-    console.log(startTime);
-    console.log(endTime);
+    const parts = link.split("list=");
+    const url = parts[0] || link;
     try {
       let notification;
       const infoResponse = await fetch(`${baseFetchURL}/api/info`, {
@@ -276,7 +276,7 @@ function LinkInput(props) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          url: link,
+          url: url,
           startTime: startTime,
           endTime: endTime,
         }),
@@ -305,7 +305,7 @@ function LinkInput(props) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            url: link,
+            url: url,
             quality: selectedQuality,
             metadata: metadata,
             filename: filename,
