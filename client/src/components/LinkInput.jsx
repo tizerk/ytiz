@@ -190,6 +190,7 @@ function LinkInput(props) {
     if (mp3) localStorage.setItem("format", `${"mp3"}`);
     if (m4a) localStorage.setItem("format", `${"m4a"}`);
     if (flac) localStorage.setItem("format", `${"flac"}`);
+    if (!mp3 && !m4a && !flac) localStorage.setItem("format", `${"mp3"}`);
   }, [flac, m4a, mp3]);
 
   const handleSetOpen = () => {
