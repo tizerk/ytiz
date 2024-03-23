@@ -109,6 +109,7 @@ function LinkInput(props) {
   const [mp3, setMP3] = useState(() => {
     const saved = localStorage.getItem("format");
     if (saved == "mp3") return true;
+    else if (saved != "flac" && saved != "m4a") return true;
     else return false;
   });
   const [flac, setFLAC] = useState(() => {
