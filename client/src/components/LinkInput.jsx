@@ -9,6 +9,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Toggle } from "@/components/ui/toggle";
 import {
   Tooltip,
   TooltipContent,
@@ -105,6 +106,21 @@ function LinkInput(props) {
     if (saved == "true") return true;
     else return false;
   });
+  const [mp3, setMP3] = useState(() => {
+    const saved = localStorage.getItem("format");
+    if (saved == "mp3") return true;
+    else return false;
+  });
+  const [flac, setFLAC] = useState(() => {
+    const saved = localStorage.getItem("format");
+    if (saved == "flac") return true;
+    else return false;
+  });
+  const [m4a, setM4A] = useState(() => {
+    const saved = localStorage.getItem("format");
+    if (saved == "m4a") return true;
+    else return false;
+  });
   const [infoProcessed, setInfoProcessed] = useState(false);
   const [dlProgress, setDLProgress] = useState(0);
   const [dlState, setDLState] = useState("");
@@ -138,8 +154,8 @@ function LinkInput(props) {
     let settingsX = 0;
     let settingsY = 0;
     if (settingsDialog.current) {
-      settingsX = e.pageX - settingsDialog.current.offsetLeft + 180;
-      settingsY = e.pageY - settingsDialog.current.offsetTop + 250;
+      settingsX = e.pageX - settingsDialog.current.offsetLeft + 160;
+      settingsY = e.pageY - settingsDialog.current.offsetTop + 290;
     }
 
     documentTarget.setAttribute(
@@ -170,6 +186,12 @@ function LinkInput(props) {
     localStorage.setItem("notif", `${notif}`);
   }, [notif]);
 
+  useEffect(() => {
+    if (mp3) localStorage.setItem("format", `${"mp3"}`);
+    if (m4a) localStorage.setItem("format", `${"m4a"}`);
+    if (flac) localStorage.setItem("format", `${"flac"}`);
+  }, [flac, m4a, mp3]);
+
   const handleSetOpen = () => {
     setOpen(!open);
   };
@@ -180,6 +202,24 @@ function LinkInput(props) {
 
   const handleSoundSwitch = () => {
     setSound(!sound);
+  };
+
+  const handleSetMP3 = () => {
+    if (!mp3) setMP3(true);
+    setFLAC(false);
+    setM4A(false);
+  };
+
+  const handleSetM4A = () => {
+    if (!m4a) setM4A(true);
+    setMP3(false);
+    setFLAC(false);
+  };
+
+  const handleSetFLAC = () => {
+    if (!flac) setFLAC(true);
+    setMP3(false);
+    setM4A(false);
   };
 
   const handleTrimSwitch = () => {
@@ -262,6 +302,9 @@ function LinkInput(props) {
     let randID = 0;
     let startTime = 0;
     let endTime = 0;
+    let format = "mp3";
+    if (m4a) format = "m4a";
+    if (flac) format = "flac";
     startTime += startMin ? parseInt(startMin) * 60 : 0;
     startTime += startSecs ? parseInt(startSecs) : 0;
     endTime += endMin ? parseInt(endMin) * 60 : 0;
@@ -279,6 +322,7 @@ function LinkInput(props) {
           url: url,
           startTime: startTime,
           endTime: endTime,
+          format: format,
         }),
       });
       const previewInfo = await infoResponse.json();
@@ -313,6 +357,7 @@ function LinkInput(props) {
             trim: trim,
             startTime: startTime,
             endTime: endTime,
+            format: format,
           }),
         });
         const data = await response.json();
@@ -433,7 +478,7 @@ function LinkInput(props) {
           ref={inputContainer}
         >
           <Input
-            className="mb-2 rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-[#151934] focus:outline-none"
+            className="mb-2 rounded-full border-none bg-slate-700 bg-opacity-25 py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-slate-600 focus:bg-opacity-30 focus:outline-none"
             type="url"
             id="url"
             name="url"
@@ -459,7 +504,7 @@ function LinkInput(props) {
               )`,
             }}
             id="fakeInput"
-            className="pointer-events-none absolute mb-2 select-none rounded-full border-2 border-[#b399ff] bg-transparent py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none"
+            className="pointer-events-none absolute mb-2 select-none rounded-full border-2 border-violet-400 bg-transparent py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none"
             disabled={download}
           />
           <Button
@@ -510,7 +555,7 @@ function LinkInput(props) {
                     className="relative mt-8"
                     ref={settingsButton}
                   >
-                    <Button className="w-full select-none rounded-full border-none bg-transparent bg-gradient-to-b from-input_top to-input_bot font-bold outline-none backdrop-blur-sm">
+                    <Button className="w-full select-none rounded-full border-none bg-slate-600 bg-opacity-25 font-bold outline-none backdrop-blur-sm">
                       Settings
                     </Button>
                     <Button
@@ -529,7 +574,7 @@ function LinkInput(props) {
                         transparent 50%
                         )`,
                       }}
-                      className="pointer-events-none absolute inset-0 w-full select-none rounded-full border-2 border-[#b399ff] bg-[#3a3a63] font-bold outline-none"
+                      className="pointer-events-none absolute inset-0 w-full select-none rounded-full border-2 border-violet-400 bg-slate-800 font-bold outline-none"
                     >
                       Settings
                     </Button>
@@ -537,7 +582,7 @@ function LinkInput(props) {
                 </DialogTrigger>
                 <DialogContent
                   ref={settingsDialog}
-                  className="absolute max-w-80 border-none bg-input_bot backdrop-blur-[4px]"
+                  className="absolute max-w-80 border-none bg-slate-800 bg-opacity-50 backdrop-blur-[4px]"
                 >
                   <div
                     style={{
@@ -555,7 +600,7 @@ function LinkInput(props) {
                         transparent 50%
                         )`,
                     }}
-                    className="pointer-events-none absolute inset-0 z-0 select-none rounded-2xl border-2 border-[#a799ff] bg-[#1c1b34] bg-opacity-90 outline-none"
+                    className="pointer-events-none absolute inset-0 z-0 select-none rounded-2xl border-2 border-violet-400 bg-[#222143] bg-opacity-90 outline-none"
                   />
                   <div className="relative z-10 font-nunito ">
                     <DialogHeader className="mb-6">
@@ -566,6 +611,35 @@ function LinkInput(props) {
                         Adjust your download settings here.
                       </DialogDescription>
                     </DialogHeader>
+                    <Label className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent">
+                      Format
+                    </Label>
+                    <div className="mb-4 mt-2 flex w-full flex-row items-center justify-center">
+                      <Toggle
+                        variant="outline"
+                        className="w-1/3 rounded-l-lg font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        onClick={handleSetM4A}
+                        pressed={m4a}
+                      >
+                        M4A
+                      </Toggle>
+                      <Toggle
+                        variant="outline"
+                        className="w-1/3 rounded-none font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        onClick={handleSetMP3}
+                        pressed={mp3}
+                      >
+                        MP3
+                      </Toggle>
+                      <Toggle
+                        variant="outline"
+                        className="w-1/3 rounded-r-lg font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        onClick={handleSetFLAC}
+                        pressed={flac}
+                      >
+                        FLAC
+                      </Toggle>
+                    </div>
                     <div className="mb-4 flex flex-row items-center justify-between">
                       <Popover open={openQuality} onOpenChange={setOpenQuality}>
                         <Label
@@ -594,7 +668,7 @@ function LinkInput(props) {
                               <CommandGroup>
                                 {qualities.map((quality) => (
                                   <CommandItem
-                                    className="cursor-pointer text-text hover:bg-gray-700 "
+                                    className="cursor-pointer text-text hover:bg-violet-900 "
                                     key={quality.value}
                                     value={quality.value}
                                     onSelect={() => {
@@ -797,7 +871,7 @@ function LinkInput(props) {
                     </div>
                     <DialogFooter className="mt-6">
                       <Button
-                        className="rounded-full bg-[#232131] hover:bg-input_top"
+                        className="rounded-full bg-gray-800 hover:hover:bg-gray-600 hover:bg-opacity-35"
                         type="submit"
                         onClick={handleSetOpen}
                       >
@@ -815,7 +889,7 @@ function LinkInput(props) {
                     className="relative mt-8"
                     ref={settingsButton}
                   >
-                    <Button className="w-full rounded-full border-none bg-gradient-to-b from-input_top to-input_bot font-bold outline-none backdrop-blur-sm">
+                    <Button className="w-full rounded-full border-none bg-slate-900 font-bold outline-none backdrop-blur-sm">
                       Settings
                     </Button>
                     <Button
@@ -834,7 +908,7 @@ function LinkInput(props) {
                         transparent 50%
                         )`,
                       }}
-                      className="pointer-events-none absolute inset-0 w-full select-none rounded-full border-2 border-[#b399ff] bg-[#3a3a63] font-bold outline-none"
+                      className="pointer-events-none absolute inset-0 w-full select-none rounded-full border-2 border-violet-400 bg-slate-900 font-bold outline-none"
                     >
                       Settings
                     </Button>
@@ -845,7 +919,7 @@ function LinkInput(props) {
                   className="rounded-t-3xl border-none bg-input_bot px-14 backdrop-blur-[6px]"
                 >
                   <div className="relative z-10 font-nunito ">
-                    <DrawerHeader className="mb-6">
+                    <DrawerHeader className="mb-2">
                       <DrawerTitle className="text-xl font-semibold text-text">
                         Edit Settings
                       </DrawerTitle>
@@ -853,6 +927,35 @@ function LinkInput(props) {
                         Adjust your download settings here.
                       </DrawerDescription>
                     </DrawerHeader>
+                    <Label className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent">
+                      Format
+                    </Label>
+                    <div className="mb-8 mt-2 flex w-full flex-row items-center justify-center">
+                      <Toggle
+                        variant="outline"
+                        className="w-1/3 rounded-l-lg font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        onClick={handleSetM4A}
+                        pressed={m4a}
+                      >
+                        M4A
+                      </Toggle>
+                      <Toggle
+                        variant="outline"
+                        className="w-1/3 rounded-none font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        onClick={handleSetMP3}
+                        pressed={mp3}
+                      >
+                        MP3
+                      </Toggle>
+                      <Toggle
+                        variant="outline"
+                        className="w-1/3 rounded-r-lg font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        onClick={handleSetFLAC}
+                        pressed={flac}
+                      >
+                        FLAC
+                      </Toggle>
+                    </div>
                     <div className="mb-8 flex flex-row items-center justify-between">
                       <Popover open={openQuality} onOpenChange={setOpenQuality}>
                         <Label
@@ -862,7 +965,7 @@ function LinkInput(props) {
                           Quality
                         </Label>
                         <PopoverTrigger
-                          className="border-[1px] bg-input_bot text-text hover:bg-input_top hover:text-text"
+                          className="border-[1px] bg-input_bot text-text hover:bg-gray-400 hover:bg-opacity-35 hover:text-text"
                           asChild
                         >
                           <Button
@@ -875,7 +978,7 @@ function LinkInput(props) {
                             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-full border-[1px] bg-input_bot text-right backdrop-blur-md">
+                        <PopoverContent className="w-full border-[1px] bg-slate-500 bg-opacity-10 text-right backdrop-blur-md">
                           <Command value={selectedQuality}>
                             <CommandList>
                               <CommandGroup>
@@ -1081,7 +1184,7 @@ function LinkInput(props) {
                     </div>
                     <DrawerFooter>
                       <Button
-                        className="w-2/3 rounded-full bg-[#232131] hover:bg-input_top"
+                        className="w-2/3 rounded-full bg-gray-800 hover:bg-gray-600 hover:bg-opacity-35"
                         type="submit"
                         onClick={handleSetOpen}
                       >

@@ -16,7 +16,7 @@ function App() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.75, ease: "easeInOut" }}
-      className="m-0 box-border flex h-[100svh] flex-col items-center justify-center overflow-hidden overflow-x-hidden bg-slate-950 p-0 font-nunito text-2xl"
+      className="m-0 box-border flex h-[100svh] flex-col items-center justify-center overflow-hidden overflow-x-hidden bg-gray-950 p-0 font-nunito text-2xl"
     >
       <Snowfall
         color={"#c0abff"}
@@ -29,7 +29,7 @@ function App() {
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 0.3, duration: 2.5, ease: "easeOut" }}
-        className="absolute	top-[-50%] h-[80%] w-[60%] rounded-full bg-splash	blur-[150px]"
+        className="absolute	top-[-50%] h-[45%] w-[60%] rounded-full bg-violet-700	blur-[150px]"
       />
       <NavMenu location={location.pathname} />
       <AnimatePresence mode="wait">

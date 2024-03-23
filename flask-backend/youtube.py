@@ -11,7 +11,7 @@ def remove_last_substring(string, substring):
         return string
 
 
-def get_info(link, startTime, endTime):
+def get_info(link, startTime, endTime, format):
     randID = random.randint(0, 100)
     if (endTime - startTime) > 300:
         return ("", "", "", "", 0, 7, 0)
@@ -43,7 +43,7 @@ def get_info(link, startTime, endTime):
             if "entries" in result:
                 filename = ydl.prepare_filename(result) + ".zip"
             else:
-                filename = ydl.prepare_filename(result) + ".mp3"
+                filename = ydl.prepare_filename(result) + f".{format}"
             if ".webm" in filename:
                 filename = remove_last_substring(filename, ".webm")
             elif ".m4a" in filename:
@@ -64,7 +64,9 @@ def get_info(link, startTime, endTime):
             return "", "", "", "", 0, 1, 0
 
 
-def download_video(link, selectedQuality, metadata, randID, trim, startTime, endTime):
+def download_video(
+    link, selectedQuality, metadata, randID, trim, startTime, endTime, format
+):
     ydl_opts = {
         "outtmpl": f"temporary_{randID}/%(title)s.%(ext)s",
         "format": f"mp3/bestaudio/best",
@@ -81,7 +83,7 @@ def download_video(link, selectedQuality, metadata, randID, trim, startTime, end
             },
             {
                 "key": "FFmpegExtractAudio",
-                "preferredcodec": "mp3",
+                "preferredcodec": format,
                 "preferredquality": selectedQuality,
             },
             {

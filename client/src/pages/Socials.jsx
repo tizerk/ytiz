@@ -23,7 +23,7 @@ function Socials() {
             target="_blank"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "tween", duration: ".2", ease: "easeInOut" }}
-            className="flex h-40 w-40 flex-col items-center justify-center rounded-xl bg-gradient-to-b from-input_top to-input_bot backdrop-blur-sm hover:drop-shadow-glow min-[540px]:h-52 min-[540px]:w-56"
+            className="flex h-40 w-40 flex-col items-center justify-center rounded-xl bg-slate-600 bg-opacity-25 from-input_top to-input_bot backdrop-blur-sm hover:drop-shadow-small_glow min-[540px]:h-52 min-[540px]:w-56"
           >
             <SocialIcon
               bgColor="transparent"
@@ -38,7 +38,7 @@ function Socials() {
             target="_blank"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "tween", duration: ".2", ease: "easeInOut" }}
-            className="flex h-40 w-40 flex-col items-center justify-center rounded-xl bg-gradient-to-b from-input_top to-input_bot backdrop-blur-sm hover:drop-shadow-glow min-[540px]:h-52 min-[540px]:w-56"
+            className="flex h-40 w-40 flex-col items-center justify-center rounded-xl bg-slate-600 bg-opacity-25 from-input_top to-input_bot backdrop-blur-sm hover:drop-shadow-small_glow min-[540px]:h-52 min-[540px]:w-56"
           >
             <SocialIcon
               bgColor="transparent"

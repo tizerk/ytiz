@@ -9,11 +9,12 @@ def info():
     url = request.json["url"]
     startTime = request.json["startTime"]
     endTime = request.json["endTime"]
+    format = request.json["format"]
     if len(url) < 1:
         return jsonify({"error": "Error: URL Not Found!"}, 404)
     else:
         thumbnail, title, author, filename, randID, err, endTime = youtube.get_info(
-            url, startTime, endTime
+            url, startTime, endTime, format
         )
         if err == 0:
             return (
@@ -88,11 +89,12 @@ def download():
     trim = request.json["trim"]
     startTime = request.json["startTime"]
     endTime = request.json["endTime"]
+    format = request.json["format"]
     if len(url) < 1:
         return (jsonify({"error": "Error: URL Not Found!"}), 404)
     else:
         err = youtube.download_video(
-            url, quality, metadata, randID, trim, startTime, endTime
+            url, quality, metadata, randID, trim, startTime, endTime, format
         )
         if err == 0:
             file_path = os.path.join(os.path.dirname(__file__), os.pardir, filename)

@@ -19,7 +19,15 @@ function Changelog() {
         transition={{ type: "tween", duration: ".15", ease: "easeInOut" }}
         className="relative mt-24 flex w-[85%] max-w-[500px] justify-center text-text hover:cursor-pointer min-[425px]:w-[75%] md:w-[50%]"
       >
-        <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-gradient-to-b from-input_top to-input_bot p-8 backdrop-blur-sm">
+        <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
+          <Change
+            header="Release 2.1.0 - March 23st, 2024"
+            features={[
+              "Added the ability to select specific audio formats between MP3, M4A, and FLAC",
+              "Made some visual tweaks for a simpler look",
+              "Alleviated some site performance issues with the blurry splash in the background",
+            ]}
+          />
           <Change
             header="Release 2.0.4 - March 21st, 2024"
             features={[

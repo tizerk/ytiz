@@ -24,7 +24,7 @@ function NavMenu(props) {
     <NavigationMenu
       id={"navmenu"}
       ref={NavBar}
-      className="absolute top-16 scale-[80%] rounded-3xl border-none bg-gradient-to-b from-input_top to-input_bot px-2 py-1 font-medium backdrop-blur-sm min-[425px]:scale-[90%] min-[540px]:scale-100"
+      className="absolute top-16 scale-[80%] rounded-3xl border-none bg-slate-600 bg-opacity-25 from-input_top to-input_bot px-2 py-1 font-medium backdrop-blur-sm min-[425px]:scale-[90%] min-[540px]:scale-100"
     >
       <div
         style={{
@@ -42,7 +42,7 @@ function NavMenu(props) {
                         transparent 50%
                         )`,
         }}
-        className="pointer-events-none absolute inset-0 select-none rounded-3xl border-2 border-[#988abc] outline-none"
+        className="pointer-events-none absolute inset-0 select-none rounded-3xl border-2 border-violet-400 outline-none"
       />
       <NavigationMenuList className="gap-2 text-lg">
         <NavigationMenuItem
