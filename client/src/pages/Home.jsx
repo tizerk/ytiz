@@ -47,7 +47,7 @@ function Home(props) {
           YouTube and SoundCloud MP3 Converter
         </p>
         <p className="z-0 mb-[-0.5rem] select-none bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-xs font-semibold text-transparent opacity-60">
-          Now supports TikTok, Instagram, and Twitter
+          Now supports TikTok and Twitter
         </p>
       </motion.h1>
       <LinkInput

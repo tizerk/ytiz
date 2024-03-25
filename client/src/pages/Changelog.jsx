@@ -25,7 +25,6 @@ function Changelog() {
             features={[
               "Added Support for TikTok",
               "Added Support for Twitter",
-              "Added Support for Instagram (Preview doesn't work)",
               "Removed Support for Reddit",
             ]}
           />

@@ -59,7 +59,6 @@ function FAQ(props) {
               <li>- YouTube</li>
               <li>- SoundCloud</li>
               <li>- Twitter</li>
-              <li>- Instagram</li>
               <li>- TikTok</li>
             </ul>
             <p>
