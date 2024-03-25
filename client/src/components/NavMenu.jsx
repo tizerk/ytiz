@@ -42,7 +42,7 @@ function NavMenu(props) {
                         transparent 50%
                         )`,
         }}
-        className="pointer-events-none absolute inset-0 select-none rounded-3xl border-2 border-violet-400 outline-none"
+        className={`pointer-events-none absolute inset-0 select-none rounded-3xl border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} outline-none`}
       />
       <NavigationMenuList className="gap-2 text-lg">
         <NavigationMenuItem

@@ -506,7 +506,7 @@ function LinkInput(props) {
               )`,
             }}
             id="fakeInput"
-            className="pointer-events-none absolute mb-2 select-none rounded-full border-2 border-violet-400 bg-transparent py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none"
+            className={`pointer-events-none absolute mb-2 select-none rounded-full border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} bg-transparent py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none`}
             disabled={download}
           />
           <Button
@@ -576,7 +576,7 @@ function LinkInput(props) {
                         transparent 50%
                         )`,
                       }}
-                      className="pointer-events-none absolute inset-0 w-full select-none rounded-full border-2 border-violet-400 bg-slate-800 font-bold outline-none"
+                      className={`pointer-events-none absolute inset-0 w-full select-none rounded-full border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} bg-slate-800 font-bold outline-none`}
                     >
                       Settings
                     </Button>
@@ -602,7 +602,7 @@ function LinkInput(props) {
                         transparent 50%
                         )`,
                     }}
-                    className="pointer-events-none absolute inset-0 z-0 select-none rounded-2xl border-2 border-violet-400 bg-[#222143] bg-opacity-90 outline-none"
+                    className={`pointer-events-none absolute inset-0 z-0 select-none rounded-2xl border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} ${props.colorTheme === "violet" ? "bg-[#222143]" : props.colorTheme === "blue" ? "bg-[#1d304cdd]" : props.colorTheme === "green" ? "bg-[#18413765]" : props.colorTheme === "rose" ? "bg-[#42181889]" : "bg-[#3d2c176f]"} bg-opacity-90 outline-none`}
                   />
                   <div className="relative z-10 font-nunito ">
                     <DialogHeader className="mb-6">
@@ -619,7 +619,7 @@ function LinkInput(props) {
                     <div className="mb-4 mt-2 flex w-full flex-row items-center justify-center">
                       <Toggle
                         variant="outline"
-                        className="w-1/3 rounded-l-lg font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        className={`w-1/3 rounded-l-lg font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetM4A}
                         pressed={m4a}
                       >
@@ -627,7 +627,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className="w-1/3 rounded-none font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        className={`w-1/3 rounded-none font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetMP3}
                         pressed={mp3}
                       >
@@ -635,7 +635,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className="w-1/3 rounded-r-lg font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        className={`w-1/3 rounded-r-lg font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetFLAC}
                         pressed={flac}
                       >
@@ -670,7 +670,7 @@ function LinkInput(props) {
                               <CommandGroup>
                                 {qualities.map((quality) => (
                                   <CommandItem
-                                    className="cursor-pointer text-text hover:bg-violet-900 "
+                                    className={`cursor-pointer ${props.colorTheme === "violet" ? "aria-selected:bg-violet-600" : props.colorTheme === "blue" ? "aria-selected:bg-blue-600 " : props.colorTheme === "green" ? "aria-selected:bg-green-600 " : props.colorTheme === "rose" ? "aria-selected:bg-rose-600 " : "aria-selected:bg-orange-600 "} text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"}`}
                                     key={quality.value}
                                     value={quality.value}
                                     onSelect={() => {
@@ -700,6 +700,7 @@ function LinkInput(props) {
                               </Label>
                             </TooltipTrigger>
                             <ToggleSwitch
+                              colorTheme={props.colorTheme}
                               label=""
                               id="metadata-toggle"
                               checked={metadata}
@@ -732,6 +733,7 @@ function LinkInput(props) {
                               </Label>
                             </TooltipTrigger>
                             <ToggleSwitch
+                              colorTheme={props.colorTheme}
                               label=""
                               id="trim-toggle"
                               checked={trim}
@@ -816,6 +818,7 @@ function LinkInput(props) {
                               </Label>
                             </TooltipTrigger>
                             <ToggleSwitch
+                              colorTheme={props.colorTheme}
                               label=""
                               id="notif-toggle"
                               checked={sound}
@@ -848,6 +851,7 @@ function LinkInput(props) {
                               </Label>
                             </TooltipTrigger>
                             <ToggleSwitch
+                              colorTheme={props.colorTheme}
                               label=""
                               id="notif-toggle"
                               checked={notif}
@@ -910,7 +914,7 @@ function LinkInput(props) {
                         transparent 50%
                         )`,
                       }}
-                      className="pointer-events-none absolute inset-0 w-full select-none rounded-full border-2 border-violet-400 bg-slate-900 font-bold outline-none"
+                      className={`pointer-events-none absolute inset-0 w-full select-none rounded-full border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} bg-slate-900 font-bold outline-none`}
                     >
                       Settings
                     </Button>
@@ -935,7 +939,7 @@ function LinkInput(props) {
                     <div className="mb-8 mt-2 flex w-full flex-row items-center justify-center">
                       <Toggle
                         variant="outline"
-                        className="w-1/3 rounded-l-lg font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        className={`w-1/3 rounded-l-lg font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetM4A}
                         pressed={m4a}
                       >
@@ -943,7 +947,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className="w-1/3 rounded-none font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        className={`w-1/3 rounded-none font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetMP3}
                         pressed={mp3}
                       >
@@ -951,7 +955,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className="w-1/3 rounded-r-lg font-bold text-text hover:bg-violet-900 hover:text-white data-[state=on]:bg-violet-600 data-[state=on]:text-text"
+                        className={`w-1/3 rounded-r-lg font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetFLAC}
                         pressed={flac}
                       >
@@ -986,7 +990,7 @@ function LinkInput(props) {
                               <CommandGroup>
                                 {qualities.map((quality) => (
                                   <CommandItem
-                                    className="text-text"
+                                    className={`text-text ${props.colorTheme === "violet" ? "aria-selected:bg-violet-600" : props.colorTheme === "blue" ? "aria-selected:bg-blue-600 " : props.colorTheme === "green" ? "aria-selected:bg-green-600 " : props.colorTheme === "rose" ? "aria-selected:bg-rose-600 " : "aria-selected:bg-orange-600 "} text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"}`}
                                     key={quality.value}
                                     value={quality.value}
                                     onSelect={() => {
@@ -1015,6 +1019,7 @@ function LinkInput(props) {
                             </Label>
                           </TooltipTrigger>
                           <ToggleSwitch
+                            colorTheme={props.colorTheme}
                             label=""
                             id="metadata-toggle"
                             checked={metadata}
@@ -1046,6 +1051,7 @@ function LinkInput(props) {
                             </Label>
                           </TooltipTrigger>
                           <ToggleSwitch
+                            colorTheme={props.colorTheme}
                             label=""
                             id="trim-toggle"
                             checked={trim}
@@ -1130,6 +1136,7 @@ function LinkInput(props) {
                             </Label>
                           </TooltipTrigger>
                           <ToggleSwitch
+                            colorTheme={props.colorTheme}
                             label=""
                             id="notif-toggle"
                             checked={sound}
@@ -1162,6 +1169,7 @@ function LinkInput(props) {
                             </Label>
                           </TooltipTrigger>
                           <ToggleSwitch
+                            colorTheme={props.colorTheme}
                             label=""
                             id="notif-toggle"
                             checked={notif}

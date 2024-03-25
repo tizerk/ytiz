@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 
-function FAQ() {
+function FAQ(props) {
   return (
     <motion.div
       initial={{ y: "100%" }}
@@ -63,7 +63,7 @@ function FAQ() {
             <p>
               Don't see your favorite site here?{" "}
               <Link
-                className="text-violet-300 hover:drop-shadow-glow"
+                className={`${props.colorTheme === "violet" ? "text-violet-300" : props.colorTheme === "blue" ? "text-blue-300" : props.colorTheme === "green" ? "text-green-300" : props.colorTheme === "rose" ? "text-rose-300" : "text-orange-300"} hover:drop-shadow-glow`}
                 to="https://twitter.com/ytizmp3"
                 target="_blank"
               >
@@ -82,7 +82,7 @@ function FAQ() {
             <br />
             The YTiz source code is available to view on{" "}
             <Link
-              className="font-extrabold tracking-wide text-violet-300 hover:drop-shadow-glow"
+              className={`font-extrabold tracking-wide ${props.colorTheme === "violet" ? "text-violet-300" : props.colorTheme === "blue" ? "text-blue-300" : props.colorTheme === "green" ? "text-green-300" : props.colorTheme === "rose" ? "text-rose-300" : "text-orange-300"} hover:drop-shadow-glow`}
               to="https://github.com/tizerk/ytiz-mp3"
               target="_blank"
             >

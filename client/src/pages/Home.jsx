@@ -47,7 +47,11 @@ function Home(props) {
           YouTube and SoundCloud to MP3 Converter
         </p>
       </motion.h1>
-      <LinkInput className="z-10" downloadCallback={handleCallback} />
+      <LinkInput
+        colorTheme={props.colorTheme}
+        className="z-10"
+        downloadCallback={handleCallback}
+      />
     </motion.div>
   );
 }
