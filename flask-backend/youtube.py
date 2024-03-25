@@ -16,12 +16,18 @@ def get_info(link, startTime, endTime, format):
     if (endTime - startTime) > 300:
         return ("", "", "", "", 0, 7, 0)
     ydl_opts = {
-        "outtmpl": f"temporary_{randID}/%(title)s.%(ext)s",
+        "outtmpl": f"temporary_{randID}/%(title).250s.%(ext)s",
         "format": f"mp3/bestaudio/best",
         "noplaylist": True,
         "playlist_items": "0",
         "source_address": "0.0.0.0",
-        "allowed_extractors": ["youtube", "soundcloud", "reddit"],
+        "allowed_extractors": [
+            "youtube",
+            "soundcloud",
+            "tiktok",
+            "twitter",
+            "instagram",
+        ],
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:
         try:
@@ -46,10 +52,10 @@ def get_info(link, startTime, endTime, format):
                 filename = ydl.prepare_filename(result) + f".{format}"
             if ".webm" in filename:
                 filename = remove_last_substring(filename, ".webm")
-            elif ".m4a" in filename:
-                filename = remove_last_substring(filename, ".m4a")
             elif ".NA" in filename:
                 filename = remove_last_substring(filename, ".NA")
+            elif ".mp4" in filename:
+                filename = remove_last_substring(filename, ".mp4")
             elif ".mp3" in filename:
                 filename = remove_last_substring(filename, ".mp3")
             return thumbnail, title, author, filename, randID, 0, endTime
@@ -68,7 +74,7 @@ def download_video(
     link, selectedQuality, metadata, randID, trim, startTime, endTime, format
 ):
     ydl_opts = {
-        "outtmpl": f"temporary_{randID}/%(title)s.%(ext)s",
+        "outtmpl": f"temporary_{randID}/%(title).250s.%(ext)s",
         "format": f"mp3/bestaudio/best",
         "download_ranges": download_range_func(
             None, [(startTime if trim else 0, endTime if trim else 0)]

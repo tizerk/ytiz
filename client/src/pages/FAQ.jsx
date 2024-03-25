@@ -58,7 +58,9 @@ function FAQ(props) {
             <ul className="list-none font-extrabold tracking-wide">
               <li>- YouTube</li>
               <li>- SoundCloud</li>
-              <li>- Reddit</li>
+              <li>- Twitter</li>
+              <li>- Instagram</li>
+              <li>- TikTok</li>
             </ul>
             <p>
               Don't see your favorite site here?{" "}

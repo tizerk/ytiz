@@ -31,7 +31,7 @@ function Socials() {
               target="_blank"
               url="https://twitter.com/ytizmp3"
             />
-            <a className="mt-10 select-none text-lg text-text">Twitter</a>
+            <p className="mt-10 select-none text-lg text-text">Twitter</p>
           </motion.a>
           <motion.a
             href="https://twitter.com/ytizmp3"
@@ -46,7 +46,7 @@ function Socials() {
               url="https://github.com/tizerk/ytiz"
               target="_blank"
             />
-            <a className="mt-10 select-none text-lg text-text">GitHub</a>
+            <p className="mt-10 select-none text-lg text-text">GitHub</p>
           </motion.a>
         </div>
       </div>
