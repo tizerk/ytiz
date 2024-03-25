@@ -130,7 +130,7 @@ function LinkInput(props) {
   const isDesktop = useMediaQuery("(min-width: 640px)");
   const [selectedQuality, setSelectedQuality] = useState(() => {
     const saved = localStorage.getItem("selectedQuality");
-    return saved || "320";
+    return saved || "192";
   });
   const baseFetchURL = import.meta.env.PROD
     ? import.meta.env.VITE_fetch_url
