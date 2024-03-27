@@ -23,7 +23,6 @@ function Changelog() {
           <Change
             header="Release 2.4.0 - March 27th, 2024"
             features={[
-              "YTiz can now be installed as a progressive web app",
               "Made the donation button slightly less obtrusive on mobile",
             ]}
           />
