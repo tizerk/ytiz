@@ -21,6 +21,13 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 2.4.0 - March 27th, 2024"
+            features={[
+              "YTiz can now be installed as a progressive web app",
+              "Made the donation button slightly less obtrusive on mobile",
+            ]}
+          />
+          <Change
             header="Release 2.3.0 - March 25th, 2024"
             features={[
               "Added Support for TikTok",

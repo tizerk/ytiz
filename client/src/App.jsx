@@ -7,11 +7,13 @@ import FAQ from "./pages/FAQ";
 import Socials from "./pages/Socials";
 import Changelog from "./pages/Changelog";
 import "./App.css";
+import useMediaQuery from "./components/hooks/useMediaQuery";
 import Snowfall from "react-snowfall";
 import Kofi from "../public/assets/kofi.svg";
 
 function App() {
   const [colorTheme, setColorTheme] = useState("violet");
+  const isDesktop = useMediaQuery("(min-width: 640px)");
   useEffect(() => {
     const themes = ["violet", "blue", "green", "rose", "orange"];
     const randomIndex = Math.floor(Math.random() * themes.length);
@@ -57,18 +59,34 @@ function App() {
           <Route path="/changelog" element={<Changelog />} />
         </Routes>
       </AnimatePresence>
-      <a
-        className="absolute bottom-32 left-10 flex rounded-3xl bg-slate-900 px-5 py-3 text-base font-semibold text-gray-200 transition-all duration-200 hover:scale-110 hover:bg-slate-700 hover:drop-shadow-small_glow sm:bottom-8"
-        href="https://ko-fi.com/tizerk"
-        target="_blank"
-      >
-        Support Me
-        <img
-          src={Kofi}
-          className="pl-2 transition-all duration-150 hover:rotate-12"
-          alt="Ko-fi Icon"
-        />
-      </a>
+      {isDesktop && (
+        <a
+          className="absolute bottom-32 left-10 flex rounded-3xl bg-slate-900 px-5 py-3 text-base font-semibold text-gray-200 transition-all duration-200 hover:scale-110 hover:bg-slate-700 hover:drop-shadow-small_glow sm:bottom-8"
+          href="https://ko-fi.com/tizerk"
+          target="_blank"
+        >
+          Support Me
+          <img
+            src={Kofi}
+            className="pl-2 transition-all duration-150 hover:rotate-12"
+            alt="Ko-fi Icon"
+          />
+        </a>
+      )}
+      {!isDesktop && (
+        <a
+          className="absolute bottom-10 left-10 flex rounded-3xl bg-slate-900 px-5 py-3 text-base font-semibold text-gray-200 transition-all duration-200 hover:scale-110 hover:bg-slate-700 hover:drop-shadow-small_glow sm:bottom-8"
+          href="https://ko-fi.com/tizerk"
+          target="_blank"
+        >
+          Tip
+          <img
+            src={Kofi}
+            className=" pl-2 transition-all duration-150 hover:rotate-12"
+            alt="Ko-fi Icon"
+          />
+        </a>
+      )}
     </motion.main>
   );
 }
