@@ -16,7 +16,7 @@ def get_info(link, startTime, endTime, format):
     if (endTime - startTime) > 300:
         return ("", "", "", "", 0, 7, 0)
     ydl_opts = {
-        "outtmpl": f"temporary_{randID}/%(title).250s.%(ext)s",
+        "outtmpl": f"temporary_{randID}/%(title).150s.%(ext)s",
         "format": f"mp3/bestaudio/best",
         "noplaylist": True,
         "playlist_items": "0",
@@ -73,7 +73,7 @@ def download_video(
     link, selectedQuality, metadata, randID, trim, startTime, endTime, format
 ):
     ydl_opts = {
-        "outtmpl": f"temporary_{randID}/%(title).250s.%(ext)s",
+        "outtmpl": f"temporary_{randID}/%(title).150s.%(ext)s",
         "format": f"mp3/bestaudio/best",
         "download_ranges": download_range_func(
             None, [(startTime if trim else 0, endTime if trim else 0)]
