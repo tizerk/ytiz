@@ -29,6 +29,7 @@ import {
   DialogTitle,
   DialogTrigger,
   DialogFooter,
+  DialogClose,
 } from "@/components/ui/dialog";
 
 import {
@@ -50,6 +51,7 @@ import useMediaQuery from "./hooks/useMediaQuery";
 import ToggleSwitch from "./ToggleSwitch";
 import successSFX from "../../public/assets/success.mp3";
 import errorSFX from "../../public/assets/err.mp3";
+import Kofi from "../../public/assets/kofi.svg";
 
 const qualities = [
   {
@@ -132,6 +134,12 @@ function LinkInput(props) {
     const saved = localStorage.getItem("selectedQuality");
     return saved || "192";
   });
+  const [downloadCount, setDownloadCount] = useState(() => {
+    const saved = localStorage.getItem("downloadCount");
+    if (saved) return parseInt(saved);
+    else return 0;
+  });
+  const [openDonate, setOpenDonate] = useState(false);
   const baseFetchURL = import.meta.env.PROD
     ? import.meta.env.VITE_fetch_url
     : import.meta.env.VITE_dev_url;
@@ -170,6 +178,18 @@ function LinkInput(props) {
       applyOverlayMask(e);
     });
   }, []);
+
+  useEffect(() => {
+    if (
+      downloadCount == 5 ||
+      downloadCount == 20 ||
+      downloadCount == 50 ||
+      downloadCount == 100
+    ) {
+      setOpenDonate(true);
+    }
+    localStorage.setItem("downloadCount", downloadCount);
+  }, [downloadCount]);
 
   useEffect(() => {
     localStorage.setItem("selectedQuality", selectedQuality);
@@ -438,6 +458,7 @@ function LinkInput(props) {
             notification = new Notification(
               `${filename.replace(`temporary_${randID}/`, "")} has been successfully downloaded!`,
             );
+          setDownloadCount((downloadCount) => downloadCount + 1);
         }
       }
       setDownload(false);
@@ -548,6 +569,41 @@ function LinkInput(props) {
           )}
         </AnimatePresence>
         <div className="flex items-center justify-center">
+          <Dialog open={openDonate} onOpenChange={setOpenDonate}>
+            <DialogContent className="absolute max-w-md rounded-3xl border-0 bg-slate-800 bg-opacity-50 outline-none backdrop-blur-md">
+              <DialogHeader>
+                <DialogTitle className="mb-4 text-center text-3xl font-extrabold text-text">
+                  You've used YTiz {downloadCount} times!
+                </DialogTitle>
+                <DialogDescription className="text-center font-semibold text-text opacity-60">
+                  If you've found the site to be useful, I would really
+                  appreciate a donation to help me keep it running. Thanks!
+                </DialogDescription>
+              </DialogHeader>
+              <a
+                className="group mx-auto mt-6 flex w-3/4 justify-center rounded-3xl bg-violet-900 px-5 py-3 text-base font-semibold text-gray-100 transition-all duration-100 hover:scale-105 hover:bg-violet-700 hover:drop-shadow-small_glow"
+                href="https://ko-fi.com/tizerk"
+                target="_blank"
+              >
+                Support Me on Ko-fi!
+                <img
+                  src={Kofi}
+                  className="pl-3 transition-all duration-150 group-hover:rotate-12"
+                  alt="Ko-fi Icon"
+                />
+              </a>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button
+                    type="button"
+                    className="mx-auto mt-5 rounded-full border-0 bg-transparent text-gray-500 outline-0 ring-0 hover:bg-transparent hover:text-gray-300"
+                  >
+                    Close
+                  </Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
           <div>
             {isDesktop ? (
               <Dialog open={open} onOpenChange={setOpen}>

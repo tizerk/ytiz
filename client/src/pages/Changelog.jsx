@@ -21,6 +21,10 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 2.4.1 - March 30th, 2024"
+            features={["Minor tweaks"]}
+          />
+          <Change
             header="Release 2.4.0 - March 27th, 2024"
             features={[
               "Made the donation button slightly less obtrusive on mobile",
