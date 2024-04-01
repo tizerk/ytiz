@@ -181,8 +181,8 @@ function LinkInput(props) {
 
   useEffect(() => {
     if (
-      downloadCount == 5 ||
-      downloadCount == 20 ||
+      downloadCount == 10 ||
+      downloadCount == 25 ||
       downloadCount == 50 ||
       downloadCount == 100
     ) {
