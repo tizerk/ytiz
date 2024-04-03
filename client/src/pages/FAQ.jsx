@@ -59,7 +59,7 @@ function FAQ(props) {
               <li>- YouTube</li>
               <li>- SoundCloud</li>
               <li>- Twitter</li>
-              <li>- TikTok</li>
+              <li>- TikTok (some tiktoks are broken)</li>
             </ul>
             <p>
               Don't see your favorite site here?{" "}
