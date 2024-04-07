@@ -180,12 +180,7 @@ function LinkInput(props) {
   }, []);
 
   useEffect(() => {
-    if (
-      downloadCount == 10 ||
-      downloadCount == 25 ||
-      downloadCount == 50 ||
-      downloadCount == 100
-    ) {
+    if (downloadCount == 20 || downloadCount == 50 || downloadCount == 100) {
       setOpenDonate(true);
     }
     localStorage.setItem("downloadCount", downloadCount);
