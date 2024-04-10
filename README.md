@@ -1,6 +1,7 @@
 # YTiz
 
-![YTiz Demo Video](https://i.imgur.com/UzYXblU.gif)
+![YTizDemo](https://github.com/tizerk/ytiz/assets/78773655/666bf1f4-f93e-4cc9-898e-a9ab43c2ab3d)
+
 
 ## Introduction
 
@@ -8,8 +9,9 @@ If you've ever tried to download songs from YouTube or SoundCloud, you've no dou
 
 ## 💻 Features
 
-- Fast downloads from YouTube, SoundCloud, and Reddit
+- Fast downloads from YouTube, SoundCloud, Twitter, and TikTok
 - Audio quality selection (From 32 - 320 kbps)
+- Audio format selection (Between MP3, FLAC, and M4A)
 - Embedded metadata including titles, authors, and cover art
 - Download Trimming (Up to 5 minute clips from YouTube)
 - Browser Notifications and Sound Effect Options
