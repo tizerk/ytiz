@@ -1,4 +1,4 @@
-from flask import request, jsonify
+from flask import request, jsonify, send_file
 from app import app
 import os, shutil
 import youtube
@@ -142,17 +142,17 @@ def download():
 @app.route("/api/file_send", methods=["POST"])
 def file_send():
     file_path = request.json["filepath"]
+    return send_file(file_path, as_attachment=True)
+    # def download_audio():
+    #     with open(file_path, "rb") as f:
+    #         chunk_size = 1024
+    #         while True:
+    #             data = f.read(chunk_size)
+    #             if not data:
+    #                 break
+    #             yield data
 
-    def download_audio():
-        with open(file_path, "rb") as f:
-            chunk_size = 1024
-            while True:
-                data = f.read(chunk_size)
-                if not data:
-                    break
-                yield data
-
-    return download_audio(), {"mimetype": "audio/mpeg"}
+    # return download_audio(), {"mimetype": "audio/mpeg"}
 
 
 @app.route("/api/clear", methods=["POST"])

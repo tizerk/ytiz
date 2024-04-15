@@ -21,6 +21,13 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 2.4.3 - April 15th, 2024"
+            features={[
+              "Changed backend hosting provider",
+              "The downloading state now also shows a percentage for progress",
+            ]}
+          />
+          <Change
             header="Release 2.4.2 - April 9th, 2024"
             features={["Updated backend to match new yt-dlp version"]}
           />
