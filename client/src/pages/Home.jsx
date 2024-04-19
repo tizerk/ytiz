@@ -79,7 +79,7 @@ function Home(props) {
       >
         YTIZ
         <p className="z-0 mt-1 select-none bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-base font-semibold text-transparent opacity-60">
-          MP3 Converter for YouTube, SoundCloud, Twitter, and TikTok
+          MP3 Converter for YouTube | SoundCloud | BandCamp | Twitter | TikTok
         </p>
       </motion.h1>
       <LinkInput
