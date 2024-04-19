@@ -45,12 +45,12 @@ function FAQ(props) {
               </li>
               <li className="mb-1">- Embedded Artist/Thumbnail Metadata</li>
               <li className="mb-1">- Quality Selector (32kbps - 320kbps)</li>
-              <li className="mb-1">- Settings Options Saved in LocalStorage</li>
+              <li className="mb-1">- Trimming Downloads (YouTube Only)</li>
             </ul>
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="2">
-          <AccordionTrigger className="text-lg md:text-xl">
+          <AccordionTrigger className="text-left text-lg md:text-xl">
             Which websites are supported?
           </AccordionTrigger>
           <AccordionContent className="font-medium leading-relaxed">
@@ -58,6 +58,7 @@ function FAQ(props) {
             <ul className="list-none font-extrabold tracking-wide">
               <li>- YouTube</li>
               <li>- SoundCloud</li>
+              <li>- BandCamp</li>
               <li>- Twitter</li>
               <li>- TikTok (some tiktoks are broken)</li>
             </ul>
@@ -102,14 +103,14 @@ function FAQ(props) {
           </AccordionTrigger>
           <AccordionContent className="pb-0 text-sm font-normal leading-relaxed">
             If you believe your copyrighted work has been improperly used on
-            this platform, please send a direct message to the Twitter contact
-            below. Please include a description of the copyrighted work, your
-            contact details, and a statement of good faith belief that the use
-            is unauthorized. Upon receipt of a notice alleging copyright
-            infringement, YTiz will take whatever action it deems appropriate
-            within its sole discretion, including termination of access to the
-            allegedly infringing materials to prevent repeated infringement of
-            copyright protected content.
+            this platform, please send a message to the Twitter contact below.
+            Include a description of the copyrighted work, your contact details,
+            and a statement of good faith belief that the use is unauthorized.
+            Upon receipt of a notice alleging copyright infringement, YTiz will
+            take whatever action it deems appropriate within its sole
+            discretion, including termination of access to the allegedly
+            infringing materials to prevent repeated infringement of such
+            protected content.
             <br />
             <SocialIcon
               bgColor="transparent"

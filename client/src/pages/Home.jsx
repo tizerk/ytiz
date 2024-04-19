@@ -1,12 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LinkInput from "../components/LinkInput";
 import { motion } from "framer-motion";
+import { supabase } from "../lib/supabase";
 
 function Home(props) {
   const [animate, setAnimate] = useState(false);
+  const [formattedDLCount, setFormattedDLCount] = useState("");
+  const [dlFetchError, setDLFetchError] = useState(false);
+  useEffect(() => {
+    async function getCount() {
+      const { data, error } = await supabase
+        .from("Downloads")
+        .select()
+        .single();
+      if (error) {
+        console.log(error);
+        setDLFetchError(true);
+      }
+      let count = data["count"];
+      count = count.toLocaleString();
+      setFormattedDLCount(count);
+    }
+    getCount();
+  }, []);
   const handleCallback = (download) => {
     if (download) setAnimate(true);
-    else setAnimate(false);
+    else {
+      setAnimate(false);
+      async function getCount() {
+        const { data, error } = await supabase
+          .from("Downloads")
+          .select()
+          .single();
+        if (error) {
+          console.log(error);
+          setDLFetchError(true);
+        }
+        let count = data["count"];
+        count = count.toLocaleString();
+        setFormattedDLCount(count);
+      }
+      getCount();
+    }
   };
   const variants = {
     show: {
@@ -51,7 +86,13 @@ function Home(props) {
         colorTheme={props.colorTheme}
         className="z-10"
         downloadCallback={handleCallback}
+        cumulativeDLCount={formattedDLCount}
       />
+      {!dlFetchError && (
+        <div className="absolute bottom-8 select-none text-lg font-extrabold text-text opacity-25">
+          <p>{formattedDLCount} Files Downloaded!</p>
+        </div>
+      )}
     </motion.div>
   );
 }

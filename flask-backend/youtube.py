@@ -26,6 +26,7 @@ def get_info(link, startTime, endTime, format):
             "soundcloud",
             "tiktok",
             "twitter",
+            "bandcamp",
         ],
     }
     with yt_dlp.YoutubeDL(ydl_opts) as ydl:

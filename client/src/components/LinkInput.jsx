@@ -31,7 +31,7 @@ import {
   DialogFooter,
   DialogClose,
 } from "@/components/ui/dialog";
-
+import { supabase } from "../lib/supabase";
 import {
   Drawer,
   DrawerContent,
@@ -143,6 +143,7 @@ function LinkInput(props) {
   const baseFetchURL = import.meta.env.PROD
     ? import.meta.env.VITE_fetch_url
     : import.meta.env.VITE_dev_url;
+  const cumulativeDLCount = props.cumulativeDLCount;
   const inputContainer = useRef();
   const settingsButton = useRef();
   const settingsDialog = useRef();
@@ -420,7 +421,6 @@ function LinkInput(props) {
             if (typeof totalLength === "number") {
               const step = (receivedLength / totalLength) * 100;
               setDLProgress(step);
-              console.log(dlProgress);
             }
           }
           const blob = new Blob(chunks);
@@ -450,6 +450,13 @@ function LinkInput(props) {
           toast.success(
             `${filename.replace(`temporary_${randID}/`, "")} has been successfully downloaded!`,
           );
+          const { error } = await supabase
+            .from("Downloads")
+            .update({
+              count: parseInt(cumulativeDLCount.replace(/,/g, "")) + 1,
+            })
+            .eq("count", parseInt(cumulativeDLCount.replace(/,/g, "")));
+          if (error) console.log(error);
           if (notif)
             notification = new Notification(
               `${filename.replace(`temporary_${randID}/`, "")} has been successfully downloaded!`,

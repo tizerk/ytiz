@@ -21,6 +21,16 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 3.0.0 - April 18th, 2024"
+            features={[
+              "Added Support for BandCamp (Individual tracks only; album downloading not supported)",
+              "Added a cumulative download counter",
+              "Fixed an issue with the new hosting provider where download progress was not sent to the client",
+              "Fixed a minor display issue with the FAQ",
+              "Tweaked the spacing of the Changelog to make it easier to read",
+            ]}
+          />
+          <Change
             header="Release 2.4.3 - April 15th, 2024"
             features={[
               "Changed backend hosting provider",
