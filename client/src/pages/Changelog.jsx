@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 function Changelog() {
   return (
     <motion.div
-      initial={{ y: "100%" }}
-      animate={{ y: "0%" }}
-      exit={{ y: "-100%" }}
+      initial={{ opacity: "0%", scale: "97%" }}
+      animate={{ opacity: "100%", scale: "100%" }}
+      exit={{ opacity: "0%", scale: "98%" }}
       transition={{ duration: 0.15, ease: "easeInOut" }}
       className="flex h-full w-full flex-col items-center justify-center"
     >
@@ -15,11 +15,18 @@ function Changelog() {
         Changelog
       </h1>
       <motion.div
-        whileHover={{ scale: 1.05 }}
+        whileHover={{ scale: 1.1 }}
         transition={{ type: "tween", duration: ".15", ease: "easeInOut" }}
         className="relative mt-24 flex w-[85%] max-w-[500px] justify-center text-text hover:cursor-pointer min-[425px]:w-[75%] md:w-[50%]"
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
+          <Change
+            header="Release 3.1.0 - April 19th, 2024"
+            features={[
+              "Made page-switch animations more subtle",
+              "Turned the FAQ into a card for visual continuity with the Changelog",
+            ]}
+          />
           <Change
             header="Release 3.0.0 - April 18th, 2024"
             features={[

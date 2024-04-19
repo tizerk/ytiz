@@ -11,9 +11,9 @@ import { motion } from "framer-motion";
 function FAQ(props) {
   return (
     <motion.div
-      initial={{ y: "100%" }}
-      animate={{ y: "0%" }}
-      exit={{ y: "-100%" }}
+      initial={{ opacity: "0%", scale: "97%" }}
+      animate={{ opacity: "100%", scale: "100%" }}
+      exit={{ opacity: "0%", scale: "98%" }}
       transition={{ duration: 0.15, ease: "easeInOut" }}
       className="flex h-full w-full flex-col items-center justify-center"
     >
@@ -21,12 +21,12 @@ function FAQ(props) {
         FAQ
       </h1>
       <Accordion
-        className="mt-20 w-[85%] leading-loose text-text sm:w-[55%] md:w-[45%] lg:w-[25%]"
+        className="mt-20 w-[95%] rounded-xl bg-slate-700 bg-opacity-40 p-10 leading-loose text-text backdrop-blur-sm sm:w-[65%] md:w-[55%] lg:w-[40%] xl:w-[30%]"
         type="single"
         collapsible
       >
         <AccordionItem value="1">
-          <AccordionTrigger className="text-lg md:text-xl">
+          <AccordionTrigger className="text-left text-lg md:text-xl">
             <p>
               What <em>is</em> YTiz?
             </p>
@@ -75,7 +75,7 @@ function FAQ(props) {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="3">
-          <AccordionTrigger className="text-lg md:text-xl">
+          <AccordionTrigger className="text-left text-lg md:text-xl">
             Are you selling my data?
           </AccordionTrigger>
           <AccordionContent className="font-medium leading-relaxed">
@@ -98,7 +98,7 @@ function FAQ(props) {
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="4">
-          <AccordionTrigger className="text-lg md:text-xl">
+          <AccordionTrigger className="text-left text-lg md:text-xl">
             What's your DMCA Policy?
           </AccordionTrigger>
           <AccordionContent className="pb-0 text-sm font-normal leading-relaxed">

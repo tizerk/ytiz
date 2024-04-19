@@ -65,9 +65,9 @@ function Home(props) {
   };
   return (
     <motion.div
-      initial={{ y: "100%" }}
-      animate={{ y: "0%" }}
-      exit={{ y: "-100%" }}
+      initial={{ opacity: "0%", scale: "97%" }}
+      animate={{ opacity: "100%", scale: "100%" }}
+      exit={{ opacity: "0%", scale: "98%" }}
       transition={{ duration: 0.15, ease: "easeInOut" }}
       className="flex h-full w-full flex-col items-center justify-center"
     >
