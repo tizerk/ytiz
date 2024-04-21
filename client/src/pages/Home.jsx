@@ -90,12 +90,12 @@ function Home(props) {
           issue. Sorry for the inconvenience.
         </p>
       </div>
-      {/* <LinkInput
+      <LinkInput
         colorTheme={props.colorTheme}
         className="z-10"
         downloadCallback={handleCallback}
         cumulativeDLCount={formattedDLCount}
-      /> */}
+      />
       {!dlFetchError && (
         <div className="absolute bottom-8 select-none text-lg font-semibold text-text opacity-50">
           <p>{formattedDLCount} Files Downloaded!</p>
