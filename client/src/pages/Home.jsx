@@ -89,7 +89,7 @@ function Home(props) {
         cumulativeDLCount={formattedDLCount}
       />
       {!dlFetchError && (
-        <div className="absolute bottom-8 select-none text-lg font-extrabold text-text opacity-25">
+        <div className="absolute bottom-8 select-none text-lg font-extrabold text-text opacity-50">
           <p>{formattedDLCount} Files Downloaded!</p>
         </div>
       )}
