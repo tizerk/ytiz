@@ -82,14 +82,9 @@ function Home(props) {
           MP3 Converter for YouTube | SoundCloud | BandCamp | Twitter | TikTok
         </p>
       </motion.h1>
-      <div className="bg-red-500 text-center font-bold text-text">
+      {/* <div className="bg-red-500 text-center font-bold text-text">
         <h1>WEBSITE IS CURRENTLY DOWN, PLEASE CHECK BACK LATER</h1>
-        <p className="text-base">
-          The hosting provider YTiz uses is currently experiencing an upstream
-          traffic issue, and YTiz will not be operational until they fix the
-          issue. Sorry for the inconvenience.
-        </p>
-      </div>
+      </div> */}
       <LinkInput
         colorTheme={props.colorTheme}
         className="z-10"
