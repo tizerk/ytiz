@@ -9,7 +9,7 @@ If you've ever tried to download songs from YouTube or SoundCloud, you've no dou
 
 ## 💻 Features
 
-- Fast downloads from YouTube, SoundCloud, Twitter, and TikTok
+- Fast downloads from YouTube, SoundCloud, BandCamp, Twitter, and TikTok
 - Audio quality selection (From 32 - 320 kbps)
 - Audio format selection (Between MP3, FLAC, and M4A)
 - Embedded metadata including titles, authors, and cover art
@@ -21,7 +21,7 @@ If you've ever tried to download songs from YouTube or SoundCloud, you've no dou
 If you want to run YTiz on your own computer, follow these steps:
 
 1. Clone the repository
-2. Install dependencies (Make sure FFmpeg is installed as well)
+2. Install dependencies in the `client` directory (Make sure FFmpeg is installed as well)
    ```
    npm install
    ```
@@ -29,6 +29,8 @@ If you want to run YTiz on your own computer, follow these steps:
    ```
    VITE_fetch_url="Your Production Backend URL"
    VITE_dev_url="Your Localhost Backend URL"
+   VITE_SUPABASE_ANON_KEY="Your Supabase Database Anon Key" (OPTIONAL) 
+   VITE_SUPABASE_URL="Your Supabase Database URL" (OPTIONAL)
    ```
 4. Create another `.env` in the `flask-backend` directory
    ```
