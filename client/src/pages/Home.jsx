@@ -83,10 +83,10 @@ function Home(props) {
         </p>
       </motion.h1>
       <div className="bg-red-500 text-center font-bold text-text">
-        <h1>WEBSITE IS CURRENTLY DOWN, PLEASE CHECK BACK LATER</h1>
+        <h1>YOUTUBE DOWNLOADING IS CURRENTLY DOWN, PLEASE CHECK BACK LATER</h1>
         <p className="text-sm">
           YouTube is currently blocking YTiz; I'm trying to work around it.
-          Thanks for your patience.
+          Thanks for your patience. Other sites should work as expected.
         </p>
       </div>
       <LinkInput
