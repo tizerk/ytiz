@@ -82,13 +82,13 @@ function Home(props) {
           MP3 Converter for YouTube | SoundCloud | BandCamp | Twitter | TikTok
         </p>
       </motion.h1>
-      <div className="bg-red-500 text-center font-bold text-text">
+      {/* <div className="bg-red-500 text-center font-bold text-text">
         <h1>YOUTUBE DOWNLOADING IS CURRENTLY DOWN, PLEASE CHECK BACK LATER</h1>
         <p className="text-sm">
           YouTube is currently blocking YTiz; I'm trying to work around it.
           Thanks for your patience. Other sites should work as expected.
         </p>
-      </div>
+      </div> */}
       <LinkInput
         colorTheme={props.colorTheme}
         className="z-10"
