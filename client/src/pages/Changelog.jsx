@@ -21,6 +21,12 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 3.1.1 - April 29th, 2024"
+            features={[
+              "Added a notice on the front page to make users aware of the violent war against YouTube",
+            ]}
+          />
+          <Change
             header="Release 3.1.0 - April 19th, 2024"
             features={[
               "Made page-switch animations more subtle",
