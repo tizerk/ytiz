@@ -89,17 +89,13 @@ function Home(props) {
           Thanks for your patience. Other sites should work as expected.
         </p>
       </div> */}
-      <div className="mb-5 w-[90%] rounded-2xl bg-red-900 p-5 text-center font-bold text-text sm:w-[70%] md:w-1/2 lg:w-1/3">
-        <h1>YouTube Downloading May Not Work!</h1>
+      <div className="absolute bottom-20 mb-5 w-[90%] rounded-2xl bg-red-900 p-2 text-center font-bold text-text opacity-70 sm:w-[70%] md:w-1/2 lg:w-1/3">
+        <p className="text-base">YouTube Downloading May Not Work!</p>
         <p className="text-sm font-normal">
-          YouTube has been attempting to block YTiz from accessing its streams
-          for the past week. I am working on a fix, but it will take some time.
-          Until then, YouTube downloading may stop working intermittently. The
-          remaining sites still work as usual.
+          YouTube is still trying to block YTiz; I'm still trying to work around
+          it.
         </p>
-        <p className="mt-2 text-base font-bold">
-          I apologize for the inconvenience.
-        </p>
+        <p className="text-sm font-bold">I apologize for the inconvenience.</p>
       </div>
       <LinkInput
         colorTheme={props.colorTheme}
