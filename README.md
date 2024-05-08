@@ -27,7 +27,6 @@ If you want to run YTiz on your own computer, follow these steps:
    ```
 3. Create a `.env` in the `client` directory
    ```
-   VITE_fetch_url="Your Production Backend URL"
    VITE_dev_url="Your Localhost Backend URL"
    VITE_SUPABASE_ANON_KEY="Your Supabase Database Anon Key" (OPTIONAL) 
    VITE_SUPABASE_URL="Your Supabase Database URL" (OPTIONAL)
