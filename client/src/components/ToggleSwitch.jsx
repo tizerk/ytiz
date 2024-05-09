@@ -12,7 +12,7 @@ function ToggleSwitch(props) {
           className={`rounded-[14px] border-2 border-stone-50 border-text transition-all delay-0 duration-200 ease-out ${props.colorTheme === "violet" ? "data-[state=checked]:bg-violet-700" : props.colorTheme === "blue" ? "data-[state=checked]:bg-blue-700 " : props.colorTheme === "green" ? "data-[state=checked]:bg-green-700" : props.colorTheme === "rose" ? "data-[state=checked]:bg-rose-700" : "data-[state=checked]:bg-orange-700"}`}
         />
         <Label
-          className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-lg font-semibold text-transparent"
+          className="cursor-pointer bg-text bg-clip-text text-center text-lg font-semibold text-transparent"
           htmlFor={props.id}
         >
           {props.label}

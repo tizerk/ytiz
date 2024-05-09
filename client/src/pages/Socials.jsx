@@ -34,7 +34,7 @@ function Socials() {
             <p className="mt-10 select-none text-lg text-text">Twitter</p>
           </motion.a>
           <motion.a
-            href="https://twitter.com/ytizmp3"
+            href="https://github.com/tizerk/ytiz"
             target="_blank"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "tween", duration: ".2", ease: "easeInOut" }}

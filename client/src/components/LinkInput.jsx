@@ -519,7 +519,7 @@ function LinkInput(props) {
           ref={inputContainer}
         >
           <Input
-            className="mb-2 rounded-full border-none bg-slate-700 bg-opacity-25 py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-slate-600 focus:bg-opacity-30 focus:outline-none"
+            className="mb-2 rounded-full border-none bg-slate-600 bg-opacity-25 py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-slate-500 focus:bg-opacity-30 focus:outline-none focus:placeholder:text-slate-400"
             type="url"
             id="url"
             name="url"
@@ -687,13 +687,13 @@ function LinkInput(props) {
                         Adjust your download settings here.
                       </DialogDescription>
                     </DialogHeader>
-                    <Label className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent">
+                    <Label className="bg-text bg-clip-text text-center text-base font-extrabold text-transparent">
                       Format
                     </Label>
                     <div className="mb-4 mt-2 flex w-full flex-row items-center justify-center">
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-l-lg font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-l-lg border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetM4A}
                         pressed={m4a}
                       >
@@ -701,7 +701,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-none font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-none border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetMP3}
                         pressed={mp3}
                       >
@@ -709,7 +709,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-r-lg font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-r-lg border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetFLAC}
                         pressed={flac}
                       >
@@ -720,12 +720,12 @@ function LinkInput(props) {
                       <Popover open={openQuality} onOpenChange={setOpenQuality}>
                         <Label
                           htmlFor="qualityPopover"
-                          className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                          className="bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                         >
                           Quality
                         </Label>
                         <PopoverTrigger
-                          className="border-[1px] bg-input_bot text-text hover:bg-input_top hover:text-text"
+                          className="border-[3px] bg-input_bot text-text hover:bg-input_top hover:text-text"
                           asChild
                         >
                           <Button
@@ -738,7 +738,7 @@ function LinkInput(props) {
                             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-full border-[1px] bg-input_bot text-right backdrop-blur-md">
+                        <PopoverContent className="w-full border-2 bg-input_bot text-right backdrop-blur-md">
                           <Command value={selectedQuality}>
                             <CommandList>
                               <CommandGroup>
@@ -767,7 +767,7 @@ function LinkInput(props) {
                           <Tooltip delayDuration="500">
                             <TooltipTrigger className="text-text">
                               <Label
-                                className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                                className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                                 htmlFor="metadata-toggle"
                               >
                                 Embed Metadata
@@ -800,7 +800,7 @@ function LinkInput(props) {
                           <Tooltip delayDuration="500">
                             <TooltipTrigger className="text-text">
                               <Label
-                                className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                                className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                                 htmlFor="trim-toggle"
                               >
                                 Trim Download (YT ONLY)
@@ -885,7 +885,7 @@ function LinkInput(props) {
                           <Tooltip delayDuration="500">
                             <TooltipTrigger className="text-text">
                               <Label
-                                className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                                className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                                 htmlFor="sound-toggle"
                               >
                                 Sound
@@ -918,7 +918,7 @@ function LinkInput(props) {
                           <Tooltip delayDuration="500">
                             <TooltipTrigger className="text-text">
                               <Label
-                                className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                                className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                                 htmlFor="notif-toggle"
                               >
                                 Browser Notifications
@@ -1007,13 +1007,13 @@ function LinkInput(props) {
                         Adjust your download settings here.
                       </DrawerDescription>
                     </DrawerHeader>
-                    <Label className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent">
+                    <Label className="bg-text bg-clip-text text-center text-base font-extrabold text-transparent">
                       Format
                     </Label>
                     <div className="mb-8 mt-2 flex w-full flex-row items-center justify-center">
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-l-lg font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-l-lg border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetM4A}
                         pressed={m4a}
                       >
@@ -1021,7 +1021,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-none font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-none border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetMP3}
                         pressed={mp3}
                       >
@@ -1029,7 +1029,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-r-lg font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-r-lg border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetFLAC}
                         pressed={flac}
                       >
@@ -1040,12 +1040,12 @@ function LinkInput(props) {
                       <Popover open={openQuality} onOpenChange={setOpenQuality}>
                         <Label
                           htmlFor="qualityPopover"
-                          className="bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                          className="bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                         >
                           Quality
                         </Label>
                         <PopoverTrigger
-                          className="border-[1px] bg-input_bot text-text hover:bg-gray-400 hover:bg-opacity-35 hover:text-text"
+                          className="border-[3px] bg-input_bot text-text hover:bg-gray-400 hover:bg-opacity-35 hover:text-text"
                           asChild
                         >
                           <Button
@@ -1058,7 +1058,7 @@ function LinkInput(props) {
                             <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                           </Button>
                         </PopoverTrigger>
-                        <PopoverContent className="w-full border-[1px] bg-slate-500 bg-opacity-10 text-right backdrop-blur-md">
+                        <PopoverContent className="w-full border-2 bg-slate-500 bg-opacity-10 text-right backdrop-blur-md">
                           <Command value={selectedQuality}>
                             <CommandList>
                               <CommandGroup>
@@ -1086,7 +1086,7 @@ function LinkInput(props) {
                         <Tooltip delayDuration="500">
                           <TooltipTrigger className="text-text">
                             <Label
-                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                              className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                               htmlFor="metadata-toggle"
                             >
                               Embed Metadata
@@ -1118,7 +1118,7 @@ function LinkInput(props) {
                         <Tooltip delayDuration="500">
                           <TooltipTrigger className="text-text">
                             <Label
-                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                              className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                               htmlFor="trim-toggle"
                             >
                               Trim Download (YT ONLY)
@@ -1203,7 +1203,7 @@ function LinkInput(props) {
                         <Tooltip delayDuration="500">
                           <TooltipTrigger className="text-text">
                             <Label
-                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                              className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                               htmlFor="sound-toggle"
                             >
                               Sound
@@ -1236,7 +1236,7 @@ function LinkInput(props) {
                         <Tooltip delayDuration="500">
                           <TooltipTrigger className="text-text">
                             <Label
-                              className="cursor-pointer bg-gradient-to-b from-text to-text_fade bg-clip-text text-center text-base font-extrabold text-transparent"
+                              className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                               htmlFor="notif-toggle"
                             >
                               Browser Notifications
@@ -1281,7 +1281,7 @@ function LinkInput(props) {
             )}
           </div>
         </div>
-        <Toaster offset={"45px"} position="bottom-center" />
+        <Toaster offset={"45px"} position="bottom-right" />
       </div>
     </>
   );
