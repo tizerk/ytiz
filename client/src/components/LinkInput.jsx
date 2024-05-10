@@ -693,7 +693,7 @@ function LinkInput(props) {
                     <div className="mb-4 mt-2 flex w-full flex-row items-center justify-center">
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-l-lg border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-l-lg border-2 border-r-[1px] font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetM4A}
                         pressed={m4a}
                       >
@@ -709,7 +709,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-r-lg border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-r-lg border-2 border-l-[1px] font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetFLAC}
                         pressed={flac}
                       >
@@ -1013,7 +1013,7 @@ function LinkInput(props) {
                     <div className="mb-8 mt-2 flex w-full flex-row items-center justify-center">
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-l-lg border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-l-lg border-2 border-r-[1px] font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetM4A}
                         pressed={m4a}
                       >
@@ -1029,7 +1029,7 @@ function LinkInput(props) {
                       </Toggle>
                       <Toggle
                         variant="outline"
-                        className={`w-1/3 rounded-r-lg border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
+                        className={`w-1/3 rounded-r-lg border-2 border-l-[1px] font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
                         onClick={handleSetFLAC}
                         pressed={flac}
                       >
