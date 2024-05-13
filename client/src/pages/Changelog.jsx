@@ -21,6 +21,10 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 3.2.0 - May 13th, 2024"
+            features={["Fixed YouTube blocking issue"]}
+          />
+          <Change
             header="Release 3.1.2 - May 8th, 2024"
             features={[
               "Made a few minor visual tweaks for clarity and readability",

@@ -83,20 +83,11 @@ function Home(props) {
         </p>
       </motion.h1>
       {/* <div className="bg-red-500 text-center font-bold text-text">
-        <h1>YOUTUBE DOWNLOADING IS CURRENTLY DOWN, PLEASE CHECK BACK LATER</h1>
+        <h1>SITE DOWN, PLEASE CHECK BACK LATER</h1>
         <p className="text-sm">
-          YouTube is currently blocking YTiz; I'm trying to work around it.
-          Thanks for your patience. Other sites should work as expected.
+          I'm currently working through some issues with YTiz.  Sorry for the inconvenience.
         </p>
       </div> */}
-      <div className="absolute bottom-20 mb-5 w-[90%] rounded-2xl bg-red-900 p-2 text-center font-bold text-text opacity-70 sm:w-[70%] md:w-1/2 lg:w-1/3">
-        <p className="text-base">YouTube Downloading May Not Work!</p>
-        <p className="text-sm font-normal">
-          YouTube is still trying to block YTiz; I'm still trying to work around
-          it.
-        </p>
-        <p className="text-sm font-bold">I apologize for the inconvenience.</p>
-      </div>
       <LinkInput
         colorTheme={props.colorTheme}
         className="z-10"
