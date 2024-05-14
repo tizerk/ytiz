@@ -55,14 +55,15 @@ function FAQ(props) {
           </AccordionTrigger>
           <AccordionContent className="font-medium leading-relaxed">
             Currently, YTiz supports audio downloading from:
-            <ul className="list-none font-extrabold tracking-wide">
+            <ul className="mb-3 list-none font-extrabold tracking-wide">
               <li>- YouTube</li>
-              <li>- SoundCloud</li>
-              <li>- BandCamp</li>
+              <li>- SoundCloud *</li>
+              <li>- BandCamp *</li>
               <li>- Twitter</li>
-              <li>- TikTok (some tiktoks are broken)</li>
+              <li>- TikTok</li>
             </ul>
-            <p>
+            <em>* Only supports 128kbps audio quality.</em>
+            <p className="mt-3">
               Don't see your favorite site here?{" "}
               <Link
                 className={`${props.colorTheme === "violet" ? "text-violet-300" : props.colorTheme === "blue" ? "text-blue-300" : props.colorTheme === "green" ? "text-green-300" : props.colorTheme === "rose" ? "text-rose-300" : "text-orange-300"} hover:drop-shadow-glow`}
