@@ -21,6 +21,12 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 3.2.2 - May 17th, 2024"
+            features={[
+              'Fixed bug where clicking on "Browser Notifications" would toggle the Sound setting',
+            ]}
+          />
+          <Change
             header="Release 3.2.1 - May 14th, 2024"
             features={[
               "Download trimming now works consistently with all supported sites (NOTE: trimming is usually slow, since it needs to re-encode the audio)",

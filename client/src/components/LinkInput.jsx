@@ -891,7 +891,7 @@ function LinkInput(props) {
                             <ToggleSwitch
                               colorTheme={props.colorTheme}
                               label=""
-                              id="notif-toggle"
+                              id="sound-toggle"
                               checked={sound}
                               onCheckedChange={handleSoundSwitch}
                             />
@@ -1209,7 +1209,7 @@ function LinkInput(props) {
                           <ToggleSwitch
                             colorTheme={props.colorTheme}
                             label=""
-                            id="notif-toggle"
+                            id="sound-toggle"
                             checked={sound}
                             onCheckedChange={handleSoundSwitch}
                           />
