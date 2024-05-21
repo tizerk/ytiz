@@ -21,6 +21,13 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 3.2.3 - May 21th, 2024"
+            features={[
+              "Removed unnecessary header for Settings modal",
+              "Removed tooltip effect on settings for mobile since mobile devices don't have a hover state",
+            ]}
+          />
+          <Change
             header="Release 3.2.2 - May 17th, 2024"
             features={[
               'Fixed bug where clicking on "Browser Notifications" would toggle the Sound setting',
