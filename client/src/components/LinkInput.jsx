@@ -883,7 +883,7 @@ function LinkInput(props) {
                                 className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                                 htmlFor="sound-toggle"
                               >
-                                Sound
+                                Sound Alerts
                               </Label>
                             </TooltipTrigger>
                             <ToggleSwitch
@@ -1201,7 +1201,7 @@ function LinkInput(props) {
                               className="cursor-pointer bg-text bg-clip-text text-center text-base font-extrabold text-transparent"
                               htmlFor="sound-toggle"
                             >
-                              Sound
+                              Sound Alerts
                             </Label>
                           </TooltipTrigger>
                           <ToggleSwitch
