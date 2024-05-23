@@ -81,13 +81,12 @@ const qualities = [
 ];
 
 function LinkInput(props) {
-  const fetchMachineID = Math.floor(Math.random() * 5);
+  const fetchMachineID = Math.floor(Math.random() * 4);
   const fetchMachineURLS = [
     import.meta.env.VITE_m1,
     import.meta.env.VITE_m2,
     import.meta.env.VITE_m3,
     import.meta.env.VITE_m4,
-    import.meta.env.VITE_m5,
   ];
   const fetchURL = fetchMachineURLS[fetchMachineID];
   const [link, setLink] = useState("");
@@ -674,14 +673,6 @@ function LinkInput(props) {
                     className={`pointer-events-none absolute inset-0 z-0 select-none rounded-2xl border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} ${props.colorTheme === "violet" ? "bg-[#222143]" : props.colorTheme === "blue" ? "bg-[#1d304cdd]" : props.colorTheme === "green" ? "bg-[#18413765]" : props.colorTheme === "rose" ? "bg-[#42181889]" : "bg-[#3d2c176f]"} bg-opacity-90 outline-none`}
                   />
                   <div className="relative z-10 font-nunito ">
-                    <DialogHeader className="mb-6">
-                      <DialogTitle className="font-bold">
-                        Edit Settings
-                      </DialogTitle>
-                      <DialogDescription>
-                        Adjust your download settings here.
-                      </DialogDescription>
-                    </DialogHeader>
                     <Label className="bg-text bg-clip-text text-center text-base font-extrabold text-transparent">
                       Format
                     </Label>
@@ -994,14 +985,7 @@ function LinkInput(props) {
                   className="rounded-t-3xl border-none bg-input_bot px-14 backdrop-blur-[6px]"
                 >
                   <div className="relative z-10 font-nunito ">
-                    <DrawerHeader className="mb-2">
-                      <DrawerTitle className="text-xl font-semibold text-text">
-                        Edit Settings
-                      </DrawerTitle>
-                      <DrawerDescription className="text-sm font-normal min-[425px]:text-lg">
-                        Adjust your download settings here.
-                      </DrawerDescription>
-                    </DrawerHeader>
+                    <div className="mb-4"></div>
                     <Label className="bg-text bg-clip-text text-center text-base font-extrabold text-transparent">
                       Format
                     </Label>
@@ -1094,17 +1078,6 @@ function LinkInput(props) {
                             checked={metadata}
                             onCheckedChange={handleMetadataSwitch}
                           />
-                          <TooltipContent
-                            className="m-auto w-2/3"
-                            side="bottom"
-                          >
-                            <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
-                              <strong>Enabled</strong> - Embeds title, artist,
-                              year, and thumbnail to the file
-                              <br />
-                              <strong>Disabled</strong> - No metadata embedded
-                            </p>
-                          </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
                     </div>
@@ -1126,18 +1099,6 @@ function LinkInput(props) {
                             checked={trim}
                             onCheckedChange={handleTrimSwitch}
                           />
-                          <TooltipContent
-                            className="m-auto w-3/5"
-                            side="bottom"
-                          >
-                            <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
-                              <strong>Enabled</strong> - Trims audio to
-                              specified timecodes, up to 5 minutes in duration
-                              <br />
-                              <br />
-                              <strong>Disabled</strong> - Downloads full audio
-                            </p>
-                          </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
                     </div>
@@ -1211,18 +1172,6 @@ function LinkInput(props) {
                             checked={sound}
                             onCheckedChange={handleSoundSwitch}
                           />
-                          <TooltipContent
-                            className="m-auto w-full"
-                            side="bottom"
-                          >
-                            <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
-                              <strong>Enabled</strong> - Plays audible alerts on
-                              download/error
-                              <br />
-                              <br />
-                              <strong>Disabled</strong> - YTiz plays no sound
-                            </p>
-                          </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
                     </div>
@@ -1244,20 +1193,6 @@ function LinkInput(props) {
                             checked={notif}
                             onCheckedChange={handleNotifSwitch}
                           />
-                          <TooltipContent
-                            className="m-auto w-1/2"
-                            side="bottom"
-                          >
-                            <p className="bg-gradient-to-b from-text to-text_fade bg-clip-text">
-                              <strong>Enabled</strong> - Sends browser-wide
-                              notifications when downloads finish or encounter
-                              errors
-                              <br />
-                              <br />
-                              <strong>Disabled</strong> - Only alerts on the
-                              page itself
-                            </p>
-                          </TooltipContent>
                         </Tooltip>
                       </TooltipProvider>
                     </div>
