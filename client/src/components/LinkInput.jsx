@@ -680,7 +680,7 @@ function LinkInput(props) {
                       <Toggle
                         variant="outline"
                         className={`w-1/3 rounded-l-lg border-2 border-r-[1px] font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
-                        onClick={handleSetM4A}
+                        onMouseDown={handleSetM4A}
                         pressed={m4a}
                       >
                         M4A
@@ -688,7 +688,7 @@ function LinkInput(props) {
                       <Toggle
                         variant="outline"
                         className={`w-1/3 rounded-none border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
-                        onClick={handleSetMP3}
+                        onMouseDown={handleSetMP3}
                         pressed={mp3}
                       >
                         MP3
@@ -696,7 +696,7 @@ function LinkInput(props) {
                       <Toggle
                         variant="outline"
                         className={`w-1/3 rounded-r-lg border-2 border-l-[1px] font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
-                        onClick={handleSetFLAC}
+                        onMouseDown={handleSetFLAC}
                         pressed={flac}
                       >
                         FLAC
@@ -939,7 +939,7 @@ function LinkInput(props) {
                       <Button
                         className="rounded-full bg-gray-800 hover:hover:bg-gray-600 hover:bg-opacity-35"
                         type="submit"
-                        onClick={handleSetOpen}
+                        onMouseDown={handleSetOpen}
                       >
                         Close
                       </Button>
@@ -993,7 +993,7 @@ function LinkInput(props) {
                       <Toggle
                         variant="outline"
                         className={`w-1/3 rounded-l-lg border-2 border-r-[1px] font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
-                        onClick={handleSetM4A}
+                        onMouseDown={handleSetM4A}
                         pressed={m4a}
                       >
                         M4A
@@ -1001,7 +1001,7 @@ function LinkInput(props) {
                       <Toggle
                         variant="outline"
                         className={`w-1/3 rounded-none border-2 font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
-                        onClick={handleSetMP3}
+                        onMouseDown={handleSetMP3}
                         pressed={mp3}
                       >
                         MP3
@@ -1009,7 +1009,7 @@ function LinkInput(props) {
                       <Toggle
                         variant="outline"
                         className={`w-1/3 rounded-r-lg border-2 border-l-[1px] font-bold text-text ${props.colorTheme === "violet" ? "hover:bg-violet-900" : props.colorTheme === "blue" ? "hover:bg-blue-900" : props.colorTheme === "green" ? "hover:bg-green-900" : props.colorTheme === "rose" ? "hover:bg-rose-900" : "hover:bg-orange-900"} hover:text-white ${props.colorTheme === "violet" ? "data-[state=on]:bg-violet-600" : props.colorTheme === "blue" ? "data-[state=on]:bg-blue-600" : props.colorTheme === "green" ? "data-[state=on]:bg-green-600" : props.colorTheme === "rose" ? "data-[state=on]:bg-rose-600" : "data-[state=on]:bg-orange-600"} data-[state=on]:text-text`}
-                        onClick={handleSetFLAC}
+                        onMouseDown={handleSetFLAC}
                         pressed={flac}
                       >
                         FLAC
@@ -1200,7 +1200,7 @@ function LinkInput(props) {
                       <Button
                         className="w-2/3 rounded-full bg-gray-800 hover:bg-gray-600 hover:bg-opacity-35"
                         type="submit"
-                        onClick={handleSetOpen}
+                        onMouseDown={handleSetOpen}
                       >
                         Close
                       </Button>
