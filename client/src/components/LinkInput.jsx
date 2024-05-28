@@ -174,7 +174,7 @@ function LinkInput(props) {
     let settingsY = 0;
     if (settingsDialog.current) {
       settingsX = e.pageX - settingsDialog.current.offsetLeft + 160;
-      settingsY = e.pageY - settingsDialog.current.offsetTop + 290;
+      settingsY = e.pageY - settingsDialog.current.offsetTop + 260;
     }
 
     documentTarget.setAttribute(
@@ -652,7 +652,7 @@ function LinkInput(props) {
                 </DialogTrigger>
                 <DialogContent
                   ref={settingsDialog}
-                  className="absolute max-w-80 border-none bg-slate-800 bg-opacity-50 backdrop-blur-[4px]"
+                  className="absolute max-w-80 rounded-xl border-none bg-slate-800 bg-opacity-50 backdrop-blur-[4px]"
                 >
                   <div
                     style={{
@@ -670,9 +670,9 @@ function LinkInput(props) {
                         transparent 50%
                         )`,
                     }}
-                    className={`pointer-events-none absolute inset-0 z-0 select-none rounded-2xl border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} ${props.colorTheme === "violet" ? "bg-[#222143]" : props.colorTheme === "blue" ? "bg-[#1d304cdd]" : props.colorTheme === "green" ? "bg-[#18413765]" : props.colorTheme === "rose" ? "bg-[#42181889]" : "bg-[#3d2c176f]"} bg-opacity-90 outline-none`}
+                    className={`pointer-events-none absolute inset-0 z-0 select-none rounded-xl border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} ${props.colorTheme === "violet" ? "bg-[#222143]" : props.colorTheme === "blue" ? "bg-[#1d304cdd]" : props.colorTheme === "green" ? "bg-[#18413765]" : props.colorTheme === "rose" ? "bg-[#42181889]" : "bg-[#3d2c176f]"} bg-opacity-90 outline-none`}
                   />
-                  <div className="relative z-10 font-nunito ">
+                  <div className="relative z-10 font-nunito">
                     <Label className="bg-text bg-clip-text text-center text-base font-extrabold text-transparent">
                       Format
                     </Label>
