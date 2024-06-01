@@ -140,7 +140,7 @@ function LinkInput(props) {
   const isDesktop = useMediaQuery("(min-width: 640px)");
   const [selectedQuality, setSelectedQuality] = useState(() => {
     const saved = localStorage.getItem("selectedQuality");
-    return saved || "192";
+    return saved || "128";
   });
   const [downloadCount, setDownloadCount] = useState(() => {
     const saved = localStorage.getItem("downloadCount");
