@@ -21,6 +21,12 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 3.2.4 - June 6th, 2024"
+            features={[
+              "Added a status message for trimmed downloads to note the possible slow speed of trimming",
+            ]}
+          />
+          <Change
             header="Release 3.2.3 - May 21th, 2024"
             features={[
               "Removed unnecessary header for Settings modal",
