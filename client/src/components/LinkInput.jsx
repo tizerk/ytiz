@@ -362,7 +362,11 @@ function LinkInput(props) {
         setDLState("");
         return;
       } else {
-        setDLState("Converting Data... (Please Wait)");
+        if (trim) {
+          setDLState("Trimming Data... (May take a while)");
+        } else {
+          setDLState("Converting Data...");
+        }
         setThumbnailURL(previewInfo["thumbnail"]);
         setTitle(previewInfo["title"]);
         setAuthor(previewInfo["author"]);
