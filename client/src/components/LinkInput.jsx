@@ -81,7 +81,7 @@ const qualities = [
 ];
 
 function LinkInput(props) {
-  const fetchMachineID = Math.floor(Math.random() * 6);
+  const fetchMachineID = Math.floor(Math.random() * 10);
   const fetchMachineURLS = [
     import.meta.env.VITE_m1,
     import.meta.env.VITE_m2,
@@ -89,6 +89,10 @@ function LinkInput(props) {
     import.meta.env.VITE_m4,
     import.meta.env.VITE_m5,
     import.meta.env.VITE_m6,
+    import.meta.env.VITE_m7,
+    import.meta.env.VITE_m8,
+    import.meta.env.VITE_m9,
+    import.meta.env.VITE_m0,
   ];
   const fetchURL = fetchMachineURLS[fetchMachineID];
   const [link, setLink] = useState("");
