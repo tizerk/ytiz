@@ -35,10 +35,7 @@ import { supabase } from "../lib/supabase";
 import {
   Drawer,
   DrawerContent,
-  DrawerDescription,
   DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import {
@@ -81,7 +78,7 @@ const qualities = [
 ];
 
 function LinkInput(props) {
-  const fetchMachineID = Math.floor(Math.random() * 10);
+  const fetchMachineID = Math.floor(Math.random() * 19);
   const fetchMachineURLS = [
     import.meta.env.VITE_m1,
     import.meta.env.VITE_m2,
@@ -92,7 +89,16 @@ function LinkInput(props) {
     import.meta.env.VITE_m7,
     import.meta.env.VITE_m8,
     import.meta.env.VITE_m9,
-    import.meta.env.VITE_m0,
+    import.meta.env.VITE_m10,
+    import.meta.env.VITE_m11,
+    import.meta.env.VITE_m12,
+    import.meta.env.VITE_m13,
+    import.meta.env.VITE_m14,
+    import.meta.env.VITE_m15,
+    import.meta.env.VITE_m16,
+    import.meta.env.VITE_m17,
+    import.meta.env.VITE_m18,
+    import.meta.env.VITE_m19,
   ];
   const fetchURL = fetchMachineURLS[fetchMachineID];
   const [link, setLink] = useState("");
