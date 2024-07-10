@@ -83,7 +83,7 @@ function Home(props) {
         </p>
       </motion.h1>
       {/* <div className="mb-4 rounded-xl bg-red-800 p-5 text-center font-bold text-text">
-        <h1>YouTube is attempting to block YTiz, again, again, again</h1>
+        <h1>YouTube is attempting to block YTiz, again (x4)</h1>
         <p className="text-sm">
           I'm trying to find a workaround, but YouTube downloads may not work
           for the time being. Other sites should work as usual.
