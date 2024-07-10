@@ -52,8 +52,8 @@ def get_info(link, startTime, endTime, format):
                 filename = ydl.prepare_filename(result) + f".{format}"
             if ".webm" in filename:
                 filename = remove_last_substring(filename, ".webm")
-            elif ".NA" in filename:
-                filename = remove_last_substring(filename, ".NA")
+            elif ".m4a" in filename:
+                filename = remove_last_substring(filename, ".m4a")
             elif ".mp4" in filename:
                 filename = remove_last_substring(filename, ".mp4")
             elif ".mp3" in filename:
