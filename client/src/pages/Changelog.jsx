@@ -21,6 +21,10 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 3.3.0 - July 21st, 2024"
+            features={["Removed Umami performance analytics to reduce bloat"]}
+          />
+          <Change
             header="Release 3.2.9 - July 19th, 2024"
             features={["Updated yt-dlp library in backend again"]}
           />
