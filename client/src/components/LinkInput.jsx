@@ -89,7 +89,7 @@ function LinkInput(props) {
     import.meta.env.VITE_m7,
     import.meta.env.VITE_m8,
     import.meta.env.VITE_m9,
-    import.meta.env.VITE_m10,
+    import.meta.env.VITE_m0,
     import.meta.env.VITE_m11,
     import.meta.env.VITE_m12,
   ];
