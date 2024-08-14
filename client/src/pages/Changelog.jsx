@@ -21,6 +21,13 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
           <Change
+            header="Release 3.4.0 - August 14th, 2024"
+            features={[
+              "Updated yt-dlp library in backend to fix some extractor issues",
+              "Fixed meta tag for the website description",
+            ]}
+          />
+          <Change
             header="Release 3.3.2 - August 1st, 2024"
             features={[
               "Updated yt-dlp library in backend; fixes issues with age-restricted content on YouTube",
