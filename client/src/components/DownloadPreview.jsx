@@ -2,7 +2,7 @@ function DownloadPreview(props) {
   return (
     <div className="mb-4 flex flex-col items-center justify-center">
       <img
-        className="mb-4 h-32 rounded-3xl min-[460px]:h-32 min-[540px]:h-40 sm:h-48"
+        className="mb-4 h-32 select-none rounded-3xl min-[460px]:h-32 min-[540px]:h-40 sm:h-48"
         src={props.thumbnail}
         alt="Download Thumbnail"
       />

@@ -47,7 +47,7 @@ def info():
                 return (
                     jsonify(
                         {
-                            "error": f"Error: This URL has been blocked in the United States and cannot be downloaded with YTiz: {url}"
+                            "error": f"Error: This URL has been geoblocked.  Try refreshing to roll a different server region: {url}"
                         }
                     ),
                     406,
@@ -121,7 +121,7 @@ def download():
                 return (
                     jsonify(
                         {
-                            "error": f"Error: This URL has been blocked in the United States and cannot be downloaded with YTiz: {url}"
+                            "error": f"Error: This URL has been geoblocked.  Try refreshing to roll a different server region: {url}"
                         }
                     ),
                     406,
