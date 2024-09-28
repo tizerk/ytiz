@@ -2,10 +2,9 @@
 
 ![YTizDemo](https://github.com/tizerk/ytiz/assets/78773655/666bf1f4-f93e-4cc9-898e-a9ab43c2ab3d)
 
-
 ## Introduction
 
-If you've ever tried to download songs from YouTube or SoundCloud, you've no doubt encountered the terrible "YTMP3" websites on Google that serve dozens of popup and redirect ads. With YTiz, you can say goodbye to the ads, trackers, slow downloads, and low-quality audio.
+If you've ever tried to download music from YouTube or SoundCloud, you've no doubt encountered the terrible "YTMP3" websites on Google that serve dozens of popup and redirect ads. These ads are often riddled with scams and malware. With YTiz, you can say goodbye to ads, trackers, slow downloads, and low-quality audio.
 
 ## 💻 Features
 
@@ -28,7 +27,7 @@ If you want to run YTiz on your own computer, follow these steps:
 3. Create a `.env` in the `client` directory
    ```
    VITE_dev_url="Your Localhost Backend URL"
-   VITE_SUPABASE_ANON_KEY="Your Supabase Database Anon Key" (OPTIONAL) 
+   VITE_SUPABASE_ANON_KEY="Your Supabase Database Anon Key" (OPTIONAL)
    VITE_SUPABASE_URL="Your Supabase Database URL" (OPTIONAL)
    ```
 4. Create another `.env` in the `flask-backend` directory
