@@ -59,7 +59,7 @@ function App() {
           <Route path="/changelog" element={<Changelog />} />
         </Routes>
       </AnimatePresence>
-      {/* {isDesktop && (
+      {isDesktop && (
         <a
           className="group absolute bottom-32 left-10 flex rounded-3xl bg-slate-900 px-5 py-3 text-base font-semibold text-gray-200 transition-all duration-200 hover:scale-110 hover:bg-slate-700 hover:drop-shadow-small_glow sm:bottom-8"
           href="https://ko-fi.com/tizerk"
@@ -86,7 +86,7 @@ function App() {
             alt="Ko-fi Icon"
           />
         </a>
-      )} */}
+      )}
     </motion.main>
   );
 }
