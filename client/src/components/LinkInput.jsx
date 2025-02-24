@@ -197,12 +197,12 @@ function LinkInput(props) {
     });
   }, []);
 
-  // useEffect(() => {
-  //   if (downloadCount == 20 || downloadCount == 50) {
-  //     setOpenDonate(true);
-  //   }
-  //   localStorage.setItem("downloadCount", downloadCount);
-  // }, [downloadCount]);
+  useEffect(() => {
+    if (downloadCount == 50) {
+      setOpenDonate(true);
+    }
+    localStorage.setItem("downloadCount", downloadCount);
+  }, [downloadCount]);
 
   useEffect(() => {
     localStorage.setItem("selectedQuality", selectedQuality);
