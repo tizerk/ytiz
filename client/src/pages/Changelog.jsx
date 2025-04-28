@@ -20,6 +20,12 @@ function Changelog() {
         className="relative mt-24 flex w-[85%] max-w-[500px] justify-center text-text hover:cursor-pointer min-[425px]:w-[75%] md:w-[50%]"
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
+        <Change
+            header="Release 3.4.7 - April 27th, 2025"
+            features={[
+              "Scaled down backend machines"
+            ]}
+          />
           <Change
             header="Release 3.4.6 - March 31st, 2025"
             features={[

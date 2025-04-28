@@ -78,7 +78,7 @@ const qualities = [
 ];
 
 function LinkInput(props) {
-  const fetchMachineID = Math.floor(Math.random() * 15);
+  const fetchMachineID = Math.floor(Math.random() * 12);
   const fetchMachineURLS = [
     import.meta.env.VITE_m1,
     import.meta.env.VITE_m2,
