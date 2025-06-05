@@ -27,7 +27,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-Dockerfile
 .dockerignore
 fly.toml
 Procfile
