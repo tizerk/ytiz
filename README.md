@@ -4,15 +4,15 @@
 
 ## Introduction
 
-If you've ever tried to download music from YouTube or SoundCloud, you've no doubt encountered the terrible "YTMP3" websites on Google that serve dozens of popup and redirect ads. These ads are often riddled with scams and malware. With YTiz, you can say goodbye to ads, trackers, slow downloads, and low-quality audio.
+If you've ever tried to download music from SoundCloud or BandCamp, you've no doubt encountered the terrible "SoundcloudMP3" websites on Google that serve dozens of popup and redirect ads. These ads are often riddled with scams and malware. With YTiz, you can say goodbye to ads, trackers, slow downloads, and low-quality audio.
 
 ## 💻 Features
 
-- Fast downloads from YouTube, SoundCloud, BandCamp, Twitter, and TikTok
-- Audio quality selection (From 32 - 320 kbps)
+- Fast downloads from SoundCloud, BandCamp, Twitter, and TikTok
+- Audio quality selection (From 32 - 256 kbps)
 - Audio format selection (Between MP3, FLAC, and M4A)
 - Embedded metadata including titles, authors, and cover art
-- Download Trimming (Up to 5 minute clips from YouTube)
+- Download Trimming (Up to 5 minute audio clips)
 - Browser Notifications and Sound Effect Options
 
 ## 🛠 Selfhosting
@@ -47,12 +47,6 @@ If you want to run YTiz on your own computer, follow these steps:
    ```
    flask run
    ```
-
-## 🎁 Donate
-
-<a href="https://ko-fi.com/tizerk">
-  <img src="https://assets-global.website-files.com/5c14e387dab576fe667689cf/64f1a9ddd0246590df69ea1a_kofi_short_button_dark%25402x-p-500.png" />
-<a/>
 
 ## Contribution
 
