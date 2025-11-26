@@ -41,11 +41,11 @@ function FAQ(props) {
             <ul className="list-none font-extrabold tracking-wide">
               <li className="mb-1">- No Ads/Trackers/Cookies</li>
               <li className="mb-1">
-                - High Speed (~35% faster than "ytmp3" sites)
+                - High Processing Speed
               </li>
               <li className="mb-1">- Embedded Artist/Thumbnail Metadata</li>
-              <li className="mb-1">- Quality Selector (32kbps - 320kbps)</li>
-              <li className="mb-1">- Trimming Downloads (YouTube Only)</li>
+              <li className="mb-1">- Quality Selector (32kbps - 256kbps)</li>
+              <li className="mb-1">- Trimming Downloads (Up to 5 Minutes)</li>
             </ul>
           </AccordionContent>
         </AccordionItem>
@@ -56,13 +56,12 @@ function FAQ(props) {
           <AccordionContent className="font-medium leading-relaxed">
             Currently, YTiz supports audio downloading from:
             <ul className="mb-3 list-none font-extrabold tracking-wide">
-              <li>- YouTube</li>
               <li>- SoundCloud *</li>
               <li>- BandCamp *</li>
               <li>- Twitter</li>
               <li>- TikTok</li>
             </ul>
-            <em>* Only supports 128kbps audio quality.</em>
+            <em>* Only supports up to 128kbps audio quality.</em>
             <p className="mt-3">
               Don't see your favorite site here?{" "}
               <Link

@@ -79,15 +79,9 @@ function Home(props) {
       >
         YTIZ
         <p className="z-0 mt-1 select-none bg-gradient-to-b from-text to-text_fade bg-clip-text text-center font-nunito text-base font-semibold text-transparent opacity-60">
-          MP3 Converter for YouTube | SoundCloud | BandCamp | Twitter | TikTok
+          MP3 Converter for SoundCloud | BandCamp | Twitter | TikTok
         </p>
       </motion.h1>
-      {<div className="mb-4 rounded-xl bg-red-800 p-5 text-center font-bold text-text">
-        <h1>YouTube downloads are broken (and may never be fixed 😭)</h1>
-        <p className="text-sm">
-          Please check twitter (@ytizmp3) for more details.  SoundCloud, Bandcamp, Twitter, and TikTok links still work.
-        </p>
-      </div>}
       <LinkInput
         colorTheme={props.colorTheme}
         className="z-10"

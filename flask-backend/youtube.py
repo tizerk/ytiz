@@ -22,7 +22,6 @@ def get_info(link, startTime, endTime, format):
         "playlist_items": "0",
         "source_address": "0.0.0.0",
         "allowed_extractors": [
-            "youtube",
             "soundcloud",
             "tiktok",
             "twitter",

@@ -21,6 +21,13 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
         <Change
+            header="Release 3.6.0 - November 26th, 2025"
+            features={[
+              "Removed YouTube downloading support",
+              "Adjusted maximum audio quality to 256kbps"
+            ]}
+          />
+        <Change
             header="Release 3.5.1 - October 17th, 2025"
             features={[
               "Updated yt-dlp backend"
