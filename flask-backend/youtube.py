@@ -20,6 +20,7 @@ def get_info(link, startTime, endTime, format):
         "format": f"mp3/bestaudio/best",
         "noplaylist": True,
         "playlist_items": "0",
+        "legacy-server-connect": True,
         "source_address": "0.0.0.0",
         "allowed_extractors": [
             "soundcloud",

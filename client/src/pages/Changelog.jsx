@@ -21,6 +21,12 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
         <Change
+            header="Release 3.6.1 - December 10th, 2025"
+            features={[
+              "Fixed Soundcloud downloading issues (moved servers out of the US)",
+            ]}
+          />
+        <Change
             header="Release 3.6.0 - November 26th, 2025"
             features={[
               "Removed YouTube downloading support",
