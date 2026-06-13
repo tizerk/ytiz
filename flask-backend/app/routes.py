@@ -77,6 +77,15 @@ def info():
                     ),
                     406,
                 )
+            elif err == 8:
+                return (
+                    jsonify(
+                        {
+                            "error": f"Error: This track is DRM-protected by SoundCloud, and cannot be downloaded with YTiz. Please try a different track, or a different source."
+                        }
+                    ),
+                    406,
+                )
 
 
 @app.route("/api/download", methods=["POST"])

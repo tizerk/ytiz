@@ -67,6 +67,8 @@ def get_info(link, startTime, endTime, format):
                 return "", "", "", "", 0, 4, 0
             elif "due to a copyright claim" in str(e):
                 return "", "", "", "", 0, 5, 0
+            elif "DRM" in str(e):
+                return "", "", "", "", 0, 8, 0
             return "", "", "", "", 0, 1, 0
 
 
