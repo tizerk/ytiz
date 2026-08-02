@@ -49,6 +49,26 @@ import ToggleSwitch from "./ToggleSwitch";
 import successSFX from "../../public/assets/success.mp3";
 import errorSFX from "../../public/assets/err.mp3";
 import Kofi from "../../public/assets/kofi.svg";
+import { SocialIcon } from "react-social-icons";
+
+const detectPlatform = (url) => {
+  if (!url) return null;
+  const lower = url.toLowerCase();
+  if (lower.includes("soundcloud.com") || lower.includes("on.soundcloud.com")) {
+    return { name: "SoundCloud", url: "https://soundcloud.com" };
+  }
+  if (lower.includes("bandcamp.com")) {
+    return { name: "BandCamp", url: "https://bandcamp.com" };
+  }
+  if (lower.includes("twitter.com") || lower.includes("x.com") || lower.includes("t.co")) {
+    return { name: "Twitter / X", url: "https://twitter.com" };
+  }
+  if (lower.includes("tiktok.com")) {
+    return { name: "TikTok", url: "https://tiktok.com" };
+  }
+  return null;
+};
+
 
 const qualities = [
   {
@@ -89,6 +109,7 @@ function LinkInput(props) {
   ];
   const fetchURL = fetchMachineURLS[fetchMachineID];
   const [link, setLink] = useState("");
+  const detectedPlatform = detectPlatform(link);
   const [metadata, setMetadata] = useState(() => {
     const saved = localStorage.getItem("metadata");
     if (saved == "false") return false;
@@ -516,7 +537,7 @@ function LinkInput(props) {
           ref={inputContainer}
         >
           <Input
-            className="mb-2 rounded-full border-none bg-slate-600 bg-opacity-25 py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-slate-500 focus:bg-opacity-30 focus:outline-none focus:placeholder:text-slate-400"
+            className="mb-2 rounded-full border-none bg-slate-600 bg-opacity-25 py-9 pl-10 pr-20 text-xl font-bold text-text outline-none backdrop-blur-sm placeholder:font-bold focus:bg-slate-500 focus:bg-opacity-30 focus:outline-none focus:placeholder:text-slate-400 sm:pr-44"
             type="url"
             id="url"
             name="url"
@@ -542,9 +563,31 @@ function LinkInput(props) {
               )`,
             }}
             id="fakeInput"
-            className={`pointer-events-none absolute mb-2 select-none rounded-full border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} bg-transparent py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none`}
+            className={`pointer-events-none absolute mb-2 select-none rounded-full border-2 ${props.colorTheme === "violet" ? "border-violet-400" : props.colorTheme === "blue" ? "border-blue-400" : props.colorTheme === "green" ? "border-green-400" : props.colorTheme === "rose" ? "border-rose-400" : "border-orange-400"} bg-transparent py-9 pl-10 pr-20 text-xl font-bold text-transparent outline-none sm:pr-44`}
             disabled={download}
           />
+          <AnimatePresence>
+            {detectedPlatform && (
+              <motion.div
+                key="platform-badge"
+                initial={{ opacity: 0, scale: 0.8, x: 10 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.8, x: 10 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="pointer-events-none absolute right-20 mb-2 flex items-center gap-1.5 rounded-full border border-white/10 bg-slate-800/80 px-3 py-1.5 shadow-sm backdrop-blur-md"
+              >
+                <SocialIcon
+                  url={detectedPlatform.url}
+                  style={{ height: 22, width: 22 }}
+                  bgColor="transparent"
+                  fgColor="#ffffff"
+                />
+                <span className="hidden text-xs font-extrabold tracking-wide text-text/90 sm:inline">
+                  {detectedPlatform.name}
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
           <Button
             className="absolute right-4 mb-2 aspect-auto h-[50px] w-[50px] rounded-full border-[3px] border-text bg-transparent transition-all delay-0 duration-200 ease-out hover:drop-shadow-heavy_glow"
             variant="default"

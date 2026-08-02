@@ -21,6 +21,13 @@ function Changelog() {
       >
         <ScrollArea className="h-full max-h-[400px] w-full max-w-[500px] rounded-xl bg-slate-700 bg-opacity-40 from-violet-800 to-slate-950 p-8 backdrop-blur-sm">
         <Change
+            header="Release 3.6.3 - August 2nd, 2026"
+            features={[
+              "Updated yt-dlp backend",
+              "Added supported platform icons in URL input bar"
+            ]}
+          />
+        <Change
             header="Release 3.6.2 - April 30th, 2026"
             features={[
               "Updated yt-dlp backend",
